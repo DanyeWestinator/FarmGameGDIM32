@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
+    [SerializeField] private GameObject selectedSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +15,10 @@ public class Plant : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetSelected(bool set)
+    {
+        selectedSprite.SetActive(set);
     }
 }

@@ -1,13 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Shovel : Tool
+public class PlayerEyes : MonoBehaviour
 {
+    private PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GetComponentInParent<PlayerController>();
     }
 
     // Update is called once per frame
@@ -16,8 +18,8 @@ public class Shovel : Tool
         
     }
 
-    public override void Use()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        //print("Using shovel!");
+        player.OnHit(col.gameObject);
     }
 }

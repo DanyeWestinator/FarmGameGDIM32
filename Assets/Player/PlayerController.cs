@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -16,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Tool currentTool;
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
+    [SerializeField] private GameObject lastHit;
+
+    private Animator anim;
     private int tool_i = 0;
     /// <summary>
     /// The tools the player has
@@ -26,6 +30,8 @@ public class PlayerController : MonoBehaviour
     /// The direction the player is moving
     /// </summary>
     private Vector2 dir;
+
+    private bool _canMove = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +45,7 @@ public class PlayerController : MonoBehaviour
         currentTool = toolParent.GetChild(0).GetComponent<Tool>();
         currentTool.gameObject.SetActive(true);
         tool_i = 0;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,7 +53,16 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-    
+
+    public void OnHit(GameObject col)
+    {
+        if (lastHit != col && lastHit)
+            lastHit.GetComponent<Plant>().SetSelected(false);
+        lastHit = col;
+        lastHit.GetComponent<Plant>().SetSelected(true);
+    }
+
+
     /// <summary>
     /// Update the player's move direction based on input
     /// </summary>
@@ -62,8 +78,36 @@ public class PlayerController : MonoBehaviour
 
     void OnUse()
     {
+        //Don't start using a tool if already using one
+        if (frozenMovement != null)
+            return;
+        
+        //Use the current tool
         currentTool.UseTool();
-        StartCoroutine(StartConsole());
+        
+        //Start the tool animation
+        anim.SetTrigger($"Start{currentTool.gameObject.name}");
+        
+        //Freeze the player's movement until animation finishes
+        frozenMovement = freezeMovement();
+        StartCoroutine(frozenMovement);
+        
+    }
+
+    private IEnumerator frozenMovement = null;
+    IEnumerator freezeMovement()
+    {
+        //Freeze movement until done
+        _canMove = false;
+        
+        //Get length of current animation
+        float secs = anim.GetCurrentAnimatorStateInfo(0).length;
+        
+        //Wait n seconds
+        yield return new WaitForSeconds(secs);
+        //Allow movement again
+        _canMove = true;
+        frozenMovement = null;
     }
 
     IEnumerator StartConsole()
@@ -104,6 +148,9 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Move()
     {
+        if (_canMove == false)
+            return;
+        
         Vector3 direction = (Vector3)dir * Time.deltaTime * moveSpeed;
 
         transform.position += direction;
