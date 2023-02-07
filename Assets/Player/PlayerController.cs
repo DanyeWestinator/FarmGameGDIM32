@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator frozenMovement = null;
+    /// <summary>
+    /// Coroutine
+    /// </summary>
+    /// <returns>Just waits</returns>
     IEnumerator freezeMovement()
     {
         //Freeze movement until done

@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerEyes : MonoBehaviour
 {
+    /// <summary>
+    /// This is the player game object
+    /// <br /> line break
+    /// </summary>
     private PlayerController player;
     // Start is called before the first frame update
     void Start()
