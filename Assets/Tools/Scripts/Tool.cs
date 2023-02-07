@@ -25,7 +25,7 @@ public abstract class Tool : MonoBehaviour
     public void UseTool()
     {
         //Will play animation, check hitboxes and find interactable, etc
-        print($"Using {gameObject.name}! Hopefully, logic to follow!");
+        //print($"Using {gameObject.name}! Hopefully, logic to follow!");
         Use();
     }
     /// <summary>
