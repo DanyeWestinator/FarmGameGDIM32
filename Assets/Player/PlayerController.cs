@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -18,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
     [SerializeField] private GameObject lastHit;
+    private Plant currentPlant;
 
     private Animator anim;
     private int tool_i = 0;
@@ -59,7 +61,8 @@ public class PlayerController : MonoBehaviour
         if (lastHit != col && lastHit)
             lastHit.GetComponent<Plant>().SetSelected(false);
         lastHit = col;
-        lastHit.GetComponent<Plant>().SetSelected(true);
+        currentPlant = lastHit.GetComponent<Plant>();
+        currentPlant.SetSelected(true);
     }
 
 
@@ -92,6 +95,7 @@ public class PlayerController : MonoBehaviour
         frozenMovement = freezeMovement();
         StartCoroutine(frozenMovement);
         
+        
     }
 
     private IEnumerator frozenMovement = null;
@@ -105,6 +109,8 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
+        if (currentPlant)
+            currentPlant.OnUse(currentTool.gameObject.name);
         //Allow movement again
         _canMove = true;
         frozenMovement = null;
@@ -142,7 +148,6 @@ public class PlayerController : MonoBehaviour
         currentTool.gameObject.SetActive(true);
     }
     
-    
     /// <summary>
     /// Handles move logic
     /// </summary>
@@ -152,7 +157,7 @@ public class PlayerController : MonoBehaviour
             return;
         
         Vector3 direction = (Vector3)dir * Time.deltaTime * moveSpeed;
-
+        
         transform.position += direction;
     }
 }

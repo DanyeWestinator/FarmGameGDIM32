@@ -15,11 +15,12 @@ public class PlayerEyes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3Int pos = Vector3Int.RoundToInt(transform.position);
+        player.OnHit(FarmSpawner.tiles[pos]);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        player.OnHit(col.gameObject);
+        //player.OnHit(col.gameObject);
     }
 }
