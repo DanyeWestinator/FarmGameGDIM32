@@ -19,7 +19,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
     [SerializeField] private GameObject lastHit;
-    private Plant currentPlant;
+    [SerializeField] private TextMeshProUGUI scoreCounter;
+    private int currentScore = 0;
+    /// <summary>
+    /// What tile the player is currently standing on
+    /// </summary>
+    public FarmTile currentTile;
 
     private Animator anim;
     private int tool_i = 0;
@@ -34,21 +39,29 @@ public class PlayerController : MonoBehaviour
     private Vector2 dir;
 
     private bool _canMove = true;
+
+    public static PlayerController player;
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        print("Test changes!");
+        //Singleton (kind of, doesn't check if another exists) of player
+        player = this;
+        
+        //Spawn all the player's tools as children under toolParent
         foreach (Tool t in tools)
         {
             GameObject go = Instantiate(t.gameObject, toolParent);
             go.name = t.gameObject.name;
             go.SetActive(false);
         }
-
+        
         currentTool = toolParent.GetChild(0).GetComponent<Tool>();
         currentTool.gameObject.SetActive(true);
         tool_i = 0;
         anim = GetComponent<Animator>();
+        AddScore(0);
     }
 
     // Update is called once per frame
@@ -56,14 +69,19 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-
+    
+    //Updating which tile the player is standing on
     public void OnHit(GameObject col)
     {
+        //Turn off the last tile if exists
         if (lastHit != col && lastHit)
-            lastHit.GetComponent<Plant>().SetSelected(false);
+        {
+            lastHit.GetComponent<FarmTile>().SetSelected(false);
+        }
+            
         lastHit = col;
-        currentPlant = lastHit.GetComponent<Plant>();
-        currentPlant.SetSelected(true);
+        currentTile = lastHit.GetComponent<FarmTile>();
+        currentTile.SetSelected(true);
     }
 
 
@@ -86,12 +104,15 @@ public class PlayerController : MonoBehaviour
         if (frozenMovement != null)
             return;
         
-        //Use the current tool
-        currentTool.UseTool();
+        
         
         //Start the tool animation
-        anim.SetTrigger($"Start{currentTool.gameObject.name}");
-        
+        if (currentTool.gameObject.name.Contains("Seeds") == false)
+            anim.SetTrigger($"Start{currentTool.gameObject.name}");
+        else
+        {
+            anim.SetTrigger("StartSeeds");
+        }
         //Freeze the player's movement until animation finishes
         frozenMovement = freezeMovement();
         StartCoroutine(frozenMovement);
@@ -100,6 +121,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private IEnumerator frozenMovement = null;
+    /// <summary>
+    /// Freezes player movement until anim is done
+    /// </summary>
+    /// <returns>Void, returns WaitForSeconds</returns>
     IEnumerator freezeMovement()
     {
         //Freeze movement until done
@@ -110,21 +135,13 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
-        if (currentPlant)
-            currentPlant.OnUse(currentTool.gameObject.name);
+        //Use the current tool, after waiting
+        currentTool.UseTool(currentTile.gameObject);
         //Allow movement again
         _canMove = true;
         frozenMovement = null;
     }
 
-    IEnumerator StartConsole()
-    {
-        console.text = $"Using {currentTool.gameObject.name}!";
-        console.gameObject.SetActive(true);
-        yield return new WaitForSeconds(consoleTime);
-        console.gameObject.SetActive(false);
-        
-    }
 
     void OnNextTool()
     {
@@ -160,5 +177,11 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = (Vector3)dir * Time.deltaTime * moveSpeed;
         
         transform.position += direction;
+    }
+
+    public void AddScore(int toAdd)
+    {
+        currentScore += toAdd;
+        scoreCounter.text = $"Current score:\n{currentScore}";
     }
 }

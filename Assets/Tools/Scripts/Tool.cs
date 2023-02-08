@@ -22,15 +22,15 @@ public abstract class Tool : MonoBehaviour
     /// Public facing logic to use a tool. Handles generic tool logic,
     /// then each subclass must implement their own logic
     /// </summary>
-    public void UseTool()
+    public void UseTool(GameObject tile)
     {
         //Will play animation, check hitboxes and find interactable, etc
         //print($"Using {gameObject.name}! Hopefully, logic to follow!");
-        Use();
+        Use(tile);
     }
     /// <summary>
     /// Each subclass must override
     /// </summary>
-    public abstract void Use();
+    public abstract void Use(GameObject tile);
     
 }

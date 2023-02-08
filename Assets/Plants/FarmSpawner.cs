@@ -13,7 +13,7 @@ public class FarmSpawner : MonoBehaviour
     [SerializeField] private Color green;
     [SerializeField] private Color brown;
 
-    public static Dictionary<Vector3Int, GameObject> tiles = new Dictionary<Vector3Int, GameObject>();
+    public static Dictionary<Vector2Int, GameObject> tiles = new Dictionary<Vector2Int, GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -24,19 +24,17 @@ public class FarmSpawner : MonoBehaviour
     {
         for (int i = -1 * farmDimensions; i < farmDimensions; i++)
         {
-            Transform parent = new GameObject().transform;
-            parent.parent = transform;
-            parent.position = Vector3.zero;
-            parent.gameObject.name = $"X_val{i}";
+            
             for (int j = -1 * farmDimensions; j < farmDimensions; j++)
             {
                 Vector3Int pos = new Vector3Int(i, j, 1);
-                GameObject spawned = Instantiate(farmPlot, parent);
+                GameObject spawned = Instantiate(farmPlot, transform);
                 
-                spawned.name = $"FarmTile({pos})";
+                
                 spawned.transform.position = pos;
-                pos.z = 0;
-                tiles.Add(pos, spawned);
+                Vector2Int loc = (Vector2Int)pos;
+                tiles.Add(loc, spawned);
+                spawned.name = $"FarmTile {loc}";
                 SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();
                 bool i_odd = math.abs(i) % 2 != 0;
                 bool j_odd = math.abs(j) % 2 != 0;
@@ -48,14 +46,9 @@ public class FarmSpawner : MonoBehaviour
                 //b
                 if (i_odd != j_odd)
                 {
-                    sr.color = brown;
+                    sr.color = green;
                 }
 
-                if (i == -2)
-                {
-                    GameObject treeSpawned = Instantiate(tree, spawned.transform);
-                    spawned.GetComponent<Plant>().occupied = treeSpawned;
-                }
             }
         }
     }

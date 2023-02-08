@@ -16,7 +16,7 @@ public class Axe : Tool
         
     }
 
-    public override void Use()
+    public override void Use(GameObject tile)
     {
         
     }

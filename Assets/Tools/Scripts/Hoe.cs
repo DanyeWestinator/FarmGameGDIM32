@@ -15,8 +15,12 @@ public class Hoe : Tool
     {
         
     }
-    public override void Use()
+    public override void Use(GameObject tile)
     {
-        
+        FarmTile farmTile = tile.GetComponent<FarmTile>();
+        if (farmTile.tilled == false)
+        {
+            farmTile.SetTilled(true);
+        }
     }
 }

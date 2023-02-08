@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class PlayerEyes : MonoBehaviour
 {
+    /// <summary>
+    /// This is the player game object
+    /// <br /> line break
+    /// </summary>
     private PlayerController player;
     // Start is called before the first frame update
     void Start()
@@ -15,7 +19,7 @@ public class PlayerEyes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3Int pos = Vector3Int.RoundToInt(transform.position);
+        Vector2Int pos = Vector2Int.RoundToInt(transform.position);
         player.OnHit(FarmSpawner.tiles[pos]);
     }
 
