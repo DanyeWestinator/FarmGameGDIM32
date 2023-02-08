@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        print("Test changes!");
         foreach (Tool t in tools)
         {
             GameObject go = Instantiate(t.gameObject, toolParent);
