@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
     [SerializeField] private GameObject lastHit;
+    [SerializeField] private TextMeshProUGUI scoreCounter;
+    private int currentScore = 0;
     /// <summary>
     /// What tile the player is currently standing on
     /// </summary>
@@ -39,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private bool _canMove = true;
 
     public static PlayerController player;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour
         currentTool.gameObject.SetActive(true);
         tool_i = 0;
         anim = GetComponent<Animator>();
+        AddScore(0);
     }
 
     // Update is called once per frame
@@ -70,7 +75,10 @@ public class PlayerController : MonoBehaviour
     {
         //Turn off the last tile if exists
         if (lastHit != col && lastHit)
+        {
             lastHit.GetComponent<FarmTile>().SetSelected(false);
+        }
+            
         lastHit = col;
         currentTile = lastHit.GetComponent<FarmTile>();
         currentTile.SetSelected(true);
@@ -96,12 +104,15 @@ public class PlayerController : MonoBehaviour
         if (frozenMovement != null)
             return;
         
-        //Use the current tool
-        currentTool.UseTool(currentTile.gameObject);
+        
         
         //Start the tool animation
-        anim.SetTrigger($"Start{currentTool.gameObject.name}");
-        
+        if (currentTool.gameObject.name.Contains("Seeds") == false)
+            anim.SetTrigger($"Start{currentTool.gameObject.name}");
+        else
+        {
+            anim.SetTrigger("StartSeeds");
+        }
         //Freeze the player's movement until animation finishes
         frozenMovement = freezeMovement();
         StartCoroutine(frozenMovement);
@@ -124,7 +135,8 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
-        
+        //Use the current tool, after waiting
+        currentTool.UseTool(currentTile.gameObject);
         //Allow movement again
         _canMove = true;
         frozenMovement = null;
@@ -165,5 +177,11 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = (Vector3)dir * Time.deltaTime * moveSpeed;
         
         transform.position += direction;
+    }
+
+    public void AddScore(int toAdd)
+    {
+        currentScore += toAdd;
+        scoreCounter.text = $"Current score:\n{currentScore}";
     }
 }

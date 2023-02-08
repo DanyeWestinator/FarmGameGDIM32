@@ -46,7 +46,7 @@ public class FarmSpawner : MonoBehaviour
                 //b
                 if (i_odd != j_odd)
                 {
-                    sr.color = brown;
+                    sr.color = green;
                 }
 
             }

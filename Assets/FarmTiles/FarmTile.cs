@@ -5,6 +5,11 @@ using UnityEngine;
 public class FarmTile : MonoBehaviour
 {
     [SerializeField] private GameObject selectedSprite;
+    [SerializeField] private SpriteRenderer tilledGO;
+    [SerializeField]
+    private Sprite untilledSprite;
+    [SerializeField]
+    private Sprite tilledSprite;
 
     public bool tilled = false;
 
@@ -26,6 +31,20 @@ public class FarmTile : MonoBehaviour
     public void SetSelected(bool set)
     {
         selectedSprite.SetActive(set);
+    }
+
+    public void SetTilled(bool set)
+    {
+        tilled = set;
+        if (tilled)
+        {
+            tilledGO.sprite = tilledSprite;
+        }
+        else
+        {
+            tilledGO.sprite = untilledSprite;
+        }
+            
     }
     
 }

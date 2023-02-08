@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6559441033389017529, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_Name
-      value: Wheat Plant
+      value: Wheat Plant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_RootOrder
@@ -17,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.367
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_LocalRotation.w

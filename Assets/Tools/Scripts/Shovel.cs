@@ -16,8 +16,12 @@ public class Shovel : Tool
         
     }
 
-    public override void Use()
+    public override void Use(GameObject tile)
     {
-        //print("Using shovel!");
+        Plant plant = tile.GetComponentInChildren<Plant>();
+        if (plant)
+        {
+            plant.Harvest();
+        }
     }
 }

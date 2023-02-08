@@ -26,11 +26,11 @@ public abstract class Tool : MonoBehaviour
     {
         //Will play animation, check hitboxes and find interactable, etc
         //print($"Using {gameObject.name}! Hopefully, logic to follow!");
-        Use();
+        Use(tile);
     }
     /// <summary>
     /// Each subclass must override
     /// </summary>
-    public abstract void Use();
+    public abstract void Use(GameObject tile);
     
 }

@@ -8,10 +8,12 @@ public class Plant : MonoBehaviour
 
     private float wateredTime; // the time this plant was watered
 
-    private int growthStage = 1; // the current growth stage
-    protected int growthStagesTotal = 5; // the total number of growth stages for this plant
+    private int growthStage = 1;
+    [SerializeField]// the current growth stage
+    protected int growthStagesTotal = 5;
+    [SerializeField]// the total number of growth stages for this plant
     protected float growthStageLength = 3.0f; // how long each growth stage lasts in seconds
-
+    [SerializeField]
     protected int totalHarvests = 1; // total number of harvests this plant has
     private int harvestNum = 0; // current harvest number
 
@@ -21,6 +23,8 @@ public class Plant : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private GameObject needsWaterIcon;
     private GameObject harvestableIcon;
+
+    [SerializeField] private int scoreValue = 1;
 
     protected virtual void Awake()
     {
@@ -45,10 +49,12 @@ public class Plant : MonoBehaviour
     // The plant grows to the next stage in its growth cycle
     private void Grow()
     {
+        
         growthStage++;
-        spriteRenderer.sprite = growthSprites[growthStage-1];
+        if (growthStage < growthSprites.Length)
+            spriteRenderer.sprite = growthSprites[growthStage-1];
 
-        if (growthStage == growthStagesTotal)
+        if (growthStage == growthStagesTotal || growthStage == growthSprites.Length)
         { 
             harvestable = true;
             harvestableIcon.SetActive(true);
@@ -65,7 +71,7 @@ public class Plant : MonoBehaviour
     {
         if (!watered)
         {
-            Debug.Log("~watered~"); // DEBUG
+            //Debug.Log("~watered~"); // DEBUG
             watered = true;
             needsWaterIcon.SetActive(false);
             wateredTime = Time.time;
@@ -79,7 +85,7 @@ public class Plant : MonoBehaviour
         if (harvestable)
         {
             harvestNum++;
-            Debug.Log("~harvested~"); // DEBUG
+            
             // TEMP add to score variable HERE !!!!!!
 
             if (harvestNum == totalHarvests)
@@ -93,13 +99,14 @@ public class Plant : MonoBehaviour
                 harvestableIcon.SetActive(false);
                 Grow();
             }
+            PlayerController.player.AddScore(scoreValue);
         }
     }
 
     // Called when the shovel tool is used on the plant, destroys the plant
     public void Dig()
     {
-        Debug.Log("~dig up~"); // DEBUG
+        //Debug.Log("~dig up~"); // DEBUG
         Destroy(gameObject);
     }
 }
