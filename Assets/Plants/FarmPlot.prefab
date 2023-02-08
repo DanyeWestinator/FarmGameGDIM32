@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6454639110811209310}
   - component: {fileID: 6454639110811209309}
   - component: {fileID: 2426370151610126858}
-  - component: {fileID: -1222046480057639239}
   - component: {fileID: 2748758260252735}
   m_Layer: 0
   m_Name: FarmPlot
@@ -101,20 +100,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 7244871660506367702}
---- !u!114 &-1222046480057639239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454639110811209308}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b2d3ce45c0be6245bcb3a0562273688, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSprite: {fileID: 7244871660506367702}
-  occupied: {fileID: 0}
 --- !u!61 &2748758260252735
 BoxCollider2D:
   m_ObjectHideFlags: 0

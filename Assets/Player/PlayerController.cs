@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
     [SerializeField] private GameObject lastHit;
+    /// <summary>
+    /// What tile the player is currently standing on
+    /// </summary>
     public FarmTile currentTile;
 
     private Animator anim;
@@ -34,17 +37,22 @@ public class PlayerController : MonoBehaviour
     private Vector2 dir;
 
     private bool _canMove = true;
+
+    public static PlayerController player;
     // Start is called before the first frame update
     void Start()
     {
-        print("Test changes!");
+        //Singleton (kind of, doesn't check if another exists) of player
+        player = this;
+        
+        //Spawn all the player's tools as children under toolParent
         foreach (Tool t in tools)
         {
             GameObject go = Instantiate(t.gameObject, toolParent);
             go.name = t.gameObject.name;
             go.SetActive(false);
         }
-
+        
         currentTool = toolParent.GetChild(0).GetComponent<Tool>();
         currentTool.gameObject.SetActive(true);
         tool_i = 0;
@@ -56,9 +64,11 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-
+    
+    //Updating which tile the player is standing on
     public void OnHit(GameObject col)
     {
+        //Turn off the last tile if exists
         if (lastHit != col && lastHit)
             lastHit.GetComponent<FarmTile>().SetSelected(false);
         lastHit = col;
@@ -101,9 +111,9 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator frozenMovement = null;
     /// <summary>
-    /// Coroutine
+    /// Freezes player movement until anim is done
     /// </summary>
-    /// <returns>Just waits</returns>
+    /// <returns>Void, returns WaitForSeconds</returns>
     IEnumerator freezeMovement()
     {
         //Freeze movement until done
@@ -114,21 +124,12 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
-        if (currentTile)
-            
+        
         //Allow movement again
         _canMove = true;
         frozenMovement = null;
     }
 
-    IEnumerator StartConsole()
-    {
-        console.text = $"Using {currentTool.gameObject.name}!";
-        console.gameObject.SetActive(true);
-        yield return new WaitForSeconds(consoleTime);
-        console.gameObject.SetActive(false);
-        
-    }
 
     void OnNextTool()
     {

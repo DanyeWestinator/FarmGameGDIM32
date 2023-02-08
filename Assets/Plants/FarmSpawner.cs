@@ -24,19 +24,17 @@ public class FarmSpawner : MonoBehaviour
     {
         for (int i = -1 * farmDimensions; i < farmDimensions; i++)
         {
-            Transform parent = new GameObject().transform;
-            parent.parent = transform;
-            parent.position = Vector3.zero;
-            parent.gameObject.name = $"X_val{i}";
+            
             for (int j = -1 * farmDimensions; j < farmDimensions; j++)
             {
                 Vector3Int pos = new Vector3Int(i, j, 1);
-                GameObject spawned = Instantiate(farmPlot, parent);
+                GameObject spawned = Instantiate(farmPlot, transform);
                 
-                spawned.name = $"FarmTile({pos})";
+                
                 spawned.transform.position = pos;
                 Vector2Int loc = (Vector2Int)pos;
                 tiles.Add(loc, spawned);
+                spawned.name = $"FarmTile {loc}";
                 SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();
                 bool i_odd = math.abs(i) % 2 != 0;
                 bool j_odd = math.abs(j) % 2 != 0;
@@ -51,11 +49,6 @@ public class FarmSpawner : MonoBehaviour
                     sr.color = brown;
                 }
 
-                if (i == -2)
-                {
-                    GameObject treeSpawned = Instantiate(tree, spawned.transform);
-                    spawned.GetComponent<Plant>().occupied = treeSpawned;
-                }
             }
         }
     }
