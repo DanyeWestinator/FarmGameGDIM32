@@ -19,7 +19,7 @@ public class PlayerEyes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3Int pos = Vector3Int.RoundToInt(transform.position);
+        Vector2Int pos = Vector2Int.RoundToInt(transform.position);
         player.OnHit(FarmSpawner.tiles[pos]);
     }
 

@@ -13,7 +13,7 @@ public class FarmSpawner : MonoBehaviour
     [SerializeField] private Color green;
     [SerializeField] private Color brown;
 
-    public static Dictionary<Vector3Int, GameObject> tiles = new Dictionary<Vector3Int, GameObject>();
+    public static Dictionary<Vector2Int, GameObject> tiles = new Dictionary<Vector2Int, GameObject>();
     // Start is called before the first frame update
     void Start()
     {
@@ -35,8 +35,8 @@ public class FarmSpawner : MonoBehaviour
                 
                 spawned.name = $"FarmTile({pos})";
                 spawned.transform.position = pos;
-                pos.z = 0;
-                tiles.Add(pos, spawned);
+                Vector2Int loc = (Vector2Int)pos;
+                tiles.Add(loc, spawned);
                 SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();
                 bool i_odd = math.abs(i) % 2 != 0;
                 bool j_odd = math.abs(j) % 2 != 0;

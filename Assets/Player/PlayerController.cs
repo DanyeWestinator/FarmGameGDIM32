@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
     [SerializeField] private GameObject lastHit;
-    private Plant currentPlant;
+    public FarmTile currentTile;
 
     private Animator anim;
     private int tool_i = 0;
@@ -59,10 +59,10 @@ public class PlayerController : MonoBehaviour
     public void OnHit(GameObject col)
     {
         if (lastHit != col && lastHit)
-            lastHit.GetComponent<Plant>().SetSelected(false);
+            lastHit.GetComponent<FarmTile>().SetSelected(false);
         lastHit = col;
-        currentPlant = lastHit.GetComponent<Plant>();
-        currentPlant.SetSelected(true);
+        currentTile = lastHit.GetComponent<FarmTile>();
+        currentTile.SetSelected(true);
     }
 
 
@@ -86,7 +86,7 @@ public class PlayerController : MonoBehaviour
             return;
         
         //Use the current tool
-        currentTool.UseTool();
+        currentTool.UseTool(currentTile.gameObject);
         
         //Start the tool animation
         anim.SetTrigger($"Start{currentTool.gameObject.name}");
@@ -113,8 +113,8 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
-        if (currentPlant)
-            currentPlant.OnUse(currentTool.gameObject.name);
+        if (currentTile)
+            
         //Allow movement again
         _canMove = true;
         frozenMovement = null;
