@@ -4,33 +4,38 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    private Color[] colors = { Color.blue, Color.green, Color.yellow }; // TEMP
+    [SerializeField] private Sprite[] growthSprites;
 
     private float wateredTime; // the time this plant was watered
 
     private int growthStage = 1; // the current growth stage
-    private int growthStagesTotal = 4; // the total number of growth stages for this plant
-    private float growthStageLength = 5.0f; // how long each growth stage lasts in seconds
+    protected int growthStagesTotal = 5; // the total number of growth stages for this plant
+    protected float growthStageLength = 3.0f; // how long each growth stage lasts in seconds
+
+    protected int totalHarvests = 1; // total number of harvests this plant has
+    private int harvestNum = 0; // current harvest number
 
     private bool harvestable = false; // true when ready to harvest
     private bool watered = false; // true if has been watered during the plant's current growth stage
 
+    private SpriteRenderer spriteRenderer;
     private GameObject needsWaterIcon;
     private GameObject harvestableIcon;
 
-    void Awake()
+    protected virtual void Awake()
     {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = growthSprites[0];
+        
         needsWaterIcon = gameObject.transform.GetChild(0).gameObject;
         
         harvestableIcon = gameObject.transform.GetChild(1).gameObject;
         harvestableIcon.SetActive(false);
     }
 
-
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if (!harvestable && Time.time >= plantedTime + (growthStage * growthStageLength))
         if (watered && !harvestable && Time.time >= wateredTime + growthStageLength)
         {
             Grow();
@@ -38,16 +43,15 @@ public class Plant : MonoBehaviour
     }
 
     // The plant grows to the next stage in its growth cycle
-    void Grow()
+    private void Grow()
     {
-        GetComponent<Renderer>().material.color = colors[growthStage - 1]; // TEMP
         growthStage++;
+        spriteRenderer.sprite = growthSprites[growthStage-1];
 
         if (growthStage == growthStagesTotal)
         { 
             harvestable = true;
             harvestableIcon.SetActive(true);
-            //Debug.Log("ready to harvest!"); // DEBUG
         }
         else
         {
@@ -56,6 +60,7 @@ public class Plant : MonoBehaviour
         }
     }
 
+    // Called when the watering can tool is used on the plant, waters the plant for the current growth stage
     public void Water()
     {
         if (!watered)
@@ -67,12 +72,34 @@ public class Plant : MonoBehaviour
         }
     }
 
+    // Called when the scythe tool is used on the plant, only harvests the plant if is at final growth stage
+    // If plant was successfully harvested, the player's score increases
     public void Harvest()
     {
         if (harvestable)
         {
+            harvestNum++;
             Debug.Log("~harvested~"); // DEBUG
-            gameObject.SetActive(false);
+            // TEMP add to score variable HERE !!!!!!
+
+            if (harvestNum == totalHarvests)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                growthStage -= 3;
+                harvestable = false;
+                harvestableIcon.SetActive(false);
+                Grow();
+            }
         }
+    }
+
+    // Called when the shovel tool is used on the plant, destroys the plant
+    public void Dig()
+    {
+        Debug.Log("~dig up~"); // DEBUG
+        Destroy(gameObject);
     }
 }
