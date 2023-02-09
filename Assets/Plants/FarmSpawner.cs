@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FarmSpawner : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class FarmSpawner : MonoBehaviour
     [SerializeField] private GameObject tree;
 
     [SerializeField] private int farmDimensions = 10;
+    [SerializeField] private int treePercentage = 5;
 
     [SerializeField] private Color green;
     [SerializeField] private Color brown;
@@ -22,6 +24,7 @@ public class FarmSpawner : MonoBehaviour
 
     void spawnFarm()
     {
+        tiles = new Dictionary<Vector2Int, GameObject>();
         for (int i = -1 * farmDimensions; i < farmDimensions; i++)
         {
             
@@ -49,8 +52,21 @@ public class FarmSpawner : MonoBehaviour
                     sr.color = green;
                 }
 
+                int rand = Random.Range(1, 100);
+                if (treePercentage >= rand)
+                {
+                    SpawnTree(spawned);
+                }
+
             }
         }
+    }
+
+    void SpawnTree(GameObject farmPlot)
+    {
+        FarmTile plot = farmPlot.GetComponent<FarmTile>();
+        GameObject tree = Instantiate(this.tree, farmPlot.transform);
+        plot.occupiedBy = tree;
     }
 
     // Update is called once per frame

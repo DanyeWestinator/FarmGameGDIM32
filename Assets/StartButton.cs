@@ -23,4 +23,14 @@ public class StartButton : MonoBehaviour
     {
         SceneManager.LoadScene(TestScene);
     }
+
+    public void QuitGame()
+    {
+    #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+    
+    #else
+        Application.Quit();
+    #endif
+    }
 }

@@ -5,6 +5,7 @@ using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI console;
     [SerializeField] private float consoleTime = 1.2f;
     [SerializeField] private GameObject lastHit;
+    [SerializeField] private GameObject pausePanel;
     [SerializeField] private TextMeshProUGUI scoreCounter;
     private int currentScore = 0;
     /// <summary>
@@ -41,6 +43,8 @@ public class PlayerController : MonoBehaviour
     private bool _canMove = true;
 
     public static PlayerController player;
+
+    private bool isPaused = false;
     
 
     // Start is called before the first frame update
@@ -96,6 +100,18 @@ public class PlayerController : MonoBehaviour
         //Ignore small values from stick drift
         if (dir.magnitude <= 0.1f)
             dir = Vector2.zero;
+    }
+
+    void OnPause()
+    {
+         _canMove = isPaused;
+                
+        
+        //Flip isPaused
+        isPaused = !isPaused;
+        pausePanel.SetActive(isPaused);
+       
+
     }
 
     void OnUse()
@@ -183,5 +199,10 @@ public class PlayerController : MonoBehaviour
     {
         currentScore += toAdd;
         scoreCounter.text = $"Current score:\n{currentScore}";
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }
