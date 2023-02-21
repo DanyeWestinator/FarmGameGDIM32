@@ -7,17 +7,27 @@ using UnityEngine;
 /// </summary>
 public class CatBehavior : AIBehavior
 {
-    
+    // adjustable stuff
+    public float ChaseSpeed = 5;
+    public float CuriousSpeed = 2;
+
+
+
     // whatever the cat is currently looking at
     public GameObject fixation;
     
     void Start()
     {
-        setChase(fixation);
+        
     }
 
     void Update()
     {
+        // TEMP
+        if (Input.GetAxis("Fire1") > 0)
+        {
+            setChase(fixation);
+        }
         manageBehavior();
     }
 
@@ -42,13 +52,13 @@ public class CatBehavior : AIBehavior
 
 
     // BEHAVIOR STATES AND MANAGEMENT:
-    // constant behavior states
+    // for every-frame behavior
 
     enum CatBehaviorState {IDLE, CHASE, NOTICE, RUNAWAY}
     private CatBehaviorState state = CatBehaviorState.IDLE;
 
-    // call in update()
-    private void manageBehavior()
+    // called in update()
+    protected override void manageBehavior()
     {
         
         switch (state)
@@ -77,7 +87,10 @@ public class CatBehavior : AIBehavior
     private void setChase(GameObject chaseTarget)
     {
         state = CatBehaviorState.CHASE;
+
+        // set chase target and speed in mover
         AIMover.TargetDestination = chaseTarget.transform.position;
+        AIMover.MoveVelocity = ChaseSpeed;
     }
 
     private void setNoticePlayer(GameObject player)

@@ -24,5 +24,6 @@ public class AIDetection : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         behavior.OnDetected(col.gameObject);
+        print("detector detected: " + col.gameObject);
     }
 }
