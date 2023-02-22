@@ -16,13 +16,20 @@ public class BirdBehavior : AIBehavior
     // Start is called before the first frame update
     void Start()
     {
-        
+        AIMover.TargetDestination = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        // temp
+        if (Input.GetButtonDown("Fire2"))
+        {
+            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            AIMover.TargetDestination = pos;
+            AIMover.MoveVelocity = descendSpeed;
+        }
     }
 
 
@@ -31,8 +38,6 @@ public class BirdBehavior : AIBehavior
     public override void OnDetected(GameObject gameObject)
     {
         base.OnDetected(gameObject);
-
-        print("bird detected gameobject!: " + gameObject);
         
         // if cat, run!
         if (gameObject.GetComponent<CatBehavior>())
@@ -45,7 +50,7 @@ public class BirdBehavior : AIBehavior
     // BEHAVIOR STATES AND MANAGEMENT:
     // for every-frame behavior
 
-    enum BirdBehaviorState {IDLE, RUNAWAY}
+    enum BirdBehaviorState {IDLE, RUNAWAY, FEED}
     private BirdBehaviorState state = BirdBehaviorState.IDLE;
 
     // called in update()
@@ -57,6 +62,8 @@ public class BirdBehavior : AIBehavior
             case BirdBehaviorState.IDLE:
                 break;
             case BirdBehaviorState.RUNAWAY:
+                break;
+            case BirdBehaviorState.FEED:
                 break;
         }
 
@@ -82,6 +89,13 @@ public class BirdBehavior : AIBehavior
         // set mover
         AIMover.TargetDestination = escapeTarget;
         AIMover.MoveVelocity = runAwaySpeed;
+    }
+
+    private void setFeed(GameObject target)
+    {
+        // set mover
+        AIMover.TargetDestination = target.transform.position;
+        AIMover.MoveVelocity = descendSpeed;
     }
 
 }

@@ -23,11 +23,6 @@ public class CatBehavior : AIBehavior
 
     void Update()
     {
-        // TEMP
-        if (Input.GetAxis("Fire1") > 0)
-        {
-            setChase(fixation);
-        }
         manageBehavior();
     }
 
@@ -38,6 +33,11 @@ public class CatBehavior : AIBehavior
     {
         base.OnDetected(gameObject);
         
+        // if bird, chase!
+        if (gameObject.GetComponent<BirdBehavior>())
+        {
+            setChase(gameObject);
+        }
     }
 
     public void BirdCaught(GameObject bird)

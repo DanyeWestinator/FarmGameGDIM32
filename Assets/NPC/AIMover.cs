@@ -5,6 +5,6 @@ using UnityEngine;
 public abstract class AIMover: MonoBehaviour
 {
     
-    [HideInInspector] public Vector3 TargetDestination;
+    public Vector3 TargetDestination;
     [HideInInspector] public float MoveVelocity;
 }
