@@ -20,6 +20,7 @@ public class Axe : Tool
     public override void Use(GameObject tile)
     {
         FarmTile farmTile = tile.GetComponent<FarmTile>();
+        //Chops down trees
         if (farmTile.occupiedBy && farmTile.occupiedBy.name.Contains("tree"))
         {
             Destroy(farmTile.occupiedBy);

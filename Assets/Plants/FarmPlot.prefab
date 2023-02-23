@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedSprite: {fileID: 7244871660506367702}
-  tilledGO: {fileID: 2634114803922288877}
+  tilledSpriteRenderer: {fileID: 2634114803922288877}
   untilledSprite: {fileID: 1279698604, guid: 5f0b7b0a299da634d9816d9038ac8caa, type: 3}
   tilledSprite: {fileID: -760778357, guid: 5f0b7b0a299da634d9816d9038ac8caa, type: 3}
   tilled: 0

@@ -15,6 +15,9 @@ public class FarmSpawner : MonoBehaviour
     [SerializeField] private Color green;
     [SerializeField] private Color brown;
 
+    /// <summary>
+    /// All farm plots in game, key is their position in ints, value is tileGO
+    /// </summary>
     public static Dictionary<Vector2Int, GameObject> tiles = new Dictionary<Vector2Int, GameObject>();
     // Start is called before the first frame update
     void Start()

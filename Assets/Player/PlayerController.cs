@@ -7,6 +7,9 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// Player manager
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     /// <summary>
@@ -14,24 +17,38 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     [SerializeField]
     private float moveSpeed = 1f;
-
+    /// <summary>
+    /// All tools live as children objects. They are turned on/off to cycle
+    /// </summary>
     [SerializeField] private Transform toolParent;
     [SerializeField] private Tool currentTool;
-    [SerializeField] private TextMeshProUGUI console;
-    [SerializeField] private float consoleTime = 1.2f;
-    [SerializeField] private GameObject lastHit;
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private TextMeshProUGUI scoreCounter;
-    private int currentScore = 0;
+    /// <summary>
+    /// The tile the player hit last frame
+    /// </summary>
+    private GameObject lastHit;
+    /// <summary>
+    /// The UI item for the pause panel
+    /// </summary>
+    public GameObject pausePanel;
+    /// <summary>
+    /// The Text displaying the current score
+    /// </summary>
+    public TextMeshProUGUI scoreCounter;
+    private static int currentScore = 0;
     /// <summary>
     /// What tile the player is currently standing on
     /// </summary>
     public FarmTile currentTile;
-
+    /// <summary>
+    /// The animator controller for the tools
+    /// </summary>
     private Animator anim;
+    /// <summary>
+    /// Index in toolParent's children of the current tool
+    /// </summary>
     private int tool_i = 0;
     /// <summary>
-    /// The tools the player has
+    /// The tools the player has. Used to spawn the prefabs as children of toolParent
     /// </summary>
     [SerializeField] private List<Tool> tools = new List<Tool>();
 
@@ -117,7 +134,7 @@ public class PlayerController : MonoBehaviour
     void OnUse()
     {
         //Don't start using a tool if already using one
-        if (frozenMovement != null)
+        if (frozenMovement != null || currentTool == null)
             return;
         
         
@@ -181,7 +198,8 @@ public class PlayerController : MonoBehaviour
         currentTool = toolParent.GetChild(tool_i).GetComponent<Tool>();
         currentTool.gameObject.SetActive(true);
     }
-    
+
+    private int old_x_dir;
     /// <summary>
     /// Handles move logic
     /// </summary>
@@ -191,14 +209,22 @@ public class PlayerController : MonoBehaviour
             return;
         
         Vector3 direction = (Vector3)dir * Time.deltaTime * moveSpeed;
-        
+        int x_dir = (int)math.sign(dir.x);
+        if (old_x_dir != x_dir && x_dir != 0)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = x_dir * -1;
+            transform.localScale = scale;
+        }
         transform.position += direction;
+        old_x_dir = x_dir;
     }
 
     public void AddScore(int toAdd)
     {
         currentScore += toAdd;
         scoreCounter.text = $"Current score:\n{currentScore}";
+        
     }
 
     public void LoadMainMenu()
