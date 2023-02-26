@@ -78,6 +78,8 @@ public class FarmSpawner : MonoBehaviour
         float closest = float.MaxValue;
         foreach (var v in plantTiles)
         {
+            if (v.Value.Harvestable == false)
+                continue;
             float distance = Vector2.Distance((Vector2)source, v.Key);
             //If this new plant is closer
             if (distance <= closest)

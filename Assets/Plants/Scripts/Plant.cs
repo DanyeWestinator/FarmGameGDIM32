@@ -16,7 +16,10 @@ public class Plant : MonoBehaviour
     [SerializeField]
     protected int totalHarvests = 1; // total number of harvests this plant has
     private int harvestNum = 0; // current harvest number
-
+    /// <summary>
+    /// Public getter for if the plant is Harvestable
+    /// </summary>
+    public bool Harvestable => harvestable;
     private bool harvestable = false; // true when ready to harvest
     private bool watered = false; // true if has been watered during the plant's current growth stage
 

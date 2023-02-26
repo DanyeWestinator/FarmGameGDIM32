@@ -34,6 +34,7 @@ public class PlayerManager : PlayerInputManager
 
     public void OnPlayerLeft(PlayerInput input)
     {
-        PlayerJoinPanel.SetActive(true);
+        if (PlayerJoinPanel)
+            PlayerJoinPanel.SetActive(true);
     }
 }

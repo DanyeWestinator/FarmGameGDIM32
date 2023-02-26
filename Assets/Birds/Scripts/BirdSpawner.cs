@@ -1,6 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
+using Pathfinding.Examples;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BirdSpawner : MonoBehaviour
 {
@@ -12,24 +16,26 @@ public class BirdSpawner : MonoBehaviour
     private float spawnDelay = 4f;
     
     public bool canBirdsSpawn = true;
+
+    private IEnumerator spawnLoop = null;
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(birdSpawnLoop());
+        StartLoop();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnEnable()
     {
-        // TEMP
-        if (Input.GetButtonDown("Fire1") && false)
-        {
-            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
-            Instantiate(BirdPrefab, pos, Quaternion.identity);
-        }
+        StartLoop();
     }
 
+    void StartLoop()
+    {
+        if (spawnLoop != null)
+            return;
+        spawnLoop = birdSpawnLoop();
+        StartCoroutine(spawnLoop);
+    }
     IEnumerator birdSpawnLoop()
     {
         while (true)
@@ -44,8 +50,14 @@ public class BirdSpawner : MonoBehaviour
     {
         Vector3 pos = Random.insideUnitCircle * spawnRadius;
         pos.z = -1;
+        Plant p = FarmSpawner.findClosestPlant(pos);
+        if (p == null)
+        {
+            return;
+        }
         GameObject spawned = Instantiate(BirdPrefab, transform);
         spawned.transform.position = pos;
-
+        //spawned.GetComponent<AstarSmoothFollow2>().target = PlayerController.player.transform;
+        //print("Bird spawned!");
     }
 }

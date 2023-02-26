@@ -20,9 +20,16 @@ public class BirdMover : AIMover
     private void move()
     {
         if (TargetDestination == null)
+        {
+            
             return;
-        var dir = TargetDestination.position - transform.position;
-        var step = dir.normalized * MoveVelocity * Time.deltaTime; 
-        transform.position += step;
+        }
+
+        Vector3 pos = transform.position;
+        var dir = TargetDestination.position - pos;
+        var step = dir.normalized * (MoveVelocity * Time.deltaTime);
+        step.z = 0f;
+        transform.position = pos + step;
+        //print($"Moved bird {dir}, or step? {step}. Transform position is now {transform.position}");
     }
 }

@@ -148,10 +148,11 @@ public class CatBehavior : AIBehavior
                 if (toTarget.magnitude > GiveUpDistance)
                 {
                     BirdEscaped();
+                    //this.target.localPosition = Vector3.zero;
                 }
                 else
                 {
-                    AIMover.TargetDestination = target;
+                    //AIMover.TargetDestination = target;
                 }
 
                 break;
@@ -174,7 +175,7 @@ public class CatBehavior : AIBehavior
         state = CatBehaviorState.IDLE;
 
         // stop chasing
-        AIMover.TargetDestination = transform.position;
+        //AIMover.TargetDestination = transform.position;
     }
     
     private void setChase(GameObject chaseTarget)
@@ -184,7 +185,7 @@ public class CatBehavior : AIBehavior
         fixation = chaseTarget;
 
         // set chase target and speed in mover
-        AIMover.TargetDestination = chaseTarget.transform.position;
+        //AIMover.TargetDestination = chaseTarget.transform.position;
         AIMover.MoveVelocity = RunSpeed;
 
         // reset cooldown 
@@ -231,8 +232,9 @@ public class CatBehavior : AIBehavior
         // path away from player * safedistance
         var toPlayer = player.transform.position - transform.position;
         var target = toPlayer.normalized * -SafeDistance;
-
-        AIMover.TargetDestination = target;
+        Transform t = transform.Find("target");
+        t.localPosition = target;
+        AIMover.TargetDestination = t;
         AIMover.MoveVelocity = RunSpeed;
 
         // chill after a while

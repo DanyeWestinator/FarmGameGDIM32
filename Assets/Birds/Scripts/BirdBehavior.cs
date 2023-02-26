@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding.Examples;
 using UnityEngine;
 
 
@@ -12,37 +13,105 @@ public class BirdBehavior : AIBehavior
     public float runAwaySpeed = 7;
     public float runAwayDeviation = Mathf.PI / 2;
     public float safeDistance = 100;
+    [Tooltip("The time between updating bird states")]
+    [SerializeField] private float stateUpdateTime = 0.5f;
+
+    private AstarSmoothFollow2 follower;
+    [SerializeField]
+    private Transform targetChild;
     
     // Start is called before the first frame update
     void Start()
     {
-        AIMover.TargetDestination = null;
+        follower = GetComponent<AstarSmoothFollow2>();
+        
+        if (targetChild == null)
+            targetChild = transform.Find("target");
+        follower.target = targetChild;
+        StartCoroutine(checkState());
     }
-
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// Checks which state the bird should currently be in. Doesn't run every frame for performance
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator checkState()
     {
-        // temp
-        if (Input.GetButtonDown("Fire2"))
+        while (true)
         {
-            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
-            //AIMover.TargetDestination = pos;
-            AIMover.MoveVelocity = descendSpeed;
+            yield return new WaitForSeconds(stateUpdateTime);
+            //If the player is close, flee
+            if (distanceToThreat() <= safeDistance)
+            {
+                flee();
+            }
+            //Go to plant if there are any
+            else if (CanGoToPlant())
+            {
+            }
+            //Else idle
+            else
+            {
+                Idle();
+            }
         }
     }
+    /// <summary>
+    /// Sends the bird running from the player
+    /// </summary>
+    private void flee()
+    {
+        follower.target = targetChild;
+        Vector3 dir = transform.position - PlayerController.player.transform.position;
+        dir = dir.normalized * safeDistance;
+        targetChild.localPosition = dir;
+
+    }
+    /// <summary>
+    /// Checks if the bird can go to the nearest plant. Sets target if true
+    /// </summary>
+    /// <returns>Returns if the bird is going towards a plant</returns>
+    bool CanGoToPlant()
+    {
+        Plant p = FarmSpawner.findClosestPlant(transform.position);
+        if (p == null)
+        {
+            return false;
+        }
+        //Set our target to be the plant
+        follower.target = p.transform.parent;
+        //Reset the target child to self
+        targetChild.localPosition = Vector3.zero;
+        return true;
+    }
+    /// <summary>
+    /// Idling logic
+    /// </summary>
+    void Idle()
+    {
+        targetChild.localPosition = Vector3.zero;
+        follower.target = targetChild;
+    }
+    private float distanceToThreat()
+    {
+        if (PlayerController.player == null)
+            return float.MaxValue;
+        float distance = Vector2.Distance(transform.position, PlayerController.player.transform.position);
+        return distance;
+    }
+
 
 
     // STATE TRIGGERS:
 
     public override void OnDetected(GameObject gameObject)
     {
+        return;
         base.OnDetected(gameObject);
         
         // if cat, run!
         if (gameObject.GetComponent<CatBehavior>())
         {
-            setRunAway(gameObject);
+            //setRunAway(gameObject);
         }
     }
 
@@ -51,7 +120,7 @@ public class BirdBehavior : AIBehavior
         Destroy(this);
     }
 
-
+    /*
     // BEHAVIOR STATES AND MANAGEMENT:
     // for every-frame behavior
 
@@ -101,6 +170,11 @@ public class BirdBehavior : AIBehavior
         // set mover
         AIMover.TargetDestination = target.transform;
         AIMover.MoveVelocity = descendSpeed;
-    }
+    }*/
+    /// <summary>
+    /// Calculates the distance to the closest threat
+    /// </summary>
+    /// <returns>Returns the unity distance to either the player or cat, whichever is closer</returns>
+    
 
 }

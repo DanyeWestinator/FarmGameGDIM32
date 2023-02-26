@@ -26,7 +26,8 @@ public class PlayerEyes : MonoBehaviour
         Vector2Int pos = Vector2Int.RoundToInt(transform.position);
         //Updates the tile the player is on
         //Dict used for O(1) lookups
-        player.OnHit(FarmSpawner.tiles[pos]);
+        if (FarmSpawner.tiles.ContainsKey(pos))
+            player.OnHit(FarmSpawner.tiles[pos]);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
