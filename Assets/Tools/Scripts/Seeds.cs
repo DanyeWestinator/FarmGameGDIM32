@@ -13,7 +13,9 @@ public class Seeds : Tool
             return;
         }
         farmTile.occupiedBy = Instantiate(seedPrefab, tile.transform);
-        
-        
+        FarmSpawner.plantTiles[farmTile.occupiedBy.tileFromGO()] = farmTile.occupiedBy.GetComponent<Plant>();
+        //FarmSpawner.plantTiles[]
+
+
     }
 }

@@ -19,13 +19,13 @@ public class CatMover : AIMover
     {
         move();
     }
-
+    /*
     // temp - moves the cat to target
     private void move()
     {
         var dir = TargetDestination - transform.position;
         var step = dir.normalized * MoveVelocity * Time.deltaTime; 
         transform.position += step;
-    }
+    }*/
     
 }

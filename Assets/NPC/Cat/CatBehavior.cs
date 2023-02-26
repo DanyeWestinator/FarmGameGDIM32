@@ -89,7 +89,7 @@ public class CatBehavior : AIBehavior
         state = CatBehaviorState.CHASE;
 
         // set chase target and speed in mover
-        AIMover.TargetDestination = chaseTarget.transform.position;
+        AIMover.TargetDestination = chaseTarget.transform;
         AIMover.MoveVelocity = ChaseSpeed;
     }
 

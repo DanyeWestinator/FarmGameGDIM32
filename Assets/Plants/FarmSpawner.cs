@@ -19,6 +19,7 @@ public class FarmSpawner : MonoBehaviour
     /// All farm plots in game, key is their position in ints, value is tileGO
     /// </summary>
     public static Dictionary<Vector2Int, GameObject> tiles = new Dictionary<Vector2Int, GameObject>();
+    public static Dictionary<Vector2Int, Plant> plantTiles = new Dictionary<Vector2Int, Plant>();
     // Start is called before the first frame update
     void Start()
     {
@@ -71,10 +72,21 @@ public class FarmSpawner : MonoBehaviour
         GameObject tree = Instantiate(this.tree, farmPlot.transform);
         plot.occupiedBy = tree;
     }
-
-    // Update is called once per frame
-    void Update()
+    public static Plant findClosestPlant(Vector3 source)
     {
-        
+        Plant p = null;
+        float closest = float.MaxValue;
+        foreach (var v in plantTiles)
+        {
+            float distance = Vector2.Distance((Vector2)source, v.Key);
+            //If this new plant is closer
+            if (distance <= closest)
+            {
+                p = v.Value;
+                closest = distance;
+            }
+        }
+
+        return p;
     }
 }
