@@ -193,6 +193,7 @@ MonoBehaviour:
   - {fileID: -4651265378449149237, guid: 8e997435ec1bdd64483ec78e586b67dc, type: 3}
   - {fileID: -4651265378449149237, guid: 3f5e643fbf165e74fa7a931d5098cc00, type: 3}
   - {fileID: -4651265378449149237, guid: 4407ecdc5e0aa93449a684ba30bf3e56, type: 3}
+  - {fileID: 1404303207051856016, guid: 5583ef1e1d3a9a94a887d3b59730ae45, type: 3}
 --- !u!114 &34201103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -897,7 +898,7 @@ Transform:
   - {fileID: 65692203}
   - {fileID: 1182450403}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &948322399
 GameObject:
@@ -2053,13 +2054,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1042405452, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2600858256932908940, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: m_Name
       value: Cat
       objectReference: {fileID: 0}
     - target: {fileID: 2925398860028514111, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2925398860028514111, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2105,5 +2110,13 @@ PrefabInstance:
       propertyPath: fixation
       value: 
       objectReference: {fileID: 2457896096379287042}
+    - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
+      propertyPath: SafeDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
+      propertyPath: runawayChance
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}

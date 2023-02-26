@@ -16,11 +16,11 @@ public class BirdSpawner : MonoBehaviour
     void Update()
     {
         // TEMP
-        if (Input.GetButtonDown("Fire1"))
-        {
-            var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            pos.z = 0;
-            Instantiate(BirdPrefab, pos, Quaternion.identity);
-        }
+        // if (Input.GetButtonDown("Fire1"))
+        // {
+        //     var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //     pos.z = 0;
+        //     Instantiate(BirdPrefab, pos, Quaternion.identity);
+        // }
     }
 }

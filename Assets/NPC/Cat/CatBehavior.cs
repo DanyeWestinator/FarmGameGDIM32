@@ -94,6 +94,7 @@ public class CatBehavior : AIBehavior
     public void FeedMe(GameObject player, GameObject food)
     {
         playerRelationship++;
+        print("CAT FED: " + playerRelationship);
     }
 
     // coroutine helpers
@@ -196,11 +197,19 @@ public class CatBehavior : AIBehavior
             var ratio = dif / RelationshipThreshold;
             var chance = ratio * runawayChance;
 
-            if (Random.Range(0,1) <= chance)
+            float rand = Random.Range(0f,1f);
+
+            print("cat run away? ratio: " + rand + " / " + chance);
+
+            if (rand <= chance)
             {
                 setRunAway(player);
+                return;
             }
         } 
+
+        // chill after a while
+        StartCoroutine(idleDelay());
 
 
     }
