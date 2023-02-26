@@ -46,6 +46,11 @@ public class BirdBehavior : AIBehavior
         }
     }
 
+    public void Catch(CatBehavior cat)
+    {
+        Destroy(this);
+    }
+
 
     // BEHAVIOR STATES AND MANAGEMENT:
     // for every-frame behavior
