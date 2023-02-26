@@ -216,6 +216,10 @@ MonoBehaviour:
   - {fileID: 273300456, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: -1767210805, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: 1968739183, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  growthStagesTotal: 5
+  growthStageLength: 3
+  totalHarvests: 1
+  scoreValue: 1
 --- !u!1 &6559441033580070840
 GameObject:
   m_ObjectHideFlags: 0

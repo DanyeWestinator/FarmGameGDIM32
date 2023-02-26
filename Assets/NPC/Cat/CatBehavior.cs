@@ -37,6 +37,9 @@ public class CatBehavior : AIBehavior
     
     // hunt cooldown
     public float HuntTimer = 5; 
+
+    // emote sprites
+    public Sprite emote;
     
 
 
@@ -89,6 +92,11 @@ public class CatBehavior : AIBehavior
     public void BirdEscaped()
     {
         setIdle();
+    }
+
+    public void AddNewBird()
+    {
+        
     }
 
     public void FeedMe(GameObject player, GameObject food)
