@@ -19,8 +19,8 @@ public class BirdMover : AIMover
     // temp - moves the cat to target
     private void move()
     {
-        var dir = TargetDestination - transform.position;
-        var step = dir.normalized * MoveVelocity * Time.deltaTime; 
-        transform.position += step;
+        // var dir = TargetDestination - transform.position;
+        // var step = dir.normalized * MoveVelocity * Time.deltaTime; 
+        // transform.position += step;
     }
 }

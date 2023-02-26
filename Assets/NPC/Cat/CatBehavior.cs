@@ -94,9 +94,9 @@ public class CatBehavior : AIBehavior
         setIdle();
     }
 
-    public void AddNewBird()
+    public void AddNewBird(GameObject bird)
     {
-        
+        // TODO logic for multiple birds
     }
 
     public void FeedMe(GameObject player, GameObject food)
@@ -151,7 +151,7 @@ public class CatBehavior : AIBehavior
                 }
                 else
                 {
-                    AIMover.TargetDestination = target;
+                    AIMover.TargetDestination = fixation.transform;
                 }
 
                 break;
@@ -174,7 +174,7 @@ public class CatBehavior : AIBehavior
         state = CatBehaviorState.IDLE;
 
         // stop chasing
-        AIMover.TargetDestination = transform.position;
+        AIMover.TargetDestination = transform;
     }
     
     private void setChase(GameObject chaseTarget)
@@ -184,7 +184,7 @@ public class CatBehavior : AIBehavior
         fixation = chaseTarget;
 
         // set chase target and speed in mover
-        AIMover.TargetDestination = chaseTarget.transform.position;
+        AIMover.TargetDestination = chaseTarget.transform;
         AIMover.MoveVelocity = RunSpeed;
 
         // reset cooldown 
@@ -232,7 +232,10 @@ public class CatBehavior : AIBehavior
         var toPlayer = player.transform.position - transform.position;
         var target = toPlayer.normalized * -SafeDistance;
 
-        AIMover.TargetDestination = target;
+        var ball = new GameObject("target");
+        ball.transform.position = target;
+
+        AIMover.TargetDestination = ball.transform;
         AIMover.MoveVelocity = RunSpeed;
 
         // chill after a while

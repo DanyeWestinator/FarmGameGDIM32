@@ -23,7 +23,7 @@ public class CatMover : AIMover
     // temp - moves the cat to target
     private void move()
     {
-        var dir = TargetDestination - transform.position;
+        var dir = TargetDestination.position - transform.position;
         var step = dir.normalized * MoveVelocity * Time.deltaTime; 
         transform.position += step;
     }

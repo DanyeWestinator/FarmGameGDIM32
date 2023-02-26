@@ -16,7 +16,7 @@ public class BirdBehavior : AIBehavior
     // Start is called before the first frame update
     void Start()
     {
-        AIMover.TargetDestination = transform.position;
+        // AIMover.TargetDestination = transform.position;
     }
 
     // Update is called once per frame
@@ -27,7 +27,7 @@ public class BirdBehavior : AIBehavior
         {
             var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             pos.z = 0;
-            AIMover.TargetDestination = pos;
+            // AIMover.TargetDestination = pos;
             AIMover.MoveVelocity = descendSpeed;
         }
     }
@@ -92,15 +92,15 @@ public class BirdBehavior : AIBehavior
         var escapeTarget = transform.position - chaserPosition * -1f * safeDistance;
         
         // set mover
-        AIMover.TargetDestination = escapeTarget;
+        // AIMover.TargetDestination = escapeTarget;
         AIMover.MoveVelocity = runAwaySpeed;
     }
 
     private void setFeed(GameObject target)
     {
         // set mover
-        AIMover.TargetDestination = target.transform.position;
-        AIMover.MoveVelocity = descendSpeed;
+        // AIMover.TargetDestination = target.transform.position;
+        // AIMover.MoveVelocity = descendSpeed;
     }
 
 }
