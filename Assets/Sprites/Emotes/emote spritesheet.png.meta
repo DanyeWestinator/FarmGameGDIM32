@@ -294,7 +294,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: emote spritesheet_9
+      name: emote_exclamation
       rect:
         serializedVersion: 2
         x: 16
@@ -875,17 +875,17 @@ TextureImporter:
       emote spritesheet_33: -1598729022
       emote spritesheet_27: -1582694162
       emote spritesheet_32: -976965926
-      emote_heart: -51104363
+      emote spritesheet_4: -1408149004
       emote spritesheet_26: 536382820
       emote_weary: -617236389
       emote spritesheet_24: 1035679138
       emote spritesheet_30: -386549905
       emote spritesheet_35: 1225300958
       emote spritesheet_7: -1234915686
+      emote_exclamation: -1640722469
       emote_spook: -1888958764
       emote_thumbsup: -1803527270
       emote spritesheet_5: 336256536
-      emote spritesheet_9: -1640722469
       emote spritesheet_15: -1372583346
       emote spritesheet_2: 1628207927
       emote spritesheet_13: -79942663
@@ -902,10 +902,10 @@ TextureImporter:
       emote spritesheet_6: 1639006864
       emote spritesheet_8: 1943820181
       emote spritesheet_10: -1355848187
-      emote spritesheet_4: -1408149004
       emote spritesheet_11: 170562151
-      emote_thumbsdown: 1713098284
       emote spritesheet_29: 436348901
+      emote_thumbsdown: 1713098284
+      emote_heart: -51104363
       emote spritesheet_18: 1489004687
   spritePackingTag: 
   pSDRemoveMatte: 0

@@ -20,6 +20,7 @@ using UnityEngine;
 public class CatBehavior : AIBehavior
 {
     // public params
+    public CatEmoter emoter;
     public float RunSpeed = 5;
     public float WalkSpeed = 2;
     public float SafeDistance = 2;
@@ -37,9 +38,6 @@ public class CatBehavior : AIBehavior
     
     // hunt cooldown
     public float HuntTimer = 5; 
-
-    // emote sprites
-    public Sprite emote;
     
 
 
@@ -52,7 +50,7 @@ public class CatBehavior : AIBehavior
     
     void Start()
     {
-        
+        emoter.hide();
     }
 
     void Update()
@@ -103,6 +101,8 @@ public class CatBehavior : AIBehavior
     {
         playerRelationship++;
         print("CAT FED: " + playerRelationship);
+        emoter.display("emote_heart");
+        StartCoroutine(idleDelay());
     }
 
     // coroutine helpers
@@ -125,6 +125,7 @@ public class CatBehavior : AIBehavior
 
     // =========== BEHAVIOR STATES AND MANAGEMENT: ===========
     // for per-frame behavior
+
 
 
     enum CatBehaviorState {IDLE, CHASE, NOTICE, RUNAWAY}
@@ -165,8 +166,10 @@ public class CatBehavior : AIBehavior
     }
 
 
+
     // ========== SET BEHAVIOR STATES ==========
     // for one time behaviors 
+
 
 
     private void setIdle()
@@ -175,6 +178,8 @@ public class CatBehavior : AIBehavior
 
         // stop chasing
         AIMover.TargetDestination = transform;
+
+        emoter.hide();
     }
     
     private void setChase(GameObject chaseTarget)
@@ -190,6 +195,8 @@ public class CatBehavior : AIBehavior
         // reset cooldown 
         huntOnCooldown = true;
         StartCoroutine(huntDelay());
+
+        emoter.display("emote_exclamation");
     }
 
     private void setNoticePlayer(GameObject player)
@@ -202,12 +209,13 @@ public class CatBehavior : AIBehavior
         if (playerRelationship <= RelationshipThreshold)
         {
             var dif = RelationshipThreshold - playerRelationship;
-            var ratio = dif / RelationshipThreshold;
+            float ratio = ((float)dif) / RelationshipThreshold;
             var chance = ratio * runawayChance;
 
             float rand = Random.Range(0f,1f);
 
             print("cat run away? ratio: " + rand + " / " + chance);
+            print("ratio: " + ratio + " dif " + dif);
 
             if (rand <= chance)
             {
@@ -215,6 +223,8 @@ public class CatBehavior : AIBehavior
                 return;
             }
         } 
+
+        emoter.display("emote_weary");
 
         // chill after a while
         StartCoroutine(idleDelay());
@@ -240,6 +250,8 @@ public class CatBehavior : AIBehavior
 
         // chill after a while
         StartCoroutine(idleDelay());
+
+        emoter.display("emote_exclamation");
     }
 
     

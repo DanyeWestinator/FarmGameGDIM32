@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 355858792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.5, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2925398860028514111}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 605317053, guid: 663d9e11776044a4b9684dc4da981519, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   behavior: {fileID: 7999303153389341221}
---- !u!1 &1592820988029882741
+--- !u!1 &494861599150425056
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,37 +154,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 634207147126514131}
-  - component: {fileID: 474826354248601811}
+  - component: {fileID: 19733799753679448}
+  - component: {fileID: 4223004047944942526}
   m_Layer: 0
-  m_Name: emote_bird
+  m_Name: Emotes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &634207147126514131
+--- !u!4 &19733799753679448
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592820988029882741}
+  m_GameObject: {fileID: 494861599150425056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.78, y: 0.69, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.39, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2925398860028514111}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &474826354248601811
+--- !u!212 &4223004047944942526
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592820988029882741}
+  m_GameObject: {fileID: 494861599150425056}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -219,12 +219,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1744886887, guid: 5eb39735e655f734095686c3fb560223, type: 3}
+  m_Sprite: {fileID: 863113034, guid: 5eb39735e655f734095686c3fb560223, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -265,7 +265,7 @@ Transform:
   m_Children:
   - {fileID: 355858793}
   - {fileID: 789889279}
-  - {fileID: 634207147126514131}
+  - {fileID: 19733799753679448}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AIMover: {fileID: 7999303153389341220}
+  emoter: {fileID: 8914764483404119668}
   RunSpeed: 5
   WalkSpeed: 2
   SafeDistance: 5
@@ -290,7 +291,6 @@ MonoBehaviour:
   runawayChance: 0.5
   IdleTimer: 1
   HuntTimer: 5
-  emote: {fileID: -1803527270, guid: 5eb39735e655f734095686c3fb560223, type: 3}
   fixation: {fileID: 0}
 --- !u!114 &7999303153389341220
 MonoBehaviour:
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a017e48af010ad4ab414632a4cff29f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetDestination: {x: 0, y: 0, z: 0}
+  TargetDestination: {fileID: 0}
   MoveVelocity: 1
 --- !u!50 &1042405453
 Rigidbody2D:
@@ -355,4 +355,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ca333e7ea715f84f9415f956ad40e75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  emotes: []
+  spriteRenderer: {fileID: 4223004047944942526}
+  emotes:
+  - {fileID: 1744886887, guid: 5eb39735e655f734095686c3fb560223, type: 3}
+  - {fileID: -51104363, guid: 5eb39735e655f734095686c3fb560223, type: 3}
+  - {fileID: -617236389, guid: 5eb39735e655f734095686c3fb560223, type: 3}
+  - {fileID: 1713098284, guid: 5eb39735e655f734095686c3fb560223, type: 3}
+  - {fileID: -1803527270, guid: 5eb39735e655f734095686c3fb560223, type: 3}
+  - {fileID: -1640722469, guid: 5eb39735e655f734095686c3fb560223, type: 3}

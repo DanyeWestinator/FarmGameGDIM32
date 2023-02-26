@@ -7,14 +7,14 @@ using UnityEngine;
 public class CatEmoter : MonoBehaviour
 {
     // list for inspector access
-    [SerializeField] private List<SpriteRenderer> emotes = new List<SpriteRenderer>();
-    private Dictionary<string, SpriteRenderer> dict = new Dictionary<string, SpriteRenderer>();
-    private SpriteRenderer activeEmote = null;
+    public SpriteRenderer spriteRenderer;
+    [SerializeField] private List<Sprite> emotes = new List<Sprite>();
+    private Dictionary<string, Sprite> dict = new Dictionary<string, Sprite>();
 
     void Start()
     {
         // create dictionary from list
-        foreach (SpriteRenderer emote in emotes)
+        foreach (Sprite emote in emotes)
         {
             dict.Add(emote.name, emote);
         }
@@ -22,8 +22,12 @@ public class CatEmoter : MonoBehaviour
     
     public void display(string name)
     {
-        if (activeEmote) activeEmote.enabled = false;
-        activeEmote = dict[name];
-        activeEmote.enabled = true;
+        spriteRenderer.enabled = true;
+        spriteRenderer.sprite = dict[name];
+    }
+
+    public void hide()
+    {
+        spriteRenderer.enabled = false;
     }
 }
