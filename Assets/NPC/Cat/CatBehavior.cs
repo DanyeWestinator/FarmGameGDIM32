@@ -6,7 +6,7 @@ using UnityEngine;
 /// 
 /// Nya ~~
 ///
-/// this class is very badly organized
+/// this class is very hacked together
 ///
 /// Behavior:
 ///
@@ -40,9 +40,12 @@ public class CatBehavior : AIBehavior
     public float HuntTimer = 5; 
     
 
+    // private params
+
 
     private int playerRelationship = 0;
     private bool huntOnCooldown = false;
+    private List<BirdBehavior> birds = new List<BirdBehavior>();
 
 
     // whatever the cat is currently looking at (target)
@@ -71,8 +74,7 @@ public class CatBehavior : AIBehavior
         var birdBehavior = gameObject.GetComponent<BirdBehavior>();
         if (birdBehavior)
         {
-           birdBehavior.Catch(this);
-           BirdCaught(gameObject);
+           BirdCaught(birdBehavior);
         }
 
         // if player, notice
@@ -82,8 +84,10 @@ public class CatBehavior : AIBehavior
         }
     }
 
-    public void BirdCaught(GameObject bird)
+    public void BirdCaught(BirdBehavior bird)
     {
+        bird.Catch(this);
+        birds.Remove(bird);
         setIdle();
     }
 
@@ -92,9 +96,9 @@ public class CatBehavior : AIBehavior
         setIdle();
     }
 
-    public void AddNewBird(GameObject bird)
+    public void AddNewBird(BirdBehavior bird)
     {
-        // TODO logic for multiple birds
+        birds.Add(bird);
     }
 
     public void FeedMe(GameObject player, GameObject food)
@@ -143,17 +147,11 @@ public class CatBehavior : AIBehavior
             case CatBehaviorState.CHASE:
 
                 // give up if too far
-                // else movement update target
                 Vector3 target = fixation.transform.position;
                 Vector3 toTarget = target - transform.position;
                 if (toTarget.magnitude > GiveUpDistance)
                 {
                     BirdEscaped();
-                    //this.target.localPosition = Vector3.zero;
-                }
-                else
-                {
-                    AIMover.TargetDestination = fixation.transform;
                 }
 
                 break;
@@ -206,7 +204,7 @@ public class CatBehavior : AIBehavior
 
         fixation = player;
 
-        // maybe run away if at low relationship
+        // might run away if at low relationship
         if (playerRelationship <= RelationshipThreshold)
         {
             var dif = RelationshipThreshold - playerRelationship;
