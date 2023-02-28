@@ -147,12 +147,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AIMover: {fileID: 2457896096379287044}
   target: {fileID: 0}
-  descendSpeed: 4
-  runAwaySpeed: 7
-  runAwayDeviation: 1.5707964
-  safeDistance: 6
+  safeDistance: 4
   stateUpdateTime: 0.5
+  destroyPlantTime: 6
+  eatingDistance: 0.05
   targetChild: {fileID: 832328956251951796}
+  anim: {fileID: 1794932502457487972}
 --- !u!114 &2457896096379287044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   target: {fileID: 4247356295145963156}
   distance: 0
   height: 0
-  damping: 0.3
+  damping: 0.25
   smoothRotation: 0
   followBehind: 0
   rotationDamping: 0.3

@@ -18,6 +18,8 @@ public class BirdSpawner : MonoBehaviour
     public bool canBirdsSpawn = true;
 
     private IEnumerator spawnLoop = null;
+    [SerializeField]
+    private int MaxBirds = 3;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,7 +42,8 @@ public class BirdSpawner : MonoBehaviour
     {
         while (true)
         {
-            if (canBirdsSpawn)
+            //Only spawn if birds are allowed
+            if (canBirdsSpawn && transform.childCount < MaxBirds)
                 SpawnBird();
             yield return new WaitForSeconds(spawnDelay);
         }
