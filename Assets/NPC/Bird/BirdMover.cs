@@ -24,3 +24,4 @@ public class BirdMover : AIMover
         // transform.position += step;
     }
 }
+

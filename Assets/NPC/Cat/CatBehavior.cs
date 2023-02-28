@@ -149,6 +149,7 @@ public class CatBehavior : AIBehavior
                 if (toTarget.magnitude > GiveUpDistance)
                 {
                     BirdEscaped();
+                    //this.target.localPosition = Vector3.zero;
                 }
                 else
                 {

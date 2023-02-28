@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Each grid space has a farm tile, farm tiles can have things in them
+/// </summary>
 public class FarmTile : MonoBehaviour
 {
+    /// <summary>
+    /// The sprite that turns on/off when the player is in a square
+    /// </summary>
     [SerializeField] private GameObject selectedSprite;
-    [SerializeField] private SpriteRenderer tilledGO;
+    /// <summary>
+    /// The current state of the soil
+    /// </summary>
+    [SerializeField] private SpriteRenderer tilledSpriteRenderer;
     [SerializeField]
     private Sprite untilledSprite;
     [SerializeField]
     private Sprite tilledSprite;
 
     public bool tilled = false;
-
+    
     public GameObject occupiedBy;
     // Start is called before the first frame update
     void Start()
@@ -38,13 +47,15 @@ public class FarmTile : MonoBehaviour
         tilled = set;
         if (tilled)
         {
-            tilledGO.sprite = tilledSprite;
+            tilledSpriteRenderer.sprite = tilledSprite;
         }
         else
         {
-            tilledGO.sprite = untilledSprite;
+            tilledSpriteRenderer.sprite = untilledSprite;
         }
             
     }
+
+    
     
 }
