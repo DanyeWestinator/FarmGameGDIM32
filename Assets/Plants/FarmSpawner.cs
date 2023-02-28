@@ -34,12 +34,13 @@ public class FarmSpawner : MonoBehaviour
             
             for (int j = -1 * farmDimensions; j < farmDimensions; j++)
             {
-                Vector3Int pos = new Vector3Int(i, j, 1);
+                Vector3 pos = new Vector3(i, j, 1);
+                pos.z += (j / 10f);
                 GameObject spawned = Instantiate(farmPlot, transform);
                 
                 
                 spawned.transform.position = pos;
-                Vector2Int loc = (Vector2Int)pos;
+                Vector2Int loc = Vector2Int.RoundToInt(pos);
                 tiles.Add(loc, spawned);
                 spawned.name = $"FarmTile {loc}";
                 SpriteRenderer sr = spawned.GetComponent<SpriteRenderer>();

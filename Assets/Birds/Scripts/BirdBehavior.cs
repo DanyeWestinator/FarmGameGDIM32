@@ -9,16 +9,21 @@ using UnityEngine;
 /// </summary>
 public class BirdBehavior : AIBehavior
 {
-    public float descendSpeed = 4;
-    public float runAwaySpeed = 7;
-    public float runAwayDeviation = Mathf.PI / 2;
+    
     public float safeDistance = 100;
     [Tooltip("The time between updating bird states")]
     [SerializeField] private float stateUpdateTime = 0.5f;
 
+    [SerializeField] private float destroyPlantTime = 1f;
+    [SerializeField] private float eatingDistance = .05f;
+
+    private Plant currentPlant = null;
+
     private AstarSmoothFollow2 follower;
     [SerializeField]
     private Transform targetChild;
+
+    [SerializeField] private Animator anim;
     
     // Start is called before the first frame update
     void Start()
@@ -72,15 +77,25 @@ public class BirdBehavior : AIBehavior
     /// <returns>Returns if the bird is going towards a plant</returns>
     bool CanGoToPlant()
     {
-        Plant p = FarmSpawner.findClosestPlant(transform.position);
+        Vector3 pos = transform.position;
+        Plant p = FarmSpawner.findClosestPlant(pos);
         if (p == null)
         {
             return false;
         }
+
+        currentPlant = p;
         //Set our target to be the plant
         follower.target = p.transform.parent;
         //Reset the target child to self
         targetChild.localPosition = Vector3.zero;
+        float distance = Vector2.Distance(follower.target.position, pos);
+        //If we're closer than 1, start eating the plant
+        if (distance <= eatingDistance && startedDestroying == null)
+        {
+            startedDestroying = startDestroyPlant();
+            StartCoroutine(startedDestroying);
+        }
         return true;
     }
     /// <summary>
@@ -99,9 +114,28 @@ public class BirdBehavior : AIBehavior
         return distance;
     }
 
+    public void Catch(CatBehavior cat)
+    {
+        Destroy(this);
+    }
+
+    private IEnumerator startedDestroying = null;
+    IEnumerator startDestroyPlant()
+    {
+        yield return new WaitForSeconds(destroyPlantTime);
+        //If there is a plant on what we're following after the cooldown
+        if (currentPlant != null)
+        {
+            currentPlant.Dig();
+        }
+        
+    }
 
 
-    // STATE TRIGGERS:
+
+
+    /*OLD BIRD BEHAVIOR
+     // STATE TRIGGERS:
 
     public override void OnDetected(GameObject gameObject)
     {
@@ -114,13 +148,6 @@ public class BirdBehavior : AIBehavior
             //setRunAway(gameObject);
         }
     }
-
-    public void Catch(CatBehavior cat)
-    {
-        Destroy(this);
-    }
-
-    /*
     // BEHAVIOR STATES AND MANAGEMENT:
     // for every-frame behavior
 
@@ -170,11 +197,11 @@ public class BirdBehavior : AIBehavior
         // set mover
         AIMover.TargetDestination = target.transform;
         AIMover.MoveVelocity = descendSpeed;
-    }*/
+    }
     /// <summary>
-    /// Calculates the distance to the closest threat
+    /// OLD BIRD BEHAVIOR
     /// </summary>
-    /// <returns>Returns the unity distance to either the player or cat, whichever is closer</returns>
-    
+    /// 
+    */
 
 }

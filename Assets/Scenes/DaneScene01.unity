@@ -691,8 +691,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4853171509695156052, guid: 0c66929662c284344b740a98783b359e, type: 3}
     - target: {fileID: -4586268424956112838, guid: 5458fdfdafe67b9469b86122cc32a591, type: 3}
+      propertyPath: spawnDelay
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: -4586268424956112838, guid: 5458fdfdafe67b9469b86122cc32a591, type: 3}
       propertyPath: spawnRadius
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -4586268424956112838, guid: 5458fdfdafe67b9469b86122cc32a591, type: 3}
       propertyPath: canBirdsSpawn
