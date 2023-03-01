@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding.Examples;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -18,6 +19,8 @@ public class BirdBehavior : AIBehavior
 
     [SerializeField] private float destroyPlantTime = 1f;
     [SerializeField] private float eatingDistance = .05f;
+    [SerializeField] private float warningDistance = 2f;
+    private bool isWarning = false;
 
     private Plant currentPlant = null;
 
@@ -47,6 +50,9 @@ public class BirdBehavior : AIBehavior
     /// <returns></returns>
     IEnumerator checkState()
     {
+        Vector3 pos = transform.position;
+        if (math.abs(pos.x) >= 20 || math.abs(pos.y) >= 20)
+            Destroy(gameObject);
         while (true)
         {
             yield return new WaitForSeconds(stateUpdateTime);
@@ -80,6 +86,12 @@ public class BirdBehavior : AIBehavior
         Vector3 dir = transform.position - threat.transform.position;
         dir = dir.normalized * safeDistance;
         targetChild.localPosition = dir;
+        if (currentPlant)
+        {
+            currentPlant.RemoveEmote();
+        }
+
+        isWarning = false;
 
     }
     /// <summary>
@@ -101,9 +113,15 @@ public class BirdBehavior : AIBehavior
         //Reset the target child to self
         targetChild.localPosition = Vector3.zero;
         float distance = Vector2.Distance(follower.target.position, pos);
-        //If we're closer than 1, start eating the plant
+        if (distance <= warningDistance && isWarning == false)
+        {
+            isWarning = true;
+            currentPlant.Emote("bird yellow");
+        }
+        //If we're at the plant, start eating the plant
         if (distance <= eatingDistance && startedDestroying == null)
         {
+            isWarning = false;
             startedDestroying = startDestroyPlant();
             StartCoroutine(startedDestroying);
         }
@@ -117,6 +135,11 @@ public class BirdBehavior : AIBehavior
         targetChild.localPosition = Vector3.zero;
         follower.target = targetChild;
     }
+    /// <summary>
+    /// How close the bird is to a given threat
+    /// </summary>
+    /// <param name="threat">The GO of the threat to check</param>
+    /// <returns>Returns Vector2.distance (ignores Z) of ourself to the threat</returns>
     private float distanceToThreat(GameObject threat)
     {
         return Vector2.Distance(transform.position, threat.transform.position);
@@ -124,17 +147,18 @@ public class BirdBehavior : AIBehavior
 
     public void Catch(CatBehavior cat)
     {
-        Destroy(this);
+        Destroy(gameObject);
     }
 
     private IEnumerator startedDestroying = null;
     IEnumerator startDestroyPlant()
     {
+        currentPlant.Emote("bird red");
         yield return new WaitForSeconds(destroyPlantTime);
         //If there is a plant on what we're following after the cooldown
         if (currentPlant != null)
         {
-            currentPlant.Dig();
+            currentPlant.Die();
         }
         
     }

@@ -895,7 +895,7 @@ MonoBehaviour:
     seed: 0
     pivotPointRoot: {fileID: 0}
     spreadOutCount: 1
-  showGraphs: 0
+  showGraphs: 1
 --- !u!4 &881743188
 Transform:
   m_ObjectHideFlags: 0

@@ -20,19 +20,18 @@ namespace Pathfinding.Examples {
 			Vector3 wantedPosition;
 
 			if (staticOffset) {
-				wantedPosition = target.position + new Vector3(0, height, distance);
+				wantedPosition = target.position + new Vector3(0, height, 0f);
 			} else {
 				if (followBehind)
-					wantedPosition = target.TransformPoint(0, height, -distance);
+					wantedPosition = target.TransformPoint(0, height, 0f);
 				else
-					wantedPosition = target.TransformPoint(0, height, distance);
+					wantedPosition = target.TransformPoint(0, height, 0f);
 			}
-			transform.position = Vector3.Lerp(transform.position, wantedPosition, Time.deltaTime * damping);
-			/*
-			if (smoothRotation) {
-				Quaternion wantedRotation = Quaternion.LookRotation(target.position - transform.position, target.up);
-				transform.rotation = Quaternion.Slerp(transform.rotation, wantedRotation, Time.deltaTime * rotationDamping);
-			} else transform.LookAt(target, target.up);*/
+
+			Vector3 pos = transform.position;
+			wantedPosition.z = pos.z;
+			transform.position = Vector3.Lerp(pos, wantedPosition, Time.deltaTime * damping);
+			
 		}
 	}
 }

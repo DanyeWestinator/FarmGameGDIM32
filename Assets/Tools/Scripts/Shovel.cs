@@ -19,9 +19,9 @@ public class Shovel : Tool
     public override void Use(GameObject tile)
     {
         Plant plant = tile.GetComponentInChildren<Plant>();
-        if (plant)
+        if (plant && plant.IsDead)
         {
-            plant.Harvest();
+            plant.Dig();
         }
     }
 }

@@ -147,10 +147,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AIMover: {fileID: 2457896096379287044}
   target: {fileID: 0}
-  safeDistance: 4
+  cat: {fileID: 0}
+  safeDistance: 2.5
   stateUpdateTime: 0.5
   destroyPlantTime: 6
   eatingDistance: 0.05
+  warningDistance: 3
   targetChild: {fileID: 832328956251951796}
   anim: {fileID: 1794932502457487972}
 --- !u!114 &2457896096379287044
@@ -269,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5097894394598878757}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.5}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -22,5 +22,16 @@ public class Hoe : Tool
         {
             farmTile.SetTilled(true);
         }
+        if (farmTile.occupiedBy == null)
+            return;
+        Plant p = farmTile.occupiedBy.GetComponent<Plant>();
+        if (p)
+        {
+            //If we can harvest the plant, harvest it
+            if (p.Harvestable)
+            {
+                p.Harvest();
+            }
+        }
     }
 }

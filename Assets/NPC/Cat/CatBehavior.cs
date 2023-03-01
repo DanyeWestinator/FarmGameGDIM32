@@ -97,6 +97,7 @@ public class CatBehavior : AIBehavior
 
     public void BirdCaught(BirdBehavior bird)
     {
+        print("Bird caught!");
         bird.Catch(this);
         birds.Remove(bird);
         setIdle();

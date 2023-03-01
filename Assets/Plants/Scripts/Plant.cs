@@ -24,7 +24,15 @@ public class Plant : MonoBehaviour
     
     private bool canWater = false; // true when plant can be watered
     private bool harvestable = false; // true when ready to harvest
+    /// <summary>
+    /// Public getter to see if a plant can be harvested
+    /// </summary>
+    public bool Harvestable => harvestable;
     private bool watered = false; // true if has been watered during the plant's current growth stage
+    /// <summary>
+    /// Public getter for if the plant is dead
+    /// </summary>
+    public bool IsDead => wilted;
     private bool wilted = false; // true if the plant has wilted and died
     private bool waterWarning1 = false; // true if the first water warning has been given
     private bool waterWarning2 = false; // true if the second water warning has been given
