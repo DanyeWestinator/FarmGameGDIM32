@@ -44,7 +44,7 @@ public class TempPlantInteract_Brooke : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //Debug.Log("SEED");
-            Instantiate(plantPrefabs[seedNum], new Vector3((Input.mousePosition.x/140)-4, 0, 0), Quaternion.identity);
+            Instantiate(plantPrefabs[seedNum], new Vector3((Input.mousePosition.x/120)-4, 0, 0), Quaternion.identity);
         }
 
         if (detected_object && Input.GetKeyDown(KeyCode.H))
@@ -59,10 +59,28 @@ public class TempPlantInteract_Brooke : MonoBehaviour
             detected_object.GetComponent<Plant>().Water();
         }
 
-        if (detected_object && Input.GetKeyDown(KeyCode.X))
+        if (detected_object && Input.GetKeyDown(KeyCode.Q))
         {
             //Debug.Log("DESTROY");
             detected_object.GetComponent<Plant>().Dig();
+        }
+
+        if (detected_object && Input.GetKeyDown(KeyCode.K))
+        {
+            //Debug.Log("WILT");
+            detected_object.GetComponent<Plant>().Die();
+        }
+
+        if (detected_object && Input.GetKeyDown(KeyCode.B))
+        {
+            //Debug.Log("EMOTE");
+            detected_object.GetComponent<Plant>().Emote("bird");
+        }
+
+        if (detected_object && Input.GetKeyDown(KeyCode.N))
+        {
+            //Debug.Log("REMOVE EMOTE");
+            detected_object.GetComponent<Plant>().RemoveEmote();
         }
     }
 

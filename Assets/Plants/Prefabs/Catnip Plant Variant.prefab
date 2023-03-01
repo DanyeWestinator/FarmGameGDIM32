@@ -1,15 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1084472101889490981
+--- !u!1001 &6726710900059168710
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6185126237453675534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
+      propertyPath: growthStageLength
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6185126237453675534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
+      propertyPath: growthStagesTotal
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017529, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_Name
-      value: Wheat Plant Variant
+      value: Catnip Plant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6559441033389017534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_RootOrder
@@ -58,34 +66,35 @@ PrefabInstance:
     - target: {fileID: 6559441033389017535, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 935917553, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+      objectReference: {fileID: 1989637875, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
     m_RemovedComponents:
     - {fileID: 6185126237453675534, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
---- !u!1 &6055935757388335516 stripped
+--- !u!1 &458737353767278207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6559441033389017529, guid: d2378ee2ba14dfa4a9b352f0a39d4afc, type: 3}
-  m_PrefabInstance: {fileID: 1084472101889490981}
+  m_PrefabInstance: {fileID: 6726710900059168710}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1195280843
+--- !u!114 &4772781651737719034
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6055935757388335516}
+  m_GameObject: {fileID: 458737353767278207}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fa6534adefc1f346927f61378224472, type: 3}
+  m_Script: {fileID: 11500000, guid: 475e745c12f5cd048a1f22c622824f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   growthSprites:
-  - {fileID: 935917553, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
-  - {fileID: 1669298326, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
-  - {fileID: 2083608548, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
-  - {fileID: -1230742721, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
-  - {fileID: 1113786324, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
-  - {fileID: -1781927503, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: 1989637875, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: 286134034, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: 358315291, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: -1634494651, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: -822660814, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: -593485487, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: -1194382667, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   emoteSprites:
   - {fileID: -1905866252, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
   - {fileID: -2063859351, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
@@ -94,11 +103,13 @@ MonoBehaviour:
   - {fileID: -2092345866, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
   - {fileID: 915414421, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
   - {fileID: 218462814, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
-  - {fileID: 189310749, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
-  growthStagesTotal: 5
-  minStageLength: 4.5
-  maxStageLength: 5.5
+  - {fileID: -856475034, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: 1653473710, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: -1197457935, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  growthStagesTotal: 6
+  minStageLength: 7
+  maxStageLength: 7.5
   totalHarvests: 1
   timeUntilWilts: 30
-  costValue: 15
-  scoreValue: 25
+  costValue: 20
+  scoreValue: 21
