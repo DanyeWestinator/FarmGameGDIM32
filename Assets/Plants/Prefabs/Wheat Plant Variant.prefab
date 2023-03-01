@@ -85,3 +85,10 @@ MonoBehaviour:
   - {fileID: 2083608548, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: -1230742721, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: 1113786324, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: -1781927503, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  growthStagesTotal: 5
+  minStageLength: 4.5
+  maxStageLength: 5.5
+  totalHarvests: 1
+  costValue: 15
+  scoreValue: 25

@@ -111,7 +111,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6559441033389017529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.367, y: 0.501, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -216,6 +216,13 @@ MonoBehaviour:
   - {fileID: 273300456, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: -1767210805, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: 1968739183, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  - {fileID: 958235099, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  growthStagesTotal: 5
+  minStageLength: 3
+  maxStageLength: 4
+  totalHarvests: 1
+  costValue: 10
+  scoreValue: 15
 --- !u!1 &6559441033580070840
 GameObject:
   m_ObjectHideFlags: 0

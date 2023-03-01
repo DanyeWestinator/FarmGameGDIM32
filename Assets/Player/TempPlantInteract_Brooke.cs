@@ -44,7 +44,7 @@ public class TempPlantInteract_Brooke : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             //Debug.Log("SEED");
-            Instantiate(plantPrefabs[seedNum], new Vector3((Input.mousePosition.x/140)-4, 0, 0), Quaternion.identity);
+            Instantiate(plantPrefabs[seedNum], new Vector3((Input.mousePosition.x/120)-4, 0, 0), Quaternion.identity);
         }
 
         if (detected_object && Input.GetKeyDown(KeyCode.H))
@@ -63,6 +63,12 @@ public class TempPlantInteract_Brooke : MonoBehaviour
         {
             //Debug.Log("DESTROY");
             detected_object.GetComponent<Plant>().Dig();
+        }
+
+        if (detected_object && Input.GetKeyDown(KeyCode.K))
+        {
+            //Debug.Log("DESTROY");
+            detected_object.GetComponent<Plant>().Die();
         }
     }
 
