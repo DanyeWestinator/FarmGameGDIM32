@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Pathfinding.Examples;
 using UnityEngine;
 
 /// <summary>
@@ -21,6 +22,9 @@ public class CatBehavior : AIBehavior
 {
     // public params
     public CatEmoter emoter;
+    public AstarSmoothFollow2 follower;
+    public Animator animator;
+    public GameObject CatHome;
     public float RunSpeed = 5;
     public float WalkSpeed = 2;
     public float SafeDistance = 2;
@@ -35,9 +39,15 @@ public class CatBehavior : AIBehavior
 
     // return to idle after running
     public float IdleTimer = 1;
+
+    // return to home after idling
+    public float HomeTimer = 10;
     
     // hunt cooldown
     public float HuntTimer = 5; 
+
+    // nap timer (before hunting again)
+    public float NapTimer = 5;
     
 
     // private params
@@ -46,6 +56,7 @@ public class CatBehavior : AIBehavior
     private int playerRelationship = 0;
     private bool huntOnCooldown = false;
     private List<BirdBehavior> birds = new List<BirdBehavior>();
+    private Coroutine currentTimer = null; // wow this is hacky
 
 
     // whatever the cat is currently looking at (target)
@@ -93,12 +104,15 @@ public class CatBehavior : AIBehavior
 
     public void BirdEscaped()
     {
+        // stop chasing
+        follower.target = createBall(transform.position).transform;
         setIdle();
     }
 
     public void AddNewBird(BirdBehavior bird)
     {
         birds.Add(bird);
+        setChase(bird.gameObject);
     }
 
     public void FeedMe(GameObject player, GameObject food)
@@ -106,7 +120,7 @@ public class CatBehavior : AIBehavior
         playerRelationship++;
         print("CAT FED: " + playerRelationship);
         emoter.display("emote_heart");
-        StartCoroutine(idleDelay());
+        currentTimer = StartCoroutine(idleDelay());
     }
 
     // coroutine helpers
@@ -124,6 +138,36 @@ public class CatBehavior : AIBehavior
         huntOnCooldown = false;
     }
 
+    IEnumerator homeDelay()
+    {
+        yield return new WaitForSeconds(HomeTimer);
+        setHome();
+    }
+
+    IEnumerator napDelay()
+    {
+        yield return new WaitForSeconds(NapTimer);
+        // TODO
+    }
+
+    // get a quick transform to track this is really bad
+    private GameObject createBall(Vector3 pos)
+    {
+        var ball = new GameObject("target");
+        ball.transform.position = pos;
+
+        // print("new ball at: " + pos);
+
+        return ball;
+    }
+
+    private void stopCoroutines()
+    {
+        if (currentTimer != null)
+        {
+            StopCoroutine(currentTimer);
+        } 
+    }
 
 
 
@@ -132,7 +176,7 @@ public class CatBehavior : AIBehavior
 
 
 
-    enum CatBehaviorState {IDLE, CHASE, NOTICE, RUNAWAY}
+    enum CatBehaviorState {IDLE, CHASE, NOTICE, RUNAWAY, HOME}
     private CatBehaviorState state = CatBehaviorState.IDLE;
 
     // called in update()
@@ -160,6 +204,16 @@ public class CatBehavior : AIBehavior
                 break;
             case CatBehaviorState.RUNAWAY:
                 break;
+            case CatBehaviorState.HOME:
+                
+                target = CatHome.transform.position;
+                toTarget = target - transform.position;
+                if (toTarget.magnitude < 0.2)
+                {
+                    setIdle();
+                }
+
+                break;
         }
 
     }
@@ -175,10 +229,19 @@ public class CatBehavior : AIBehavior
     {
         state = CatBehaviorState.IDLE;
 
-        // stop chasing
-        AIMover.TargetDestination = transform;
+        stopCoroutines();
 
         emoter.hide();
+
+        animator.ResetTrigger("Walk");
+        animator.SetTrigger("Idle");
+
+        // stop
+        follower.target = createBall(transform.position).transform;
+
+        // get ready to go home
+        currentTimer = StartCoroutine(homeDelay());
+        print("Cat returning idle");
     }
     
     private void setChase(GameObject chaseTarget)
@@ -187,22 +250,31 @@ public class CatBehavior : AIBehavior
 
         fixation = chaseTarget;
 
+        stopCoroutines();
+
         // set chase target and speed in mover
-        AIMover.TargetDestination = chaseTarget.transform;
-        AIMover.MoveVelocity = RunSpeed;
+        follower.target = chaseTarget.transform;
+        follower.damping = RunSpeed;
 
         // reset cooldown 
         huntOnCooldown = true;
-        StartCoroutine(huntDelay());
+        currentTimer = StartCoroutine(huntDelay());
 
         emoter.display("emote_exclamation");
+
+        animator.ResetTrigger("Idle");
+        animator.SetTrigger("Walk");
     }
 
     private void setNoticePlayer(GameObject player)
     {
         state = CatBehaviorState.NOTICE;
 
-        fixation = player;
+        stopCoroutines();
+
+        print("cat noticed player  at: " + follower.transform.position);
+
+        follower.target = createBall(transform.position).transform;
 
         // might run away if at low relationship
         if (playerRelationship <= RelationshipThreshold)
@@ -213,8 +285,8 @@ public class CatBehavior : AIBehavior
 
             float rand = Random.Range(0f,1f);
 
-            print("cat run away? ratio: " + rand + " / " + chance);
-            print("ratio: " + ratio + " dif " + dif);
+            // print("cat run away? ratio: " + rand + " / " + chance);
+            // print("ratio: " + ratio + " dif " + dif);
 
             if (rand <= chance)
             {
@@ -226,7 +298,7 @@ public class CatBehavior : AIBehavior
         emoter.display("emote_weary");
 
         // chill after a while
-        StartCoroutine(idleDelay());
+        currentTimer = StartCoroutine(idleDelay());
 
 
     }
@@ -237,20 +309,42 @@ public class CatBehavior : AIBehavior
        
         state = CatBehaviorState.RUNAWAY;
 
+        stopCoroutines();
+
         // path away from player * safedistance
         var toPlayer = player.transform.position - transform.position;
         var target = toPlayer.normalized * -SafeDistance;
 
-        var ball = new GameObject("target");
-        ball.transform.position = target;
+        var ball = createBall(target);
 
-        AIMover.TargetDestination = ball.transform;
-        AIMover.MoveVelocity = RunSpeed;
+        follower.target = ball.transform;
+        follower.damping = RunSpeed;
+
+        print("cat running away: " + target);
 
         // chill after a while
-        StartCoroutine(idleDelay());
+        currentTimer = StartCoroutine(idleDelay());
 
         emoter.display("emote_exclamation");
+
+        animator.ResetTrigger("Idle");
+        animator.SetTrigger("Walk");
+
+    }
+
+
+    private void setHome()
+    {
+        stopCoroutines();
+       
+        print("cat returning home to: " + CatHome.transform.position);
+        state = CatBehaviorState.HOME;
+        follower.target = CatHome.transform;
+        follower.damping = WalkSpeed;
+
+        animator.ResetTrigger("Idle");
+        animator.SetTrigger("Walk");
+
     }
 
     

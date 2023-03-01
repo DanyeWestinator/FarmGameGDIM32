@@ -14,6 +14,8 @@ public class BirdSpawner : MonoBehaviour
     private float spawnRadius = 10f;
     [SerializeField]
     private float spawnDelay = 4f;
+    [SerializeField]
+    private CatBehavior cat;
     
     public bool canBirdsSpawn = true;
 
@@ -60,6 +62,11 @@ public class BirdSpawner : MonoBehaviour
         }
         GameObject spawned = Instantiate(BirdPrefab, transform);
         spawned.transform.position = pos;
+        // inject cat reference
+        var bird = spawned.GetComponent<BirdBehavior>();
+        bird.cat = cat;
+        // tell cat bird was spawned
+        cat.AddNewBird(bird);
         //spawned.GetComponent<AstarSmoothFollow2>().target = PlayerController.player.transform;
         //print("Bird spawned!");
     }

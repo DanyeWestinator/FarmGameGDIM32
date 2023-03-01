@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1858536227}
   - component: {fileID: 1858536229}
   - component: {fileID: 1858536228}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Detection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832328956251951796}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2457896096379287046}
   - component: {fileID: 1794932502457487972}
   - component: {fileID: -73648468528515822}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8828733438055196398}
   - component: {fileID: 4303212740866711588}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

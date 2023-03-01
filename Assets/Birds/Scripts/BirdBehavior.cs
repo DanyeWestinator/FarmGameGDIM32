@@ -10,6 +10,8 @@ using UnityEngine;
 public class BirdBehavior : AIBehavior
 {
     
+    public CatBehavior cat; // set by spawner
+    
     public float safeDistance = 100;
     [Tooltip("The time between updating bird states")]
     [SerializeField] private float stateUpdateTime = 0.5f;
@@ -24,6 +26,8 @@ public class BirdBehavior : AIBehavior
     private Transform targetChild;
 
     [SerializeField] private Animator anim;
+
+    private PlayerController player;
     
     // Start is called before the first frame update
     void Start()
@@ -34,6 +38,8 @@ public class BirdBehavior : AIBehavior
             targetChild = transform.Find("target");
         follower.target = targetChild;
         StartCoroutine(checkState());
+
+        player = PlayerController.player;
     }
     /// <summary>
     /// Checks which state the bird should currently be in. Doesn't run every frame for performance
@@ -45,9 +51,14 @@ public class BirdBehavior : AIBehavior
         {
             yield return new WaitForSeconds(stateUpdateTime);
             //If the player is close, flee
-            if (distanceToThreat() <= safeDistance)
+            if (distanceToThreat(player.gameObject) <= safeDistance)
             {
-                flee();
+                flee(player.gameObject);
+            }
+            // If cat is close, flee
+            else if (distanceToThreat(cat.gameObject) <= safeDistance)
+            {
+                flee(cat.gameObject);
             }
             //Go to plant if there are any
             else if (CanGoToPlant())
@@ -63,10 +74,10 @@ public class BirdBehavior : AIBehavior
     /// <summary>
     /// Sends the bird running from the player
     /// </summary>
-    private void flee()
+    private void flee(GameObject threat)
     {
         follower.target = targetChild;
-        Vector3 dir = transform.position - PlayerController.player.transform.position;
+        Vector3 dir = transform.position - threat.transform.position;
         dir = dir.normalized * safeDistance;
         targetChild.localPosition = dir;
 
@@ -106,12 +117,9 @@ public class BirdBehavior : AIBehavior
         targetChild.localPosition = Vector3.zero;
         follower.target = targetChild;
     }
-    private float distanceToThreat()
+    private float distanceToThreat(GameObject threat)
     {
-        if (PlayerController.player == null)
-            return float.MaxValue;
-        float distance = Vector2.Distance(transform.position, PlayerController.player.transform.position);
-        return distance;
+        return Vector2.Distance(transform.position, threat.transform.position);
     }
 
     public void Catch(CatBehavior cat)

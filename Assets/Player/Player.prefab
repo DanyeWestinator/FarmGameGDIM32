@@ -14,13 +14,13 @@ GameObject:
   - component: {fileID: 1752219962098704819}
   - component: {fileID: 1752219962098704816}
   - component: {fileID: 1752219962098704823}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1752219962098704814
 Transform:
   m_ObjectHideFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   - {fileID: -4651265378449149237, guid: 8e997435ec1bdd64483ec78e586b67dc, type: 3}
   - {fileID: -4651265378449149237, guid: 3f5e643fbf165e74fa7a931d5098cc00, type: 3}
   - {fileID: -4651265378449149237, guid: 4407ecdc5e0aa93449a684ba30bf3e56, type: 3}
+  - {fileID: 1404303207051856016, guid: 5583ef1e1d3a9a94a887d3b59730ae45, type: 3}
 --- !u!95 &1752219962098704819
 Animator:
   serializedVersion: 5
@@ -173,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752219962210883328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ToolParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +207,7 @@ GameObject:
   - component: {fileID: 1752219963195183978}
   - component: {fileID: 1752219963195183977}
   - component: {fileID: 1752219963195183976}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -276,7 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1752219963202387026}
   - component: {fileID: 1752219963202387025}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
