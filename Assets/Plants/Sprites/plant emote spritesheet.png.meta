@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: parsnip emote
+      name: plant emote spritesheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -113,167 +113,167 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10ffa7593df03c541a3f9a1d0b245174
-      internalID: -1039391733
+      spriteID: 479d62ed90f457a4ebf778e94d019160
+      internalID: 1317242527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: wheat emote
+      name: plant emote spritesheet_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 18
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3f786e529c4807a42ae360db885d630d
-      internalID: 193947484
+      spriteID: c04fcc4797aad434ca6748ef4b85735d
+      internalID: 189310749
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: potato emote
+      name: plant emote spritesheet_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 36
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1835490e9faf57459fdd46ce0f30edc
-      internalID: -1949328552
+      spriteID: c4abcb3b7a803c945861ee55a6c9e37a
+      internalID: 1408137368
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tomato emote
+      name: plant emote spritesheet_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 54
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 698c40f1ba10c1740a8cf837c49698f4
-      internalID: -1806962031
+      spriteID: 77bdf77ef334af749930bc5580c5aa38
+      internalID: -1495662319
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: melon emote
+      name: plant emote spritesheet_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 72
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5caf6fc5abaec29468c16bdbad10dc07
-      internalID: 1659658239
+      spriteID: 329c994e9ced1f44e9c9ebb2554a26e4
+      internalID: -2141633059
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: starfruit emote
+      name: plant emote spritesheet_5
       rect:
         serializedVersion: 2
-        x: 80
+        x: 90
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c80799ea9ebb6a7429b7d926d9245584
-      internalID: -7750374
+      spriteID: f7c36f7eae61cb241b50055f9a245f83
+      internalID: 419951181
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: clock emote
+      name: plant emote spritesheet_6
       rect:
         serializedVersion: 2
-        x: 96
+        x: 108
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a78121e2aa130c41abe7ef022e17cdf
-      internalID: 794384044
+      spriteID: b066efce387348746870b5cc7a899f0f
+      internalID: 1647502453
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gold emote
+      name: plant emote spritesheet_7
       rect:
         serializedVersion: 2
-        x: 112
+        x: 126
         y: 36
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87c90ee56a6a7f4ba6f706b940c44a9
-      internalID: 803906626
+      spriteID: d90af0cabcf9aae4b954520c7a43812a
+      internalID: -302553734
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: skull emote
+      name: plant emote spritesheet_8
       rect:
         serializedVersion: 2
         x: 0
@@ -281,167 +281,167 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: df798946be0bd834f90df4fa257ea5f6
-      internalID: 1139814723
+      spriteID: 14f285835cdea274e9071bcc001cfa21
+      internalID: 458949246
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: dead emote
+      name: plant emote spritesheet_9
       rect:
         serializedVersion: 2
-        x: 16
+        x: 18
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ffb5a6479b5e3d54295470816d89888d
-      internalID: -695402682
+      spriteID: 717441559e6d21742b12fc29690d675a
+      internalID: 218462814
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '! emote'
+      name: plant emote spritesheet_10
       rect:
         serializedVersion: 2
-        x: 32
+        x: 36
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3919afb0e69a3a7408ea0b53b562973f
-      internalID: 471239642
+      spriteID: c503fb0cfb656204bba1aa6b7997fa1f
+      internalID: 70325963
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: '!! emote'
+      name: plant emote spritesheet_11
       rect:
         serializedVersion: 2
-        x: 48
+        x: 54
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b1404edad6a18a4b83b6b4ed92d1ef2
-      internalID: 168815296
+      spriteID: 16d0d890127ecb54da827440885bb817
+      internalID: -237533771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: brown bird emote
+      name: plant emote spritesheet_12
       rect:
         serializedVersion: 2
-        x: 64
+        x: 72
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 992d6de321a910943a2b7bce615b6e0f
-      internalID: 954326462
+      spriteID: 67799f585ff521c4499ab76ac157aa70
+      internalID: -1930886333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: orange cat emote
+      name: plant emote spritesheet_13
       rect:
         serializedVersion: 2
-        x: 80
+        x: 90
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d9ef358cbab81344297dd3f594a6e733
-      internalID: 1194902673
+      spriteID: c31be81d0add63146871a014c52a8b58
+      internalID: 1653473710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: gray cat emote
+      name: plant emote spritesheet_14
       rect:
         serializedVersion: 2
-        x: 96
+        x: 108
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f53cdc3c198dd347a83a2bac714210d
-      internalID: -646969053
+      spriteID: 503ceea6054209f4687aa28597472f19
+      internalID: -856475034
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow cat emote
+      name: plant emote spritesheet_15
       rect:
         serializedVersion: 2
-        x: 112
+        x: 126
         y: 18
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dcd6206a0b99a2489aa74c15c92be3b
-      internalID: -140824365
+      spriteID: a1ede99a1c8275349aa87d8c73de6983
+      internalID: -1197457935
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: water emote
+      name: plant emote spritesheet_16
       rect:
         serializedVersion: 2
         x: 0
@@ -449,140 +449,140 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 09b938e00e2bd314caa2395ae3d9a9af
-      internalID: -1039449710
+      spriteID: ea9b5972b882a2043af2c1c362e55547
+      internalID: -1905866252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow water emote
+      name: plant emote spritesheet_17
       rect:
         serializedVersion: 2
-        x: 16
+        x: 18
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61908d29efd6bd34bb5790e8d7150a78
-      internalID: -1740129566
+      spriteID: add858064619ac545b5f2ba662cf0954
+      internalID: -2063859351
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: red water emote
+      name: plant emote spritesheet_18
       rect:
         serializedVersion: 2
-        x: 32
+        x: 36
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9337b5fc8cf1454ab56b6e8d2dc4a27
-      internalID: -1214367135
+      spriteID: b74d372d472663c4982fd88b6aaf7ed0
+      internalID: -1832169944
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird emote
+      name: plant emote spritesheet_19
       rect:
         serializedVersion: 2
-        x: 48
+        x: 54
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7f9ec1a2f88c6446adb23157a37b1b4
-      internalID: 1242725796
+      spriteID: 5b49b179b85631744b8348e954797cb7
+      internalID: 214396363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: yellow bird emote
+      name: plant emote spritesheet_20
       rect:
         serializedVersion: 2
-        x: 64
+        x: 72
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 899b2ba493c819d4c90ec4d7f0b0b411
-      internalID: 1700687826
+      spriteID: d2386557f8908124bb830f157c6ddf3e
+      internalID: -2092345866
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: red bird emote
+      name: plant emote spritesheet_21
       rect:
         serializedVersion: 2
-        x: 80
+        x: 90
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6b3446bbb170b54dac38758511e6b04
-      internalID: 1856990528
+      spriteID: 5270057889182b1469e1ea4e203a207f
+      internalID: 915414421
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: empty emote
+      name: plant emote spritesheet_22
       rect:
         serializedVersion: 2
-        x: 96
+        x: 108
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f27985248d8be647a0b5f8b04cd39aa
-      internalID: 169085594
+      spriteID: 876e89693b5c1ed4f90382d2b9a52cce
+      internalID: 580145259
       vertices: []
       indices: 
       edges: []
@@ -591,19 +591,19 @@ TextureImporter:
       name: plant emote spritesheet_23
       rect:
         serializedVersion: 2
-        x: 112
+        x: 126
         y: 0
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9de94f1d009c86f41bf9a016cba3c913
-      internalID: -528064372
+      spriteID: 307e1848213da0640bb21dcd762eac72
+      internalID: -1238870294
       vertices: []
       indices: 
       edges: []
@@ -619,30 +619,30 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      yellow water emote: -1740129566
-      bird emote: 1242725796
-      tomato emote: -1806962031
-      '!! emote': 168815296
-      melon emote: 1659658239
-      parsnip emote: -1039391733
-      orange cat emote: 1194902673
-      red bird emote: 1856990528
-      skull emote: 1139814723
-      starfruit emote: -7750374
-      water emote: -1039449710
-      yellow cat emote: -140824365
-      dead emote: -695402682
-      '! emote': 471239642
-      yellow bird emote: 1700687826
-      clock emote: 794384044
-      potato emote: -1949328552
-      wheat emote: 193947484
-      red water emote: -1214367135
-      gray cat emote: -646969053
-      empty emote: 169085594
-      plant emote spritesheet_23: -528064372
-      brown bird emote: 954326462
-      gold emote: 803906626
+      plant emote spritesheet_6: 1647502453
+      plant emote spritesheet_14: -856475034
+      plant emote spritesheet_0: 1317242527
+      plant emote spritesheet_3: -1495662319
+      plant emote spritesheet_10: 70325963
+      plant emote spritesheet_11: -237533771
+      plant emote spritesheet_7: -302553734
+      plant emote spritesheet_8: 458949246
+      plant emote spritesheet_18: -1832169944
+      plant emote spritesheet_19: 214396363
+      plant emote spritesheet_4: -2141633059
+      plant emote spritesheet_20: -2092345866
+      plant emote spritesheet_2: 1408137368
+      plant emote spritesheet_17: -2063859351
+      plant emote spritesheet_9: 218462814
+      plant emote spritesheet_12: -1930886333
+      plant emote spritesheet_16: -1905866252
+      plant emote spritesheet_21: 915414421
+      plant emote spritesheet_13: 1653473710
+      plant emote spritesheet_5: 419951181
+      plant emote spritesheet_22: 580145259
+      plant emote spritesheet_23: -1238870294
+      plant emote spritesheet_15: -1197457935
+      plant emote spritesheet_1: 189310749
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

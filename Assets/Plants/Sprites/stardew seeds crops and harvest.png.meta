@@ -2313,7 +2313,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_105
       rect:
         serializedVersion: 2
-        x: 144
+        x: 145
         y: 288
         width: 16
         height: 30
@@ -2334,7 +2334,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_106
       rect:
         serializedVersion: 2
-        x: 160
+        x: 162
         y: 288
         width: 16
         height: 30
@@ -3174,9 +3174,9 @@ TextureImporter:
       name: stardew seeds crops and harvest_146
       rect:
         serializedVersion: 2
-        x: 128
+        x: 129
         y: 224
-        width: 16
+        width: 14
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -4035,7 +4035,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_187
       rect:
         serializedVersion: 2
-        x: 144
+        x: 145
         y: 160
         width: 16
         height: 30
@@ -4056,7 +4056,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_188
       rect:
         serializedVersion: 2
-        x: 160
+        x: 161
         y: 160
         width: 16
         height: 30
@@ -4749,7 +4749,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_221
       rect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 96
         width: 16
         height: 30
@@ -4770,7 +4770,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_222
       rect:
         serializedVersion: 2
-        x: 80
+        x: 82
         y: 96
         width: 16
         height: 30
@@ -4791,7 +4791,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_223
       rect:
         serializedVersion: 2
-        x: 96
+        x: 99
         y: 96
         width: 16
         height: 30
@@ -4812,9 +4812,9 @@ TextureImporter:
       name: stardew seeds crops and harvest_224
       rect:
         serializedVersion: 2
-        x: 112
+        x: 116
         y: 96
-        width: 16
+        width: 12
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -4833,7 +4833,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_225
       rect:
         serializedVersion: 2
-        x: 128
+        x: 129
         y: 96
         width: 16
         height: 30
@@ -5232,9 +5232,9 @@ TextureImporter:
       name: stardew seeds crops and harvest_244
       rect:
         serializedVersion: 2
-        x: 64
+        x: 65
         y: 32
-        width: 16
+        width: 14
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -5274,7 +5274,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_246
       rect:
         serializedVersion: 2
-        x: 96
+        x: 97
         y: 32
         width: 16
         height: 30
@@ -5295,7 +5295,7 @@ TextureImporter:
       name: stardew seeds crops and harvest_247
       rect:
         serializedVersion: 2
-        x: 112
+        x: 114
         y: 32
         width: 16
         height: 30
@@ -5316,9 +5316,9 @@ TextureImporter:
       name: stardew seeds crops and harvest_248
       rect:
         serializedVersion: 2
-        x: 128
+        x: 132
         y: 32
-        width: 16
+        width: 12
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -5337,9 +5337,9 @@ TextureImporter:
       name: stardew seeds crops and harvest_249
       rect:
         serializedVersion: 2
-        x: 144
+        x: 145
         y: 32
-        width: 16
+        width: 15
         height: 30
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

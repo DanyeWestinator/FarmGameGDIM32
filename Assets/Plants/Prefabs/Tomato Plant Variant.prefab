@@ -88,6 +88,15 @@ MonoBehaviour:
   - {fileID: -1567179111, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: 1452609593, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
   - {fileID: 419364941, guid: d92f0b612efc4264089bbd262a23933f, type: 3}
+  emoteSprites:
+  - {fileID: -1905866252, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: -2063859351, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: -1832169944, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: 214396363, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: -2092345866, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: 915414421, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: 218462814, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
+  - {fileID: -1495662319, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
   growthStagesTotal: 7
   minStageLength: 7
   maxStageLength: 9

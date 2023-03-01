@@ -59,7 +59,7 @@ public class TempPlantInteract_Brooke : MonoBehaviour
             detected_object.GetComponent<Plant>().Water();
         }
 
-        if (detected_object && Input.GetKeyDown(KeyCode.X))
+        if (detected_object && Input.GetKeyDown(KeyCode.Q))
         {
             //Debug.Log("DESTROY");
             detected_object.GetComponent<Plant>().Dig();
@@ -67,8 +67,20 @@ public class TempPlantInteract_Brooke : MonoBehaviour
 
         if (detected_object && Input.GetKeyDown(KeyCode.K))
         {
-            //Debug.Log("DESTROY");
+            //Debug.Log("WILT");
             detected_object.GetComponent<Plant>().Die();
+        }
+
+        if (detected_object && Input.GetKeyDown(KeyCode.B))
+        {
+            //Debug.Log("EMOTE");
+            detected_object.GetComponent<Plant>().Emote("bird");
+        }
+
+        if (detected_object && Input.GetKeyDown(KeyCode.N))
+        {
+            //Debug.Log("REMOVE EMOTE");
+            detected_object.GetComponent<Plant>().RemoveEmote();
         }
     }
 
