@@ -28,10 +28,11 @@ public class CatBehavior : AIBehavior
     public float RunSpeed = 5;
     public float WalkSpeed = 2;
     public float SafeDistance = 2;
+    public float CatchDistance = 1.2f;
     public int RelationshipThreshold = 5; 
     
     // once bird gets this far away, gives up chase
-    public float GiveUpDistance = 4;
+    public float GiveUpDistance = 10;
 
     // chance to run away from low-relation player 
     // multiplied by closeness to threshold
@@ -85,22 +86,26 @@ public class CatBehavior : AIBehavior
         var birdBehavior = gameObject.GetComponent<BirdBehavior>();
         if (birdBehavior)
         {
+           print("Cat hit bird");
            BirdCaught(birdBehavior);
         }
 
-        // if player, notice
+        // if player (and not chasing), notice
         if (gameObject.GetComponent<PlayerController>())
         {
-            setNoticePlayer(gameObject);
+            if (!(state == CatBehaviorState.CHASE))
+            {
+                setNoticePlayer(gameObject);
+            }
         }
     }
 
     public void BirdCaught(BirdBehavior bird)
     {
-        print("Bird caught!");
         bird.Catch(this);
         birds.Remove(bird);
         setIdle();
+        print("bird caught");
     }
 
     public void BirdEscaped()
@@ -108,12 +113,12 @@ public class CatBehavior : AIBehavior
         // stop chasing
         follower.target = createBall(transform.position).transform;
         setIdle();
+        print("bird escaped");
     }
 
     public void AddNewBird(BirdBehavior bird)
     {
         birds.Add(bird);
-        setChase(bird.gameObject);
     }
 
     public void FeedMe(GameObject player, GameObject food)
@@ -122,6 +127,26 @@ public class CatBehavior : AIBehavior
         print("CAT FED: " + playerRelationship);
         emoter.display("emote_heart");
         currentTimer = StartCoroutine(idleDelay());
+    }
+
+    public void TryHunt()
+    {
+        if (birds.Count <= 0) return;
+
+        // get closest bird
+        BirdBehavior closest = birds[0];
+        var cldistance = Vector3.Distance(transform.position, closest.transform.position);
+        foreach (BirdBehavior bird in birds)
+        {
+            var distance = Vector3.Distance(transform.position, bird.transform.position);
+            if (distance < cldistance) 
+            {
+                closest = bird;
+                cldistance = distance;
+            } 
+        }
+
+        setChase(closest.gameObject);
     }
 
     // coroutine helpers
@@ -148,7 +173,7 @@ public class CatBehavior : AIBehavior
     IEnumerator napDelay()
     {
         yield return new WaitForSeconds(NapTimer);
-        // TODO
+        setIdle();
     }
 
     // get a quick transform to track this is really bad
@@ -191,12 +216,20 @@ public class CatBehavior : AIBehavior
         
             case CatBehaviorState.CHASE:
 
+                print("cat is chasing: " + fixation);
                 // give up if too far
-                Vector3 target = fixation.transform.position;
-                Vector3 toTarget = target - transform.position;
-                if (toTarget.magnitude > GiveUpDistance)
+                var distance = Vector3.Distance(transform.position, fixation.transform.position);
+                print(distance);
+                if (distance > GiveUpDistance)
                 {
                     BirdEscaped();
+                }
+
+                // doing this here because the detector isn't picking up birds 
+                // and this is due today
+                if (distance <= CatchDistance)
+                {
+                    BirdCaught(fixation.GetComponent<BirdBehavior>());
                 }
 
                 break;
@@ -207,8 +240,8 @@ public class CatBehavior : AIBehavior
                 break;
             case CatBehaviorState.HOME:
                 
-                target = CatHome.transform.position;
-                toTarget = target - transform.position;
+                var target = CatHome.transform.position;
+                var toTarget = target - transform.position;
                 if (toTarget.magnitude < 0.2)
                 {
                     setIdle();
@@ -237,12 +270,23 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Idle");
 
-        // stop
+        print("cat set idle");
+
+        // stop moving
         follower.target = createBall(transform.position).transform;
 
-        // get ready to go home
-        currentTimer = StartCoroutine(homeDelay());
-        print("Cat returning idle");
+        // either go home or hunt
+        if (huntOnCooldown)
+        {
+            print("hunt on cooldown, cat going home");
+            currentTimer = StartCoroutine(homeDelay());
+        }
+        else
+        {
+            print("cat trying to hunt");
+            TryHunt();
+        }
+        
     }
     
     private void setChase(GameObject chaseTarget)
@@ -259,12 +303,14 @@ public class CatBehavior : AIBehavior
 
         // reset cooldown 
         huntOnCooldown = true;
-        currentTimer = StartCoroutine(huntDelay());
+        StartCoroutine(huntDelay());
 
         emoter.display("emote_exclamation");
 
         animator.ResetTrigger("Idle");
         animator.SetTrigger("Walk");
+
+        print("cat hunting: " + chaseTarget);
     }
 
     private void setNoticePlayer(GameObject player)

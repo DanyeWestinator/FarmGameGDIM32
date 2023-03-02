@@ -48,7 +48,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 3
 --- !u!114 &6640133369218688230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,15 +309,17 @@ MonoBehaviour:
   follower: {fileID: 212335041988176471}
   animator: {fileID: 5130172224536053098}
   CatHome: {fileID: 0}
-  RunSpeed: 5
-  WalkSpeed: 2
+  RunSpeed: 2
+  WalkSpeed: 0.2
   SafeDistance: 2
+  CatchDistance: 1.2
   RelationshipThreshold: 5
   GiveUpDistance: 4
   runawayChance: 0.5
   IdleTimer: 1
   HomeTimer: 10
   HuntTimer: 5
+  NapTimer: 5
   fixation: {fileID: 0}
 --- !u!114 &7999303153389341220
 MonoBehaviour:
