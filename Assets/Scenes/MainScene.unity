@@ -1260,6 +1260,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767279433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 571427542209436474, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+  m_PrefabInstance: {fileID: 1199860473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1802322179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,9 +1366,9 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
-  pausePanel: {fileID: 0}
+  pausePanel: {fileID: 1171061862}
   scoreKeeper: {fileID: 1802322183}
-  PlayerJoinPanel: {fileID: 0}
+  PlayerJoinPanel: {fileID: 1767279433}
   playerColors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0, g: 0.46895194, b: 1, a: 1}
