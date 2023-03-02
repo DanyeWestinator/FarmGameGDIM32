@@ -7,17 +7,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Tool : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     /// <summary>
     /// Public facing logic to use a tool. Handles generic tool logic,
     /// then each subclass must implement their own logic
