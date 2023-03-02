@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// The Text displaying the current score
     /// </summary>
-    public TextMeshProUGUI scoreCounter;
+    public ScoreKeeper scoreKeeper;
     private static int currentScore = 0;
     /// <summary>
     /// What tile the player is currently standing on
@@ -227,8 +227,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddScore(int toAdd)
     {
-        currentScore += toAdd;
-        scoreCounter.text = $"Current score:\n{currentScore}";
+        scoreKeeper.AddScore(toAdd);
         
     }
 

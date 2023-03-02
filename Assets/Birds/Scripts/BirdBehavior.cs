@@ -20,15 +20,19 @@ public class BirdBehavior : AIBehavior
     [SerializeField] private float destroyPlantTime = 1f;
     [SerializeField] private float eatingDistance = .05f;
     [SerializeField] private float warningDistance = 2f;
+    [SerializeField] private float dyingTime = 1f;
     private bool isWarning = false;
 
     private Plant currentPlant = null;
 
     private AstarSmoothFollow2 follower;
+    
     [SerializeField]
     private Transform targetChild;
 
     [SerializeField] private Animator anim;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private Sprite sprite;
     /// <summary>
     /// Gets the closest player to the bird
     /// </summary>
@@ -55,7 +59,6 @@ public class BirdBehavior : AIBehavior
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         follower = GetComponent<AstarSmoothFollow2>();
@@ -169,7 +172,8 @@ public class BirdBehavior : AIBehavior
 
     public void Catch(CatBehavior cat)
     {
-        Destroy(gameObject);
+        deathParticles.Play();
+        StartCoroutine(deathTimer());
     }
 
     private IEnumerator startedDestroying = null;
@@ -183,6 +187,12 @@ public class BirdBehavior : AIBehavior
             currentPlant.Die();
         }
         
+    }
+
+    IEnumerator deathTimer()
+    {
+        yield return new WaitForSeconds(dyingTime);
+        Destroy(this);
     }
 
 

@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
+// Class by Eric
 public class Timer : MonoBehaviour
 {
     public GameObject DayOver;
+    public ScoreKeeper ScoreKeeper;
+    public TextMeshProUGUI DayScore;
+    public TextMeshProUGUI HighScore;
+    public TextMeshProUGUI TotalScore;
+    public float dayLength = 90;
     public float timeValue = 90;
     public Text timeText;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -37,7 +38,11 @@ public class Timer : MonoBehaviour
         if (timeToDisplay < 0)
         {
             timeToDisplay = 0;
+            int dayScore = ScoreKeeper.NewDay();
             DayOver.SetActive(true);
+            DayScore.text = $"Day Score:{dayScore}";
+            HighScore.text = $"High Score:{ScoreKeeper.highScore}";
+            TotalScore.text = $"Total:{ScoreKeeper.currentScore}";
             
         }
 
@@ -49,6 +54,6 @@ public class Timer : MonoBehaviour
 
     public void ResetTimer()
     {
-        timeValue = 90;
+        timeValue = dayLength;
     }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1752219962098704819}
   - component: {fileID: 1752219962098704816}
   - component: {fileID: 1752219962098704823}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ MonoBehaviour:
   toolParent: {fileID: 1752219962210883328}
   currentTool: {fileID: 0}
   pausePanel: {fileID: 0}
-  scoreCounter: {fileID: 0}
+  scoreKeeper: {fileID: 0}
   currentTile: {fileID: 0}
   tools:
   - {fileID: 7989133321803570598, guid: e826d33bdf7881d49be06cf3ff51089a, type: 3}
@@ -174,7 +174,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1752219962210883328}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: ToolParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 1752219963195183978}
   - component: {fileID: 1752219963195183977}
   - component: {fileID: 1752219963195183976}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PlayerEyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1752219963202387026}
   - component: {fileID: 1752219963202387025}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: PlayerSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

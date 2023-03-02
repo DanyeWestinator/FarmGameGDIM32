@@ -11,9 +11,9 @@ public class PlayerManager : PlayerInputManager
     /// </summary>
     public GameObject pausePanel;
     /// <summary>
-    /// The Text displaying the current score
+    /// The Score manager
     /// </summary>
-    public TextMeshProUGUI scoreCounter;
+    public ScoreKeeper scoreKeeper;
     [SerializeField]
     private GameObject PlayerJoinPanel;
 
@@ -23,7 +23,7 @@ public class PlayerManager : PlayerInputManager
         input.gameObject.name = $"Player {playerCount}";
         PlayerController controller = input.GetComponent<PlayerController>();
         controller.pausePanel = pausePanel;
-        controller.scoreCounter = scoreCounter;
+        controller.scoreKeeper = scoreKeeper;
         if (playerCount == maxPlayerCount)
         {
             PlayerJoinPanel.SetActive(false);
