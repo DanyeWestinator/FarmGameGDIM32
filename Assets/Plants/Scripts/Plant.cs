@@ -196,6 +196,10 @@ public class Plant : MonoBehaviour
     {
         spriteRenderer.sprite = growthSprites[growthStagesTotal];
         wilted = true;
+        harvestable = false;
+        canWater = false;
+        waterWarning1 = false;
+        waterWarning2 = false;
         Emote("dead");
     }
 
