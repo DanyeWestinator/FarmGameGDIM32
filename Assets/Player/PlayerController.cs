@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     private bool _canMove = true;
 
     public static PlayerController player;
+    public static HashSet<PlayerController> players = new HashSet<PlayerController>();
 
     private bool isPaused = false;
     
@@ -69,6 +70,10 @@ public class PlayerController : MonoBehaviour
     {
         //Singleton (kind of, doesn't check if another exists) of player
         player = this;
+        if (players.Contains(this) == false)
+        {
+            players.Add(this);
+        }
         
         //Spawn all the player's tools as children under toolParent
         foreach (Tool t in tools)

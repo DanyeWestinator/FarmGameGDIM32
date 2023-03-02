@@ -29,9 +29,32 @@ public class BirdBehavior : AIBehavior
     private Transform targetChild;
 
     [SerializeField] private Animator anim;
+    /// <summary>
+    /// Gets the closest player to the bird
+    /// </summary>
+    private PlayerController player
+    {
+        get
+        {
+            PlayerController closest = null;
+            //The distance to the closest. Initially infinite distance, everything else is closer
+            float d = float.MaxValue;
+            Vector2 pos = transform.position;
+            foreach (PlayerController p in PlayerController.players)
+            {
+                float distance = Vector2.Distance(p.transform.position, pos);
+                //If this player is closer than the last, set it as new closest
+                if (distance <= d)
+                {
+                    closest = p;
+                    d = distance;
+                }
+            }
 
-    private PlayerController player;
-    
+            return closest;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +65,6 @@ public class BirdBehavior : AIBehavior
         follower.target = targetChild;
         StartCoroutine(checkState());
 
-        player = PlayerController.player;
     }
     /// <summary>
     /// Checks which state the bird should currently be in. Doesn't run every frame for performance
