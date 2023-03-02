@@ -20,7 +20,7 @@ public class BirdBehavior : AIBehavior
     [SerializeField] private float destroyPlantTime = 1f;
     [SerializeField] private float eatingDistance = .05f;
     [SerializeField] private float warningDistance = 2f;
-    [SerializeField] private float dyingTime = 1f;
+    [SerializeField] private float dyingTime = 0.2f;
     private bool isWarning = false;
 
     private Plant currentPlant = null;
@@ -192,10 +192,15 @@ public class BirdBehavior : AIBehavior
     IEnumerator deathTimer()
     {
         yield return new WaitForSeconds(dyingTime);
-        Destroy(this);
+        Destroy(gameObject);       
     }
 
 
+    // coroutines calling destroy just destroy themselves
+    private void die()
+    {
+        Destroy(this);
+    }
 
 
     /*OLD BIRD BEHAVIOR

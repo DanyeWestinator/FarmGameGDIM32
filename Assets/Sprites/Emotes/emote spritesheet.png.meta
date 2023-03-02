@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -875,7 +875,7 @@ TextureImporter:
       emote spritesheet_33: -1598729022
       emote spritesheet_27: -1582694162
       emote spritesheet_32: -976965926
-      emote spritesheet_4: -1408149004
+      emote spritesheet_11: 170562151
       emote spritesheet_26: 536382820
       emote_weary: -617236389
       emote spritesheet_24: 1035679138
@@ -902,10 +902,10 @@ TextureImporter:
       emote spritesheet_6: 1639006864
       emote spritesheet_8: 1943820181
       emote spritesheet_10: -1355848187
-      emote spritesheet_11: 170562151
       emote spritesheet_29: 436348901
-      emote_thumbsdown: 1713098284
       emote_heart: -51104363
+      emote_thumbsdown: 1713098284
+      emote spritesheet_4: -1408149004
       emote spritesheet_18: 1489004687
   spritePackingTag: 
   pSDRemoveMatte: 0

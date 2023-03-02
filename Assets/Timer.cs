@@ -14,10 +14,15 @@ public class Timer : MonoBehaviour
     public TextMeshProUGUI HighScore;
     public TextMeshProUGUI TotalScore;
     public float dayLength = 90;
-    public float timeValue = 90;
+    public float timeValue = 0;
     public Text timeText;
 
-    // Update is called once per frame
+
+    void Start()
+    {
+        timeValue = dayLength;
+    }
+
     void Update()
     {
         if (timeValue > 0)

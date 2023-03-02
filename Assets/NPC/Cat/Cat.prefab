@@ -48,7 +48,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 1
 --- !u!114 &6640133369218688230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 494861599150425056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.39, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2925398860028514111}
@@ -315,7 +315,7 @@ MonoBehaviour:
   CatchDistance: 1.2
   RelationshipThreshold: 5
   GiveUpDistance: 4
-  runawayChance: 0.5
+  runawayChance: 0.85
   IdleTimer: 1
   HomeTimer: 10
   HuntTimer: 5
