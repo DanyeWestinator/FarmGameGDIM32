@@ -178,10 +178,8 @@ MonoBehaviour:
   moveSpeed: 6
   toolParent: {fileID: 81373347}
   currentTool: {fileID: 0}
-  console: {fileID: 195088484}
-  consoleTime: 1.2
-  lastHit: {fileID: 0}
-  scoreCounter: {fileID: 0}
+  pausePanel: {fileID: 0}
+  scoreKeeper: {fileID: 0}
   currentTile: {fileID: 0}
   tools:
   - {fileID: 7989133321803570598, guid: e826d33bdf7881d49be06cf3ff51089a, type: 3}
@@ -654,6 +652,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 720112736581055530, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 720112736581055530, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 720112736581055530, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 720112736581055530, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 720112736581055530, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 720112736581055530, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8664875870193261108, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_UiScaleMode
       value: 1
@@ -671,6 +693,14 @@ PrefabInstance:
       value: 170
       objectReference: {fileID: 0}
     - target: {fileID: 8664875870557426761, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8664875870557426761, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 34201100}
+    - target: {fileID: 8664875870557426761, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 34201100}
@@ -678,13 +708,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
+    - target: {fileID: 8664875870557426761, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8664875870557426766, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8664875870557426766, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -115
+      value: -86
       objectReference: {fileID: 0}
     - target: {fileID: 8664875870583558774, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1196,6 +1230,7 @@ MonoBehaviour:
   farmPlot: {fileID: 6454639110811209308, guid: 312e4ec828a48c84280f98fe6b9de4bb, type: 3}
   tree: {fileID: 7330584544012234996, guid: 607fdb1a6becfbf47ac0deed1a2b782c, type: 3}
   farmDimensions: 10
+  treePercentage: 5
   green: {r: 0, g: 1, b: 0.019798756, a: 1}
   brown: {r: 0.6981132, g: 0.52387404, b: 0.28583124, a: 1}
 --- !u!4 &1747998085
