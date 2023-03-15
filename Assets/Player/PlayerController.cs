@@ -131,8 +131,7 @@ public class PlayerController : MonoBehaviour
         
         //Flip isPaused
         isPaused = !isPaused;
-        pausePanel.SetActive(isPaused);
-       
+        GameStateManager.TogglePause();
 
     }
 

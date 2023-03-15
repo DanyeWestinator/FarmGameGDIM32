@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 06eac1d99a3b410458cb6ec63d3f2ce8
+  - enabled: 1
     path: Assets/Scenes/EricScene 01.unity
     guid: aa5976d5a1cb61a4bb82ca686af8c7a3
   - enabled: 1
     path: Assets/Scenes/DaneScene01.unity
     guid: 09691e34560f94c41a865764a17a34f1
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer.unity
+    guid: c9e48d162c43c1340acc70da50a90738
+  - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 6cae2d870d6c72640957e11cea5da625
   m_configObjects: {}
