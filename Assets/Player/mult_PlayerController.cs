@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
+using Unity.Netcode;
+using Unity.Netcode.Components;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -10,9 +12,101 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// Player manager
 /// </summary>
-public class PlayerController : MonoBehaviour
+public class mult_PlayerController : NetworkBehaviour
 {
+    #region Public Variables
+    
     /// <summary>
+    /// How fast the player moves
+    /// </summary>
+    [SerializeField]
+    private float moveSpeed = 10f;
+
+    [SerializeField] private List<Color> playerColors = new List<Color>()
+    {
+        Color.red, Color.green, Color.blue, Color.cyan, Color.magenta
+    };
+
+    #endregion
+    #region Internal Variables
+    
+    /// <summary>
+    /// The last inputted direction
+    /// </summary>
+    [SerializeField]
+    private Vector2 dir = Vector2.zero;
+    [HideInInspector]
+    public NetworkVariable<Vector2> Thrust = new NetworkVariable<Vector2>();
+
+    [HideInInspector] public NetworkVariable<Color> playerColor = new NetworkVariable<Color>();
+
+    private Rigidbody2D rb;
+    #endregion
+
+    #region Unity Events
+    public override void OnNetworkSpawn()
+    {
+        if (IsServer)
+            playerColor.Value = Color.clear;
+        rb = GetComponent<Rigidbody2D>();
+        if (IsHost == IsLocalPlayer)
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.magenta;
+        }
+        else
+        {
+            GetComponentInChildren<SpriteRenderer>().color = Color.cyan;
+        }
+            
+        
+    }
+
+    private void LateUpdate()
+    {
+        MoveLogic();
+        if (IsLocalPlayer)
+        {
+            MoveLogic();
+            rb.velocity = Thrust.Value;
+        }
+
+    }
+    
+    /// <summary>
+    /// Update the player's move direction based on input
+    /// </summary>
+    /// <param name="value">The input value for movement</param>
+    void OnMove(InputValue value)
+    {
+        if (!IsLocalPlayer)
+            return;
+        //The current stick direction
+        dir = value.Get<Vector2>();
+        //Ignore small values from stick drift
+        if (dir.magnitude <= 0.1f)
+            dir = Vector2.zero;
+        dir *= (moveSpeed);
+    }
+    [ServerRpc]
+    void ServerMoveServerRpc(Vector2 direction, ServerRpcParams rpcParams = default)
+    {
+        Thrust.Value = direction;
+    }
+
+    #endregion
+
+    void MoveLogic()
+    {
+        if (IsClient && IsLocalPlayer)
+            ServerMoveServerRpc(dir);
+        if (IsServer)
+            rb.velocity = Thrust.Value;
+
+    }
+    /* 
+    /// <summary>
+    ///Old, local only logic
+    /// </summary><summary>
     /// How fast the player moves
     /// </summary>
     [SerializeField]
@@ -59,8 +153,8 @@ public class PlayerController : MonoBehaviour
 
     private bool _canMove = true;
 
-    public static PlayerController player;
-    public static HashSet<PlayerController> players = new HashSet<PlayerController>();
+    public static mult_PlayerController player;
+    public static HashSet<mult_PlayerController> players = new HashSet<mult_PlayerController>();
 
     private bool isPaused = false;
     
@@ -88,7 +182,6 @@ public class PlayerController : MonoBehaviour
         tool_i = 0;
         anim = GetComponent<Animator>();
         AddScore(0);
-        
     }
 
     // Update is called once per frame
@@ -96,19 +189,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-
-    private void OnEnable()
-    {
-        GameStateManager.StartPause.AddListener(_setCannotMove);
-        GameStateManager.EndPause.AddListener(_setCanMove);
-    }
-
-    private void OnDisable()
-    {
-        GameStateManager.StartPause.RemoveListener(_setCannotMove);
-        GameStateManager.EndPause.RemoveListener(_setCanMove);
-    }
-
+    
     //Updating which tile the player is standing on
     public void OnHit(GameObject col)
     {
@@ -144,11 +225,10 @@ public class PlayerController : MonoBehaviour
         
         //Flip isPaused
         isPaused = !isPaused;
-        GameStateManager.TogglePause();
+        pausePanel.SetActive(isPaused);
+       
 
     }
-    void _setCanMove(){_canMove = true; }
-    void _setCannotMove(){_canMove = false; }
 
     void OnUse()
     {
@@ -248,5 +328,5 @@ public class PlayerController : MonoBehaviour
     public void LoadMainMenu()
     {
         SceneManager.LoadScene(0);
-    }
+    }*/
 }

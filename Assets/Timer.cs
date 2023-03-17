@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,19 +18,30 @@ public class Timer : MonoBehaviour
     public float timeValue = 0;
     public Text timeText;
 
-
+    private bool _paused = false;
+    public void enablePause(){_paused = true; print("Enabling pause from timer");}
+    public void disablePause(){_paused = false;print("Disabling pause from timer");}
     void Start()
     {
         timeValue = dayLength;
+        GameStateManager.StartPause.AddListener(enablePause);
+        GameStateManager.EndPause.AddListener(disablePause);
+    }
+
+    private void OnDestroy()
+    {
+        GameStateManager.StartPause.RemoveListener(enablePause);
+        GameStateManager.EndPause.RemoveListener(disablePause);
     }
 
     void Update()
     {
-        if (timeValue > 0)
+        //Don't decrease if paused
+        if (timeValue > 0 && _paused == false)
         {
             timeValue -= Time.deltaTime;
         }
-        else
+        else if (timeValue <= 0)
         {
             timeValue = 0;
             
