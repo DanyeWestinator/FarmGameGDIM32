@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74be53cfd0dc90840911b505ad06e64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsFirstSelected: 0
   selectedColor: {r: 0.8679245, g: 0.32260588, b: 0.32260588, a: 1}
   deselectedColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &1116275167862059335

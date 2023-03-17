@@ -11,15 +11,6 @@ public class AIDetection : MonoBehaviour
 {
     [SerializeField] AIBehavior behavior;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {

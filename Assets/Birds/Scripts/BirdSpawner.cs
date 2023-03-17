@@ -22,7 +22,7 @@ public class BirdSpawner : MonoBehaviour
     private IEnumerator spawnLoop = null;
     [SerializeField]
     private int MaxBirds = 3;
-    // Start is called before the first frame update
+
     void Start()
     {
         StartLoop();
@@ -67,6 +67,7 @@ public class BirdSpawner : MonoBehaviour
         bird.cat = cat;
         // tell cat bird was spawned
         cat.AddNewBird(bird);
+        
         //spawned.GetComponent<AstarSmoothFollow2>().target = PlayerController.player.transform;
         //print("Bird spawned!");
     }
