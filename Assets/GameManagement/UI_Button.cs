@@ -10,6 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class UI_Button : MonoBehaviour, ISelectHandler, IPointerEnterHandler
 {
+    [Tooltip("Whether the UI item is the first item selected")]
+    [SerializeField] private bool IsFirstSelected = false;
     [SerializeField]
     private Color selectedColor = Color.red;
     [SerializeField]
@@ -21,19 +23,31 @@ public class UI_Button : MonoBehaviour, ISelectHandler, IPointerEnterHandler
     /// </summary>
     private static UI_Button currentlySelected = null;
     
+    
 
     private Image bg;
 
     private void Awake()
     {
+        //Get our attached image
         bg = GetComponent<Image>();
+    }
+    
+    private void OnEnable()
+    {
+        //Always deselect ourselves, to flush
         Deselect();
+        //If we're the default, select ourselves
+        if (IsFirstSelected)
+        {
+            OnSelect(null);
+            StartCoroutine(_setSelected(gameObject));
+        }
     }
     
     /// <summary>
-    /// Event function called when the UI system selects a button
+    /// Called when the UI system selects a button, or a mouse enters the button
     /// </summary>
-    /// <param name="eventData"></param>
     public void OnSelect(BaseEventData eventData)
     {
         //Deselect old
@@ -41,21 +55,47 @@ public class UI_Button : MonoBehaviour, ISelectHandler, IPointerEnterHandler
         {
             currentlySelected.Deselect();
         }
-
+        //Set ourselves as currently selected, and change our color
         currentlySelected = this;
         bg.color = selectedColor;
     }
     /// <summary>
     /// Callled when the mouse pointer enters the space
     /// </summary>
-    /// <param name="pointerEventData"></param>
     public void OnPointerEnter(PointerEventData pointerEventData)
     {
         OnSelect(pointerEventData);
     }
-
+    
+    /// <summary>
+    /// Deselects ourselves after a new UI item is selected
+    /// </summary>
     void Deselect()
     {
         bg.color = deselectedColor;
+    }
+    
+    /// <summary>
+    /// Helper coroutine to wait in line to set ourselves as the selected object, to get controller input
+    /// </summary>
+    /// <returns>Waits until it successfully selects</returns>
+    private static IEnumerator _setSelected(GameObject go)
+    {
+        //Slight hardcoding
+        float timeToWait = 1f;
+        float timeWaited = 0f;
+        while (true)
+        {
+            if (timeWaited >= timeToWait)
+                break;
+            yield return new WaitForEndOfFrame();
+            if (EventSystem.current.alreadySelecting == false)
+            {
+                EventSystem.current.SetSelectedGameObject(go);
+                break;
+            }
+
+            timeWaited += Time.deltaTime;
+        }
     }
 }

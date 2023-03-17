@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -40,6 +41,17 @@ public class PauseManager : MonoBehaviour
     {
         print("Close pause panel");
         panel.SetActive(false);
+    }
+
+    public void MainMenu()
+    {
+        //Load the main menu scene
+        SceneManager.LoadScene(0);
+    }
+
+    public void Resume()
+    {
+        GameStateManager.TogglePause();
     }
     
     #endregion

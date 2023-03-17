@@ -88,6 +88,7 @@ public class PlayerController : MonoBehaviour
         tool_i = 0;
         anim = GetComponent<Animator>();
         AddScore(0);
+        
     }
 
     // Update is called once per frame
@@ -95,7 +96,19 @@ public class PlayerController : MonoBehaviour
     {
         Move();
     }
-    
+
+    private void OnEnable()
+    {
+        GameStateManager.StartPause.AddListener(_setCannotMove);
+        GameStateManager.EndPause.AddListener(_setCanMove);
+    }
+
+    private void OnDisable()
+    {
+        GameStateManager.StartPause.RemoveListener(_setCannotMove);
+        GameStateManager.EndPause.RemoveListener(_setCanMove);
+    }
+
     //Updating which tile the player is standing on
     public void OnHit(GameObject col)
     {
@@ -134,6 +147,8 @@ public class PlayerController : MonoBehaviour
         GameStateManager.TogglePause();
 
     }
+    void _setCanMove(){_canMove = true; }
+    void _setCannotMove(){_canMove = false; }
 
     void OnUse()
     {
