@@ -32,11 +32,6 @@ public class FarmTile : MonoBehaviour
             FarmSpawner.tiles.Add(pos, gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void SetSelected(bool set)
     {
         selectedSprite.SetActive(set);
@@ -55,7 +50,33 @@ public class FarmTile : MonoBehaviour
         }
             
     }
+    /// <summary>
+    /// Finds the closest FarmTile to any given position
+    /// </summary>
+    /// <param name="pos">The position to find the closest farm tile to</param>
+    /// <param name="allowUntilled">Whether to include Untilled plots in the search</param>
+    /// <returns></returns>
+    public static FarmTile findClosestEmpty(Vector2 pos, bool allowUntilled = false)
+    {
+        Vector2Int posint = Vector2Int.RoundToInt(pos);
+        FarmTile closest = null;
+        float distance = float.MaxValue;
+        foreach (Vector2Int tile in FarmSpawner.tiles.Keys)
+        {
+            //If this tile is closer than any other
+            float d = Vector2Int.Distance(tile, posint);
+            if (d < distance)
+            {
+                FarmTile ft = FarmSpawner.tiles[tile].GetComponent<FarmTile>();
+                if ((ft.tilled || allowUntilled) && ft.occupiedBy == null)
+                {
+                    closest = ft;
+                    distance = d;
+                }
+            }
+        }
 
-    
+        return closest;
+    }
     
 }

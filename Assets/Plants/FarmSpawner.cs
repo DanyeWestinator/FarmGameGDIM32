@@ -89,7 +89,6 @@ public class FarmSpawner : MonoBehaviour
                 closest = distance;
             }
         }
-
         return p;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,15 +13,19 @@ public class TutorialScreenManager : MonoBehaviour
     private bool screenActive = false;
     private GameObject currentScreen = null;
 
-
+    private static TutorialScreenManager instance;
+    public static bool IsOpen => instance.screenHolder.activeInHierarchy;
+    private void Awake()
+    {
+        instance = this;
+    }
 
     public void toggle()
     {
-        print("toggling");
         
         screenActive = !screenActive;
         screenHolder.SetActive(screenActive);
-
+        PlayerController.ToggleCanMove();
         if (currentScreen == null) switchTo(screenIndex);
     }
 

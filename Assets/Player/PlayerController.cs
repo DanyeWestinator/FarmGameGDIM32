@@ -140,14 +140,22 @@ public class PlayerController : MonoBehaviour
     void OnPause()
     {
          _canMove = isPaused;
-                
-        
-        //Flip isPaused
         isPaused = !isPaused;
         GameStateManager.TogglePause();
 
     }
-    void _setCanMove(){_canMove = true; }
+
+    public static void ToggleCanMove()
+    {
+        foreach (PlayerController pc in PlayerManager.instance.players)
+        {
+            bool b = pc._canMove;
+            pc._canMove = !TutorialScreenManager.IsOpen;
+            //print($"Set {pc.gameObject.name} to {pc._canMove}. was {b}");
+        }
+        
+    }
+    void _setCanMove(){_canMove = true; } 
     void _setCannotMove(){_canMove = false; }
 
     void OnUse()
@@ -179,6 +187,11 @@ public class PlayerController : MonoBehaviour
     /// <returns>Void, returns WaitForSeconds</returns>
     IEnumerator freezeMovement()
     {
+
+        yield return new WaitForEndOfFrame();
+        yield return new WaitForEndOfFrame();
+        if (TutorialScreenManager.IsOpen)
+            yield break;
         //Freeze movement until done
         _canMove = false;
         
@@ -187,6 +200,8 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
+        if (TutorialScreenManager.IsOpen)
+            yield break;
         //Use the current tool, after waiting
         currentTool.UseTool(currentTile.gameObject);
         //Allow movement again

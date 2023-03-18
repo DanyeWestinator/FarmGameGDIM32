@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -18,6 +19,14 @@ public class PlayerManager : PlayerInputManager
     private GameObject PlayerJoinPanel;
 
     [SerializeField] private List<Color> playerColors = new List<Color>();
+    public static PlayerManager instance;
+    public HashSet<PlayerController> players = new HashSet<PlayerController>();
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void OnPlayerJoined(PlayerInput input)
     {
         input.gameObject.name = $"Player {playerCount}";
@@ -29,6 +38,7 @@ public class PlayerManager : PlayerInputManager
             PlayerJoinPanel.SetActive(false);
         }
 
+        players.Add(controller);
         input.GetComponentInChildren<SpriteRenderer>().color = playerColors.GetRandom();
     }
 

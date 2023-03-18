@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class AIBehavior: MonoBehaviour
 {
-    public AIMover AIMover;
+    //public AIMover AIMover;
     [SerializeField] protected Transform target;
 
     void Update()
