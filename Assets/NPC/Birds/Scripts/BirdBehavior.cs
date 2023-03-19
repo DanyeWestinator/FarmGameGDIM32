@@ -20,7 +20,7 @@ public class BirdBehavior : AIBehavior
     [SerializeField] private float destroyPlantTime = 1f;
     [SerializeField] private float eatingDistance = .05f;
     [SerializeField] private float warningDistance = 2f;
-    [SerializeField] private float dyingTime = 0.2f;
+    [SerializeField] private float dyingTime = 0.5f;
     private bool isWarning = false;
 
     private Plant currentPlant = null;
@@ -32,7 +32,7 @@ public class BirdBehavior : AIBehavior
 
     [SerializeField] private Animator anim;
     [SerializeField] private ParticleSystem deathParticles;
-    [SerializeField] private Sprite sprite;
+    [SerializeField] private SpriteRenderer spriteRenderer;
     /// <summary>
     /// Gets the closest player to the bird
     /// </summary>
@@ -173,6 +173,7 @@ public class BirdBehavior : AIBehavior
     public void Catch(CatBehavior cat)
     {
         deathParticles.Play();
+        spriteRenderer.enabled = false;
         StartCoroutine(deathTimer());
     }
 

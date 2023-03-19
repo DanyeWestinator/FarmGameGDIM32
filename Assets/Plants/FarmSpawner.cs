@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class FarmSpawner : MonoBehaviour
 {
+    // this is bad but eh
+    // populated by plants
+    // read by cat
+    public static List<Plant> GrownCatnip = new List<Plant>();
+    
     [SerializeField] private GameObject farmPlot;
     [SerializeField] private GameObject tree;
 
@@ -73,6 +79,7 @@ public class FarmSpawner : MonoBehaviour
         GameObject tree = Instantiate(this.tree, farmPlot.transform);
         plot.occupiedBy = tree;
     }
+
     public static Plant findClosestPlant(Vector3 source)
     {
         Plant p = null;
@@ -90,5 +97,17 @@ public class FarmSpawner : MonoBehaviour
             }
         }
         return p;
+    }
+
+    public static List<Plant> getHarvestablePlants()
+    {
+        List<Plant> harvestable = new List<Plant>();
+
+        foreach (var v in plantTiles)
+        {
+            if (v.Value.Harvestable) harvestable.Add(v.Value);
+        }
+
+        return harvestable;
     }
 }

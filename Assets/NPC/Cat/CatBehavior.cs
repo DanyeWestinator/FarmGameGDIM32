@@ -21,34 +21,39 @@ using UnityEngine;
 public class CatBehavior : AIBehavior
 {
     // public params
-    public CatEmoter emoter;
-    public AstarSmoothFollow2 follower;
-    public Animator animator;
+    [SerializeField] private FarmSpawner farm;
+    [SerializeField] private CatEmoter emoter;
+    [SerializeField] private AstarSmoothFollow2 follower;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem heartParticles;
+
     public GameObject CatHome;
-    public float RunSpeed = 5;
-    public float WalkSpeed = 2;
-    public float SafeDistance = 2;
-    public float CatchDistance = 1.2f;
-    public int RelationshipThreshold = 5; 
+
+    [SerializeField] private float RunSpeed = 5;
+    [SerializeField] private float WalkSpeed = 2;
+    [SerializeField] private float SafeDistance = 2;
+    [SerializeField] private float CatchDistance = 1.2f;
+    [SerializeField] private float CatnipDistance = 0.4f;
+    [SerializeField] private int RelationshipThreshold = 5; 
     
     // once bird gets this far away, gives up chase
-    public float GiveUpDistance = 10;
+    [SerializeField] private float GiveUpDistance = 10;
 
     // chance to run away from low-relation player 
     // multiplied by closeness to threshold
-    public float runawayChance = 0.5f; 
+    [SerializeField] private float runawayChance = 0.5f; 
 
     // return to idle after running
-    public float IdleTimer = 1;
+    [SerializeField] private float IdleTimer = 1;
 
     // return to home after idling
-    public float HomeTimer = 10;
+    [SerializeField] private float HomeTimer = 10;
     
     // hunt cooldown
-    public float HuntTimer = 5; 
+    [SerializeField] private float HuntTimer = 5; 
 
     // nap timer (before hunting again)
-    public float NapTimer = 5;
+    [SerializeField] private float NapTimer = 5;
     
 
     // private params
@@ -57,15 +62,18 @@ public class CatBehavior : AIBehavior
     private int playerRelationship = 0;
     private bool huntOnCooldown = false;
     private List<BirdBehavior> birds = new List<BirdBehavior>();
-    private Coroutine currentTimer = null; // wow this is hacky
+    private Plant currentCatnip = null;
+    private Coroutine currentTimer = null; // for stopping coroutines wow this is hacky
+    private GameObject previousTarget = null; // for deletion, also hacky
 
 
     // whatever the cat is currently looking at (target)
-    public GameObject fixation;
+    private GameObject fixation;
     
     void Start()
     {
         emoter.hide();
+        idleDelay();
     }
 
     void Update()
@@ -86,7 +94,7 @@ public class CatBehavior : AIBehavior
         var birdBehavior = gameObject.GetComponent<BirdBehavior>();
         if (birdBehavior)
         {
-           //print("Cat hit bird");
+           print("Cat hit bird");
            BirdCaught(birdBehavior);
         }
 
@@ -98,6 +106,13 @@ public class CatBehavior : AIBehavior
                 setNoticePlayer(gameObject);
             }
         }
+
+        // if harvestable catnip,
+        var asPlant = GetComponent<Catnip>();
+        if (asPlant && asPlant.Harvestable)
+        {
+            CatnipFound(asPlant);
+        }
     }
 
     public void BirdCaught(BirdBehavior bird)
@@ -105,7 +120,7 @@ public class CatBehavior : AIBehavior
         bird.Catch(this);
         birds.Remove(bird);
         setIdle();
-        //print("bird caught");
+        print("bird caught");
     }
 
     public void BirdEscaped()
@@ -113,7 +128,7 @@ public class CatBehavior : AIBehavior
         // stop chasing
         follower.target = createBall(transform.position).transform;
         setIdle();
-        //print("bird escaped");
+        print("bird escaped");
     }
 
     public void AddNewBird(BirdBehavior bird)
@@ -121,17 +136,33 @@ public class CatBehavior : AIBehavior
         birds.Add(bird);
     }
 
+    public void CatnipFound(Plant catnip)
+    {
+        print("cat harvesting catnip");
+        currentCatnip = null;
+
+        catnip.Harvest();
+        heartParticles.Play();
+        
+        playerRelationship++;
+        setIdle();
+    }
+
     public void FeedMe(GameObject player, GameObject food)
     {
         playerRelationship++;
-        //print("CAT FED: " + playerRelationship);
+        print("CAT FED: " + playerRelationship);
         emoter.display("emote_heart");
         currentTimer = StartCoroutine(idleDelay());
     }
 
     public void TryHunt()
     {
-        if (birds.Count <= 0) return;
+        if (birds.Count <= 0) 
+        {
+            currentTimer = StartCoroutine(idleDelay());
+            return;
+        }
 
         // get closest bird
         BirdBehavior closest = birds[0];
@@ -146,10 +177,46 @@ public class CatBehavior : AIBehavior
             } 
         }
 
-        setChase(closest.gameObject);
+        setChase(closest.gameObject, RunSpeed);
     }
 
-    // coroutine helpers
+    public Plant TryFindCatnip()
+    {
+        var harvestable = FarmSpawner.getHarvestablePlants();
+
+        foreach (var v in harvestable)
+        {
+            if (v.GetComponent<Catnip>())
+            {
+                return v;
+            }
+        }
+
+        return null;
+    }
+
+    // OTHER HELPERS ==========================================
+
+    // get a quick transform to track this is really bad
+    private GameObject createBall(Vector3 pos)
+    {
+        Destroy(previousTarget);
+        
+        var ball = new GameObject("target");
+        ball.transform.position = pos;
+
+        // print("new ball at: " + pos);
+        previousTarget = ball;
+
+        return ball;
+    }
+
+    private float relationshipRatio()
+    {
+        return (float)playerRelationship / RelationshipThreshold;
+    }
+
+    // coroutine helpers =============================
     
     // switches to idle 
     IEnumerator idleDelay()
@@ -160,13 +227,15 @@ public class CatBehavior : AIBehavior
 
     IEnumerator huntDelay()
     {
-        yield return new WaitForSeconds(HuntTimer);
+        // shorter delay if better relationship
+        yield return new WaitForSeconds(HuntTimer * (1 - relationshipRatio()));
         huntOnCooldown = false;
     }
 
     IEnumerator homeDelay()
     {
-        yield return new WaitForSeconds(HomeTimer);
+        // shorter delay if better relationship
+        yield return new WaitForSeconds(HomeTimer * (1 - relationshipRatio()));
         setHome();
     }
 
@@ -174,17 +243,6 @@ public class CatBehavior : AIBehavior
     {
         yield return new WaitForSeconds(NapTimer);
         setIdle();
-    }
-
-    // get a quick transform to track this is really bad
-    private GameObject createBall(Vector3 pos)
-    {
-        var ball = new GameObject("target");
-        ball.transform.position = pos;
-
-        // print("new ball at: " + pos);
-
-        return ball;
     }
 
     private void stopCoroutines()
@@ -202,7 +260,7 @@ public class CatBehavior : AIBehavior
 
 
 
-    enum CatBehaviorState {IDLE, CHASE, NOTICE, RUNAWAY, HOME}
+    enum CatBehaviorState {IDLE, CHASE, NOTICE, RUNAWAY, HOME, CATNIP}
     private CatBehaviorState state = CatBehaviorState.IDLE;
 
     // called in update()
@@ -216,17 +274,14 @@ public class CatBehavior : AIBehavior
         
             case CatBehaviorState.CHASE:
 
-                //print("cat is chasing: " + fixation);
                 // give up if too far
                 var distance = Vector3.Distance(transform.position, fixation.transform.position);
-                //print(distance);
                 if (distance > GiveUpDistance)
                 {
                     BirdEscaped();
                 }
 
                 // doing this here because the detector isn't picking up birds 
-                // and this is due today
                 if (distance <= CatchDistance)
                 {
                     BirdCaught(fixation.GetComponent<BirdBehavior>());
@@ -248,6 +303,20 @@ public class CatBehavior : AIBehavior
                 }
 
                 break;
+
+            case CatBehaviorState.CATNIP:
+                
+                if (currentCatnip == null || currentCatnip.IsDead)
+                {
+                    setIdle();
+                    break;
+                }
+
+                // sigh
+                var catnip_distance = Vector3.Distance(transform.position, currentCatnip.transform.position);
+                if (catnip_distance <= CatnipDistance) CatnipFound(currentCatnip);
+
+                break;
         }
 
     }
@@ -260,7 +329,7 @@ public class CatBehavior : AIBehavior
 
 
     private void setIdle()
-    {
+    {   
         state = CatBehaviorState.IDLE;
 
         stopCoroutines();
@@ -270,26 +339,34 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Idle");
 
-        //print("cat set idle");
+        print("cat set idle");
 
         // stop moving
         follower.target = createBall(transform.position).transform;
 
+        // check for catnip for good measure
+        var catnip = TryFindCatnip();
+        if (catnip)
+        {
+            setCatnip(catnip);
+            return;
+        }
+
         // either go home or hunt
         if (huntOnCooldown)
         {
-            //print("hunt on cooldown, cat going home");
+            print("hunt on cooldown, cat going home");
             currentTimer = StartCoroutine(homeDelay());
         }
         else
         {
-            //print("cat trying to hunt");
+            print("cat trying to hunt");
             TryHunt();
         }
         
     }
     
-    private void setChase(GameObject chaseTarget)
+    private void setChase(GameObject chaseTarget, float speed, string emote = "emote_exclamation")
     {
         state = CatBehaviorState.CHASE;
 
@@ -305,27 +382,28 @@ public class CatBehavior : AIBehavior
         huntOnCooldown = true;
         StartCoroutine(huntDelay());
 
-        emoter.display("emote_exclamation");
+        emoter.display(emote);
 
         animator.ResetTrigger("Idle");
         animator.SetTrigger("Walk");
 
-        //print("cat hunting: " + chaseTarget);
+        print("cat hunting: " + chaseTarget);
     }
 
     private void setNoticePlayer(GameObject player)
     {
         state = CatBehaviorState.NOTICE;
-
         stopCoroutines();
 
-        //print("cat noticed player  at: " + follower.transform.position);
+        print("cat noticed player  at: " + follower.transform.position);
 
         follower.target = createBall(transform.position).transform;
 
         // might run away if at low relationship
         if (playerRelationship <= RelationshipThreshold)
         {
+            emoter.display("emote_weary");
+            
             var dif = RelationshipThreshold - playerRelationship;
             float ratio = ((float)dif) / RelationshipThreshold;
             var chance = ratio * runawayChance;
@@ -340,9 +418,11 @@ public class CatBehavior : AIBehavior
                 setRunAway(player);
                 return;
             }
+        }
+        else
+        {
+            emoter.display("emote_heart");
         } 
-
-        emoter.display("emote_weary");
 
         // chill after a while
         currentTimer = StartCoroutine(idleDelay());
@@ -367,7 +447,7 @@ public class CatBehavior : AIBehavior
         follower.target = ball.transform;
         follower.damping = RunSpeed;
 
-        //print("cat running away: " + target);
+        print("cat running away: " + target);
 
         // chill after a while
         currentTimer = StartCoroutine(idleDelay());
@@ -384,17 +464,39 @@ public class CatBehavior : AIBehavior
     {
         stopCoroutines();
        
-        //print("cat returning home to: " + CatHome.transform.position);
+        print("cat returning home to: " + CatHome.transform.position);
         state = CatBehaviorState.HOME;
+
         follower.target = CatHome.transform;
         follower.damping = WalkSpeed;
 
         animator.ResetTrigger("Idle");
         animator.SetTrigger("Walk");
 
+        // start nap timer (then back to idle)
+        currentTimer = StartCoroutine(napDelay());
+
     }
 
     
-    
+    // path to catnip
+    private void setCatnip(Plant catnip)
+    {       
+        stopCoroutines();
+        state = CatBehaviorState.CATNIP;
+
+        currentCatnip = catnip;
+        fixation = catnip.gameObject;
+
+        follower.target = createBall(catnip.transform.position).transform;
+        follower.damping = WalkSpeed;
+
+        animator.ResetTrigger("Idle");
+        animator.SetTrigger("Walk");
+
+        emoter.display("emote_heart");
+
+        // only exits when catnip found or destroyed
+    }
 
 }
