@@ -10,9 +10,11 @@ public class CatFeeder : Tool
     
     // track nearby cat
     private CatBehavior cat = null;
+    public AudioSource catMeow;
 
     public override void Use(GameObject tile)
     {
+        catMeow.Play();
        print("using cat feeder, cat is: " + cat);
        if (cat)
         {
