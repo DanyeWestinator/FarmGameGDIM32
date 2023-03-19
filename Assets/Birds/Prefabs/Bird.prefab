@@ -4966,11 +4966,11 @@ MonoBehaviour:
   destroyPlantTime: 6
   eatingDistance: 0.05
   warningDistance: 3
-  dyingTime: 1
+  dyingTime: 0.7
   targetChild: {fileID: 832328956251951796}
   anim: {fileID: 1794932502457487972}
   deathParticles: {fileID: 3865772285784423343}
-  sprite: {fileID: 0}
+  spriteRenderer: {fileID: 4303212740866711588}
 --- !u!114 &2457896096379287044
 MonoBehaviour:
   m_ObjectHideFlags: 0
