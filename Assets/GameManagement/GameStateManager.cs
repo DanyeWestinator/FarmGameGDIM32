@@ -51,8 +51,14 @@ public class GameStateManager : MonoBehaviour
     {
         print($"Toggling pause from {_state}");
         if (_state == States.Pause)
+        {
             SetState(States.Play);
+            Time.timeScale = 1;
+        }
         else if (_state == States.Play)
+        {
             SetState(States.Pause);
+            Time.timeScale = 0;
+        }
     }
 }

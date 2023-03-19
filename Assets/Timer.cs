@@ -54,9 +54,12 @@ public class Timer : MonoBehaviour
     {
         if (timeToDisplay < 0)
         {
+            // pause game and show menu
             timeToDisplay = 0;
             int dayScore = ScoreKeeper.NewDay();
             DayOver.SetActive(true);
+            GameStateManager.TogglePause();
+
             DayScore.text = $"Day Score:{dayScore}";
             HighScore.text = $"High Score:{ScoreKeeper.highScore}";
             TotalScore.text = $"Total:{ScoreKeeper.currentScore}";
