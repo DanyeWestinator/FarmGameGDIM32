@@ -98,9 +98,11 @@ MonoBehaviour:
   - {fileID: 218462814, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
   - {fileID: -1495662319, guid: bf2bb59f38a2e91428f0f7c60d254389, type: 3}
   growthStagesTotal: 7
-  minStageLength: 7
-  maxStageLength: 9
+  minStageLength: 10
+  maxStageLength: 14
   totalHarvests: 3
-  timeUntilWilts: 20
-  costValue: 45
-  scoreValue: 65
+  timeUntilWilts: 30
+  waterWarning1SecRemaining: 15
+  waterWarning2SecRemaining: 8
+  costValue: 30
+  scoreValue: 55

@@ -229,6 +229,6 @@ MonoBehaviour:
   minStageLength: 3
   maxStageLength: 4
   totalHarvests: 1
-  timeUntilWilts: 30
+  timeUntilWilts: 50
   costValue: 10
   scoreValue: 15

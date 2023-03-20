@@ -38,7 +38,9 @@ public class Plant : MonoBehaviour
     public bool IsDead => wilted;
     private bool wilted = false; // true if the plant has wilted and died
     private bool waterWarning1 = false; // true if the first water warning has been given
+    [SerializeField] private float waterWarning1SecRemaining = 15f; // wilt warning 1 appears when there's this many seconds left until plant wilts
     private bool waterWarning2 = false; // true if the second water warning has been given
+    [SerializeField] private float waterWarning2SecRemaining = 8f; // wilt warning 2 appears when there's this many seconds left until plant wilts
 
     private SpriteRenderer spriteRenderer;
     private SpriteRenderer emoteRenderer;
@@ -110,14 +112,14 @@ public class Plant : MonoBehaviour
                 }
 
                 // 7 seconds until wilts water warning
-                if (!waterWarning1 && Time.time >= growthTime + timeUntilWilts - 7f)
+                if (!waterWarning1 && Time.time >= growthTime + timeUntilWilts - waterWarning1SecRemaining)
                 {
                     waterWarning1 = true;
                     Emote("water yellow");
                 }
 
                 // 3 seconds until wilts water warning
-                if (!waterWarning2 && Time.time >= growthTime + timeUntilWilts - 3f)
+                if (!waterWarning2 && Time.time >= growthTime + timeUntilWilts - waterWarning2SecRemaining)
                 {
                     waterWarning2 = true;
                     Emote("water red");
