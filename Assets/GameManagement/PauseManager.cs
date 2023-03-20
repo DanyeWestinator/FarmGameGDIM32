@@ -7,8 +7,6 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    
-
 
     public static PauseManager instance = null;
     public GameObject panel;
@@ -22,6 +20,7 @@ public class PauseManager : MonoBehaviour
 
     void Start()
     {
+        print("pausemanager starting");
         // panel = transform.GetChild(0).gameObject;
         GameStateManager.StartPause.AddListener(OpenPause);
         GameStateManager.EndPause.AddListener(ClosePause);

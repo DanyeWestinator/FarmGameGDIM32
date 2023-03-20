@@ -392,7 +392,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1499118767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
@@ -440,7 +440,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 571427540365153735}
-  - component: {fileID: 1499118767}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -475,19 +474,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1499118767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 571427540365153734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d993c9824132154ebcb26d11c0733a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  panel: {fileID: 571427540365153734}
 --- !u!1 &571427540457392321
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,8 +573,8 @@ MonoBehaviour:
   DayScore: {fileID: 571427541833069491}
   HighScore: {fileID: 571427540467718508}
   TotalScore: {fileID: 2701179436199380804}
-  dayLength: 10
-  timeValue: 10
+  dayLength: 300
+  timeValue: 300
   timeText: {fileID: 571427540457392324}
 --- !u!1 &571427540467718510
 GameObject:
@@ -1619,6 +1605,7 @@ GameObject:
   - component: {fileID: 571427542284358107}
   - component: {fileID: 571427542284358106}
   - component: {fileID: 1834554279}
+  - component: {fileID: 1649539471182538160}
   m_Layer: 5
   m_Name: Brooke Canvas 2
   m_TagString: Untagged
@@ -1809,6 +1796,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1649539471182538160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571427542284358117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d993c9824132154ebcb26d11c0733a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panel: {fileID: 571427540365153734}
 --- !u!1 &571427542401892882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,7 +2078,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 1499118767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: HidePause
         m_Mode: 1
@@ -2277,7 +2277,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1499118767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: ShowPause
         m_Mode: 1
@@ -2875,7 +2875,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1499118767}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: HidePause
         m_Mode: 1
@@ -3335,7 +3335,7 @@ PrefabInstance:
     - target: {fileID: 2041844898360683459, guid: 8453eeca63df7b24f8f2dc51498a5049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1499118767}
+      objectReference: {fileID: 0}
     - target: {fileID: 2041844898360683459, guid: 8453eeca63df7b24f8f2dc51498a5049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2

@@ -27,10 +27,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private GameObject lastHit;
     /// <summary>
-    /// The UI item for the pause panel
-    /// </summary>
-    public PauseManager pausePanel;
-    /// <summary>
     /// The Text displaying the current score
     /// </summary>
     public ScoreKeeper scoreKeeper;
@@ -141,15 +137,8 @@ public class PlayerController : MonoBehaviour
     {
          _canMove = isPaused;
         isPaused = !isPaused;
-        // not just toggling because there are weird inbetween states (menu)
-        // if (GameStateManager._state == States.Play)
-        // {
-        //     pausePanel.OpenPause();
-        // }
-        // else
-        // {
-        //     pausePanel.ClosePause();
-        // }
+        
+        // state manager handles pause menu
         GameStateManager.TogglePause();
 
     }
@@ -164,8 +153,8 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    void _setCanMove(){_canMove = true; print("player setcanmove true");} 
-    void _setCannotMove(){_canMove = false; print("player sestcanmove false");}
+    void _setCanMove(){_canMove = true;} 
+    void _setCannotMove(){_canMove = false;}
 
     void OnUse()
     {

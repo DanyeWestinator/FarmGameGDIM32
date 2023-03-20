@@ -8,10 +8,6 @@ using UnityEngine.InputSystem;
 public class PlayerManager : PlayerInputManager
 {
     /// <summary>
-    /// The UI item for the pause panel
-    /// </summary>
-    public PauseManager pausePanel;
-    /// <summary>
     /// The Score manager
     /// </summary>
     public ScoreKeeper scoreKeeper;
@@ -32,7 +28,6 @@ public class PlayerManager : PlayerInputManager
     {
         input.gameObject.name = $"Player {playerCount}";
         PlayerController controller = input.GetComponent<PlayerController>();
-        controller.pausePanel = pausePanel;
         controller.scoreKeeper = scoreKeeper;
         if (playerCount == maxPlayerCount)
         {
