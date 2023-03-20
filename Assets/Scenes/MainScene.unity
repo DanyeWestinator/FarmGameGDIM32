@@ -852,11 +852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 571427540457392327, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
       propertyPath: dayLength
-      value: 90
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 571427540457392327, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
       propertyPath: timeValue
-      value: 90
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 571427540457392327, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
       propertyPath: ScoreKeeper
@@ -952,7 +952,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 571427542284358117, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
