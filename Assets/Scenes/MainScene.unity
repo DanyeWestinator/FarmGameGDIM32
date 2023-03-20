@@ -1090,6 +1090,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3584461230002863020, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584461230002863020, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_Volume
+      value: 0.59
+      objectReference: {fileID: 0}
     - target: {fileID: 7063127327911193619, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
