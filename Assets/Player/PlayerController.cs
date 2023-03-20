@@ -141,6 +141,7 @@ public class PlayerController : MonoBehaviour
     {
          _canMove = isPaused;
         isPaused = !isPaused;
+        pausePanel.SetActive(!pausePanel.activeSelf);
         GameStateManager.TogglePause();
 
     }

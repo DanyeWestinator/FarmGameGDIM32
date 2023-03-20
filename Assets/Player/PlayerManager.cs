@@ -42,7 +42,7 @@ public class PlayerManager : PlayerInputManager
 
         players.Add(controller);
         //input.GetComponentInChildren<SpriteRenderer>().color = playerColors.GetRandom();
-        input.GetComponentInChildren<SpriteRenderer>().sprite = playerSprites[Random.Range(0, playerSprites.Length)];
+        input.GetComponentInChildren<SpriteRenderer>().sprite = playerSprites[UnityEngine.Random.Range(0, playerSprites.Length)];
     }
 
     public void OnPlayerLeft(PlayerInput input)
