@@ -1384,6 +1384,10 @@ MonoBehaviour:
   - {r: 0, g: 1, b: 0.056927204, a: 1}
   - {r: 0.9661031, g: 0, b: 1, a: 1}
   - {r: 1, g: 0.6634263, b: 0, a: 1}
+  playerSprites:
+  - {fileID: -431033772, guid: 2fccd1b994347ff4f94789747d471fb6, type: 3}
+  - {fileID: -487584915, guid: e467104087a5ac1458d0a1f4bde9d914, type: 3}
+  - {fileID: 974901398, guid: 1dd0af74f827dbc43b95584c7b3cf526, type: 3}
 --- !u!114 &1802322183
 MonoBehaviour:
   m_ObjectHideFlags: 0
