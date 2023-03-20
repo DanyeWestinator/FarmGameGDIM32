@@ -629,10 +629,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetActive
       objectReference: {fileID: 0}
-    - target: {fileID: 8664875870583558774, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.08996582
-      objectReference: {fileID: 0}
     - target: {fileID: 8664875871104585052, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -680,10 +676,6 @@ PrefabInstance:
     - target: {fileID: 8664875871104585053, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
       propertyPath: m_Name
       value: Menu Screen
-      objectReference: {fileID: 0}
-    - target: {fileID: 8664875871104585053, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4166affd706c2b7448da3bfad3bb4487, type: 3}
