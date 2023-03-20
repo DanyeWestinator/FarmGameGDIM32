@@ -918,6 +918,54 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1834554274}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 571427540306535838, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 571427540457392327, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
       propertyPath: ScoreKeeper
       value: 
@@ -1050,6 +1098,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TutorialScreenManager, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 571427542284358117, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
 --- !u!1 &1199860474 stripped
@@ -1074,7 +1126,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2925398860028514111, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2925398860028514111, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1613,6 +1665,11 @@ MonoBehaviour:
   currentScore: 0
   dailyScore: 0
   highScore: 0
+--- !u!1 &1834554274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 571427542284358117, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
+  m_PrefabInstance: {fileID: 1199860473}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1873291097 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 571427541396558987, guid: 9139c6a1a06d47146902aac66e4f9d61, type: 3}
