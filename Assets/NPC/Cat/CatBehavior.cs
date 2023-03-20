@@ -26,6 +26,7 @@ public class CatBehavior : AIBehavior
     [SerializeField] private AstarSmoothFollow2 follower;
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem heartParticles;
+    [SerializeField] private AudioSource audioSource;
 
     public GameObject CatHome;
 
@@ -143,6 +144,7 @@ public class CatBehavior : AIBehavior
 
         catnip.Harvest();
         heartParticles.Play();
+        audioSource.Play();
         
         playerRelationship++;
         setIdle();
@@ -380,6 +382,8 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Idle");
         animator.SetTrigger("Walk");
 
+        audioSource.Play();
+
         //print("cat hunting: " + chaseTarget);
     }
 
@@ -449,6 +453,8 @@ public class CatBehavior : AIBehavior
 
         animator.ResetTrigger("Idle");
         animator.SetTrigger("Walk");
+
+        audioSource.Play();
 
     }
 

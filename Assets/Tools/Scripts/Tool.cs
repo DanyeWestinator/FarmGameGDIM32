@@ -8,6 +8,8 @@ using UnityEngine;
 public abstract class Tool : MonoBehaviour
 {
 
+    public AudioSource audioSource; 
+   
     /// <summary>
     /// Public facing logic to use a tool. Handles generic tool logic,
     /// then each subclass must implement their own logic
@@ -16,6 +18,7 @@ public abstract class Tool : MonoBehaviour
     {
         //Will play animation, check hitboxes and find interactable, etc
         //print($"Using {gameObject.name}! Hopefully, logic to follow!");
+        if (audioSource != null) audioSource.Play();
         Use(tile);
     }
     /// <summary>
