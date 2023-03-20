@@ -182,17 +182,10 @@ public class CatBehavior : AIBehavior
 
     public Plant TryFindCatnip()
     {
-        var harvestable = FarmSpawner.getHarvestablePlants();
+        var catnip = Plant.findClosestCatnip(transform.position);
+        print("cat, catnip found? " + catnip);
 
-        foreach (var v in harvestable)
-        {
-            if (v.GetComponent<Catnip>())
-            {
-                return v;
-            }
-        }
-
-        return null;
+        return catnip;
     }
 
     // OTHER HELPERS ==========================================
@@ -339,7 +332,7 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Idle");
 
-        //print("cat set idle");
+        print("cat set idle");
 
         // stop moving
         follower.target = createBall(transform.position).transform;
@@ -355,12 +348,12 @@ public class CatBehavior : AIBehavior
         // either go home or hunt
         if (huntOnCooldown)
         {
-            //print("hunt on cooldown, cat going home");
+            print("hunt on cooldown, cat going home");
             currentTimer = StartCoroutine(homeDelay());
         }
         else
         {
-            //print("cat trying to hunt");
+            print("cat trying to hunt");
             TryHunt();
         }
         

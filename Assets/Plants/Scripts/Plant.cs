@@ -254,7 +254,7 @@ public class Plant : MonoBehaviour
         }
     }
     /// <summary>
-    /// Finds the closest plant that is able to be harvested
+    /// Finds the closest plant that is able to be harvested, excludes catnip
     /// </summary>
     /// <param name="pos">The position to find closest to</param>
     /// <returns></returns>
@@ -265,8 +265,8 @@ public class Plant : MonoBehaviour
 
         foreach (Plant p in allPlants)
         {
-            //Ignore all non harvestable
-            if (p.harvestable == false || p.IsDead)
+            //Ignore all non-applicable plants
+            if (p.harvestable == false || p.IsDead || p.GetComponent<Catnip>())
                 continue;
             float d = Vector2.Distance(p.transform.position, pos);
             if (d < dis)
@@ -277,8 +277,35 @@ public class Plant : MonoBehaviour
         }
         return closest;
     }
+
     /// <summary>
-    /// Finds the closest plant that is able to be harvested
+    /// Finds the closest harvestable catnip (used by the cat)
+    /// </summary>
+    /// <param name="pos">The position to find closest to</param>
+    /// <returns></returns>
+    public static Plant findClosestCatnip(Vector2 pos)
+    {
+        Plant closest = null;
+        float dis = float.MaxValue;
+
+        foreach (Plant p in allPlants)
+        {
+            //Ignore all non-applicable plants
+            if (p.harvestable == false || p.IsDead || !p.GetComponent<Catnip>())
+                continue;
+            float d = Vector2.Distance(p.transform.position, pos);
+            if (d < dis)
+            {
+                dis = d;
+                closest = p;
+            }
+        }
+        return closest;
+    }
+
+
+    /// <summary>
+    /// Finds the closest plant that is able to be watered
     /// </summary>
     /// <param name="pos">The position to find closest to</param>
     /// <returns></returns>
