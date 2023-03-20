@@ -36,7 +36,7 @@ public class ScoreKeeper : MonoBehaviour
     {
         currentScore += toAdd;
         dailyScore += toAdd;
-        scoreCounter.text = $"Current score:\n{currentScore}";
+        scoreCounter.text = $"{currentScore}";
 
         // print("scorekeeper: score added");
         
