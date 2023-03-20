@@ -36,6 +36,7 @@ public class PlayerManager : PlayerInputManager
         if (playerCount == maxPlayerCount)
         {
             PlayerJoinPanel.SetActive(false);
+            Destroy(AIPlayerBehavior.aiPlayer.gameObject);
         }
 
         players.Add(controller);

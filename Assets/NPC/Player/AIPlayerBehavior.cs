@@ -34,8 +34,11 @@ public class AIPlayerBehavior : AIBehavior
 
     private Seeds seed;
 
+    public static AIPlayerBehavior aiPlayer;
+
     void Start()
     {
+        aiPlayer = this;
         toolParent = transform.Find("ToolParent");
         
         follower = GetComponent<AstarSmoothFollow2>();
