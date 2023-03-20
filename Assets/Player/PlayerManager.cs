@@ -10,7 +10,7 @@ public class PlayerManager : PlayerInputManager
     /// <summary>
     /// The UI item for the pause panel
     /// </summary>
-    public GameObject pausePanel;
+    public PauseManager pausePanel;
     /// <summary>
     /// The Score manager
     /// </summary>

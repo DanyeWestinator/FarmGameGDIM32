@@ -15,6 +15,9 @@ public class GameStateManager : MonoBehaviour
     public static States _state => instance.currentState;
     public States currentState = States.Play;
 
+    // locks state from changing
+    public static bool lockState = false;
+
     public static UnityEvent StartPlay = new UnityEvent();
     public static UnityEvent EndPlay = new UnityEvent();
     public static UnityEvent StartPause = new UnityEvent();
@@ -27,6 +30,12 @@ public class GameStateManager : MonoBehaviour
 
     public static void SetState(States state)
     {
+        if (lockState) 
+        {
+            print("SET STATE FAILED: STATE LOCKED");
+            return;
+        }
+        
         print($"old: {_state}, new: {state}");
         //If we're changing gameplay state
         if (_state != state)
@@ -52,13 +61,23 @@ public class GameStateManager : MonoBehaviour
         print($"Toggling pause from {_state}");
         if (_state == States.Pause)
         {
-            SetState(States.Play);
-            Time.timeScale = 1;
+            SetPlay();
         }
         else if (_state == States.Play)
         {
-            SetState(States.Pause);
-            Time.timeScale = 0;
+            SetPause();
         }
+    }
+
+    public static void SetPause()
+    {
+        SetState(States.Pause);
+        Time.timeScale = 0;
+    }
+
+    public static void SetPlay()
+    {
+        SetState(States.Play);
+        Time.timeScale = 1;
     }
 }

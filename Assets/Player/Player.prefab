@@ -31,7 +31,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1752219962098704815}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31, y: 0.475, z: 0}
+  m_LocalPosition: {x: 0.31, y: 0.475, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -99,7 +99,6 @@ MonoBehaviour:
   - {fileID: -4651265378449149237, guid: 8e997435ec1bdd64483ec78e586b67dc, type: 3}
   - {fileID: -4651265378449149237, guid: 3f5e643fbf165e74fa7a931d5098cc00, type: 3}
   - {fileID: -4651265378449149237, guid: 4407ecdc5e0aa93449a684ba30bf3e56, type: 3}
-  - {fileID: 1404303207051856016, guid: 5583ef1e1d3a9a94a887d3b59730ae45, type: 3}
   - {fileID: -4651265378449149237, guid: 1431d8a3e5055b94888a04a22cc4f756, type: 3}
 --- !u!95 &1752219962098704819
 Animator:
@@ -338,7 +337,7 @@ Transform:
   m_GameObject: {fileID: 1752219963202387027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.1881, y: 0.3763, z: 0}
-  m_LocalScale: {x: 3.3525758, y: 3.3525758, z: 3.3525758}
+  m_LocalScale: {x: 4, y: 4, z: 3.3525758}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1752219962098704814}

@@ -11,13 +11,18 @@ public class PauseManager : MonoBehaviour
 
 
     public static PauseManager instance = null;
-    private GameObject panel;
+    public GameObject panel;
 
     #region UnityEvents    
+    
     void Awake()
     {
         instance = this;
-        panel = transform.GetChild(0).gameObject;
+    }
+
+    void Start()
+    {
+        // panel = transform.GetChild(0).gameObject;
         GameStateManager.StartPause.AddListener(OpenPause);
         GameStateManager.EndPause.AddListener(ClosePause);
         
@@ -41,6 +46,21 @@ public class PauseManager : MonoBehaviour
     {
         print("Close pause panel");
         panel.SetActive(false);
+    }
+
+    // hides the pause menu without unpausing the game
+    // will lock pause state until showpause is called
+    public void HidePause()
+    {
+        panel.SetActive(false);
+        GameStateManager.lockState = true;
+    }
+
+    // unlocks pause state and shows panel
+    public void ShowPause()
+    {
+        panel.SetActive(true);
+        GameStateManager.lockState = false;
     }
 
     public void MainMenu()

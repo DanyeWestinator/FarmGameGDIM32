@@ -21,7 +21,8 @@ public class Hoe : Tool
         if (p)
         {
             //If we can harvest the plant, harvest it
-            if (p.Harvestable)
+            // (avoid harvesting catnip)
+            if (p.Harvestable && !p.GetComponent<Catnip>())
             {
                 p.Harvest();
             }

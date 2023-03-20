@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// The UI item for the pause panel
     /// </summary>
-    public GameObject pausePanel;
+    public PauseManager pausePanel;
     /// <summary>
     /// The Text displaying the current score
     /// </summary>
@@ -141,7 +141,15 @@ public class PlayerController : MonoBehaviour
     {
          _canMove = isPaused;
         isPaused = !isPaused;
-        pausePanel.SetActive(!pausePanel.activeSelf);
+        // not just toggling because there are weird inbetween states (menu)
+        // if (GameStateManager._state == States.Play)
+        // {
+        //     pausePanel.OpenPause();
+        // }
+        // else
+        // {
+        //     pausePanel.ClosePause();
+        // }
         GameStateManager.TogglePause();
 
     }
@@ -156,11 +164,13 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-    void _setCanMove(){_canMove = true; } 
-    void _setCannotMove(){_canMove = false; }
+    void _setCanMove(){_canMove = true; print("player setcanmove true");} 
+    void _setCannotMove(){_canMove = false; print("player sestcanmove false");}
 
     void OnUse()
     {
+        print("player, onuse!");
+        
         //Don't start using a tool if already using one
         if (frozenMovement != null || currentTool == null)
             return;
@@ -189,10 +199,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator freezeMovement()
     {
 
+        print("COROUTINE FROZEN MOVEMENT STARTED");
+        
         yield return new WaitForEndOfFrame();
         yield return new WaitForEndOfFrame();
-        if (TutorialScreenManager.IsOpen)
-            yield break;
+        // if (GameStateManager._state == States.Pause)
+        //     yield break;
         //Freeze movement until done
         _canMove = false;
         
@@ -201,8 +213,10 @@ public class PlayerController : MonoBehaviour
         
         //Wait n seconds
         yield return new WaitForSeconds(secs);
-        if (TutorialScreenManager.IsOpen)
+        if (GameStateManager._state == States.Pause)
             yield break;
+
+        print("COROUTINE FROZNE MOVEMENT ENDED");
         //Use the current tool, after waiting
         currentTool.UseTool(currentTile.gameObject);
         //Allow movement again

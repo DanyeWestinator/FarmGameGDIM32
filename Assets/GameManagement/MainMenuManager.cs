@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(GameSceneName);
+        GameStateManager.SetPlay();
     }
     
     public void QuitGame()

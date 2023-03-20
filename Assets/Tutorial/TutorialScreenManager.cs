@@ -25,7 +25,6 @@ public class TutorialScreenManager : MonoBehaviour
         
         screenActive = !screenActive;
         screenHolder.SetActive(screenActive);
-        PlayerController.ToggleCanMove();
         if (currentScreen == null) switchTo(screenIndex);
     }
 

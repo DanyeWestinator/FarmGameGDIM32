@@ -33,7 +33,7 @@ public class CatBehavior : AIBehavior
     [SerializeField] private float RunSpeed = 5;
     [SerializeField] private float WalkSpeed = 2;
     [SerializeField] private float SafeDistance = 2;
-    [SerializeField] private float CatchDistance = 1.2f;
+    [SerializeField] private float CatchDistance = 0.2f;
     [SerializeField] private float CatnipDistance = 0.4f;
     [SerializeField] private int RelationshipThreshold = 5; 
     
@@ -270,11 +270,13 @@ public class CatBehavior : AIBehavior
             case CatBehaviorState.CHASE:
 
                 // give up if too far
-                var distance = Vector3.Distance(transform.position, fixation.transform.position);
+                var distance = Vector2.Distance(transform.position, fixation.transform.position);
                 if (distance > GiveUpDistance)
                 {
                     BirdEscaped();
                 }
+
+                // print("distance: " + distance);
 
                 // doing this here because the detector isn't picking up birds 
                 if (distance <= CatchDistance)
@@ -308,7 +310,7 @@ public class CatBehavior : AIBehavior
                 }
 
                 // sigh
-                var catnip_distance = Vector3.Distance(transform.position, currentCatnip.transform.position);
+                var catnip_distance = Vector2.Distance(transform.position, currentCatnip.transform.position);
                 if (catnip_distance <= CatnipDistance) CatnipFound(currentCatnip);
 
                 break;
@@ -334,7 +336,7 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Idle");
 
-        print("cat set idle");
+        // print("cat set idle");
 
         // stop moving
         follower.target = createBall(transform.position).transform;
@@ -350,12 +352,12 @@ public class CatBehavior : AIBehavior
         // either go home or hunt
         if (huntOnCooldown)
         {
-            print("hunt on cooldown, cat going home");
+            // print("hunt on cooldown, cat going home");
             currentTimer = StartCoroutine(homeDelay());
         }
         else
         {
-            print("cat trying to hunt");
+            // print("cat trying to hunt");
             TryHunt();
         }
         
