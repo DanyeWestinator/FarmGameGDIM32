@@ -18,6 +18,7 @@ public class PlayerManager : PlayerInputManager
     private GameObject PlayerJoinPanel;
 
     [SerializeField] private List<Color> playerColors = new List<Color>();
+    [SerializeField] private Sprite[] playerSprites;
     public void OnPlayerJoined(PlayerInput input)
     {
         input.gameObject.name = $"Player {playerCount}";
@@ -29,7 +30,8 @@ public class PlayerManager : PlayerInputManager
             PlayerJoinPanel.SetActive(false);
         }
 
-        input.GetComponentInChildren<SpriteRenderer>().color = playerColors.GetRandom();
+        //input.GetComponentInChildren<SpriteRenderer>().color = playerColors.GetRandom();
+        input.GetComponentInChildren<SpriteRenderer>().sprite = playerSprites[Random.Range(0, playerSprites.Length)];
     }
 
     public void OnPlayerLeft(PlayerInput input)
