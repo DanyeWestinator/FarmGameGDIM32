@@ -339,7 +339,7 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Walk");
         animator.SetTrigger("Idle");
 
-        print("cat set idle");
+        //print("cat set idle");
 
         // stop moving
         follower.target = createBall(transform.position).transform;
@@ -355,12 +355,12 @@ public class CatBehavior : AIBehavior
         // either go home or hunt
         if (huntOnCooldown)
         {
-            print("hunt on cooldown, cat going home");
+            //print("hunt on cooldown, cat going home");
             currentTimer = StartCoroutine(homeDelay());
         }
         else
         {
-            print("cat trying to hunt");
+            //print("cat trying to hunt");
             TryHunt();
         }
         
@@ -387,7 +387,7 @@ public class CatBehavior : AIBehavior
         animator.ResetTrigger("Idle");
         animator.SetTrigger("Walk");
 
-        print("cat hunting: " + chaseTarget);
+        //print("cat hunting: " + chaseTarget);
     }
 
     private void setNoticePlayer(GameObject player)
@@ -395,7 +395,7 @@ public class CatBehavior : AIBehavior
         state = CatBehaviorState.NOTICE;
         stopCoroutines();
 
-        print("cat noticed player  at: " + follower.transform.position);
+        //print("cat noticed player  at: " + follower.transform.position);
 
         follower.target = createBall(transform.position).transform;
 
@@ -447,7 +447,7 @@ public class CatBehavior : AIBehavior
         follower.target = ball.transform;
         follower.damping = RunSpeed;
 
-        print("cat running away: " + target);
+        //print("cat running away: " + target);
 
         // chill after a while
         currentTimer = StartCoroutine(idleDelay());

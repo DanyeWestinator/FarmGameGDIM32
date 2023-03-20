@@ -54,9 +54,9 @@ public class FarmTile : MonoBehaviour
     /// Finds the closest FarmTile to any given position
     /// </summary>
     /// <param name="pos">The position to find the closest farm tile to</param>
-    /// <param name="allowUntilled">Whether to include Untilled plots in the search</param>
+    /// <param name="tilled">Whether to be searching for the closest tilled or untilled</param>
     /// <returns></returns>
-    public static FarmTile findClosestEmpty(Vector2 pos, bool allowUntilled = false)
+    public static FarmTile findClosestTile(Vector2 pos, bool tilled = true)
     {
         Vector2Int posint = Vector2Int.RoundToInt(pos);
         FarmTile closest = null;
@@ -68,7 +68,8 @@ public class FarmTile : MonoBehaviour
             if (d < distance)
             {
                 FarmTile ft = FarmSpawner.tiles[tile].GetComponent<FarmTile>();
-                if ((ft.tilled || allowUntilled) && ft.occupiedBy == null)
+                //Tilled and supposed to be, or not tilled and not supposed to be
+                if ((ft.tilled == tilled) && ft.occupiedBy == null)
                 {
                     closest = ft;
                     distance = d;
@@ -77,6 +78,21 @@ public class FarmTile : MonoBehaviour
         }
 
         return closest;
+    }
+    /// <summary>
+    /// How many tiles have been tilled, but no plants yet
+    /// </summary>
+    /// <returns></returns>
+    public static int UnoccupiedCount()
+    {
+        int count = 0;
+        foreach (GameObject go in FarmSpawner.tiles.Values)
+        {
+            FarmTile ft = go.GetComponent<FarmTile>();
+            if (ft.occupiedBy == null && ft.tilled)
+                count++;
+        }
+        return count;
     }
     
 }

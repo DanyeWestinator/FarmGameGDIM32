@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Plant : MonoBehaviour
 {
@@ -46,6 +49,8 @@ public class Plant : MonoBehaviour
 
     protected Dictionary<string, Sprite> emoteDictionary; // stores the emotes from emoteSprites in this dict at easily accessible string keys
 
+    private static HashSet<Plant> allPlants = new HashSet<Plant>();
+
     protected virtual void Start()
     {
         emoteDictionary = new Dictionary<string, Sprite>();
@@ -76,7 +81,18 @@ public class Plant : MonoBehaviour
         currentStageLength = Random.Range(minStageLength, maxStageLength); // randomizes the length of the current growth stage
 
         // Pay the cost of the seed from the player's score
-        PlayerController.player.AddScore(-costValue);
+        if (PlayerController.player != null)
+            PlayerController.player.AddScore(-costValue);
+    }
+
+    private void OnEnable()
+    {
+        allPlants.Add(this);
+    }
+
+    void OnDisable()
+    {
+        allPlants.Remove(this);
     }
 
     // Update is called once per frame
@@ -168,7 +184,8 @@ public class Plant : MonoBehaviour
             harvestNum++;
 
             // Add to player's score
-            PlayerController.player.AddScore(scoreValue);
+            ScoreKeeper.instance.AddScore(scoreValue);
+            //PlayerController.player.AddScore(scoreValue);
 
             if (harvestNum == totalHarvests)
             {
@@ -235,6 +252,53 @@ public class Plant : MonoBehaviour
         {
             emoteIcon.SetActive(false);
         }
+    }
+    /// <summary>
+    /// Finds the closest plant that is able to be harvested
+    /// </summary>
+    /// <param name="pos">The position to find closest to</param>
+    /// <returns></returns>
+    public static Plant findClosestHarvestable(Vector2 pos)
+    {
+        Plant closest = null;
+        float dis = float.MaxValue;
+
+        foreach (Plant p in allPlants)
+        {
+            //Ignore all non harvestable
+            if (p.harvestable == false || p.IsDead)
+                continue;
+            float d = Vector2.Distance(p.transform.position, pos);
+            if (d < dis)
+            {
+                dis = d;
+                closest = p;
+            }
+        }
+        return closest;
+    }
+    /// <summary>
+    /// Finds the closest plant that is able to be harvested
+    /// </summary>
+    /// <param name="pos">The position to find closest to</param>
+    /// <returns></returns>
+    public static Plant findClosestWaterable(Vector2 pos)
+    {
+        Plant closest = null;
+        float dis = float.MaxValue;
+        foreach (Plant p in allPlants)
+        {
+            //Ignore all non Waterable
+            if (p.canWater == false || p.IsDead)
+                continue;
+            float d = Vector2.Distance(p.transform.position, pos);
+            if (d < dis)
+            {
+                dis = d;
+                closest = p;
+            }
+        }
+        return closest;
     }
 
 }

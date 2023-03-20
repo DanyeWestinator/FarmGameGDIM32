@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,12 @@ public class ScoreKeeper : MonoBehaviour
     public int dailyScore = 0;
 
     public int highScore = 0;
+    public static ScoreKeeper instance;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // returns daily score
     public int NewDay()

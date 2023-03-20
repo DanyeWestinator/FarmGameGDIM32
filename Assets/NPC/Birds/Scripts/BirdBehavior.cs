@@ -81,6 +81,8 @@ public class BirdBehavior : AIBehavior
         while (true)
         {
             yield return new WaitForSeconds(stateUpdateTime);
+            if (PlayerController.player == null)
+                continue;
             //If the player is close, flee
             if (distanceToThreat(player.gameObject) <= safeDistance)
             {
