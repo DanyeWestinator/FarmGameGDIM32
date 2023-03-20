@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e467104087a5ac1458d0a1f4bde9d914
+guid: 1dd0af74f827dbc43b95584c7b3cf526
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,7 +117,28 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player spritesheet male_0
+      name: Player spritesheet 3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 16
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d80b0912d6e9674dacde67e81c63f7b
+      internalID: 974901398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player spritesheet 3_1
       rect:
         serializedVersion: 2
         x: 0
@@ -131,35 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6810032f28616b4cb4ef162dc87392c
-      internalID: -487584915
+      spriteID: d2215e8b5e935ea49aace622243a2cf8
+      internalID: -2060727213
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player spritesheet male_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9bda8736fdd005409f519d406fe8cd2
-      internalID: -1981342175
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player spritesheet male_2
+      name: Player spritesheet 3_2
       rect:
         serializedVersion: 2
         x: 0
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e2a8a515389bf445850501d51aa0716
-      internalID: -600447796
+      spriteID: 655391bbaed5f864d88e685047e09967
+      internalID: 1407947361
       vertices: []
       indices: 
       edges: []
@@ -190,9 +190,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player spritesheet male_2: -600447796
-      Player spritesheet male_0: -487584915
-      Player spritesheet male_1: -1981342175
+      Player spritesheet 3_1: -2060727213
+      Player spritesheet 3_2: 1407947361
+      Player spritesheet 3_0: 974901398
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

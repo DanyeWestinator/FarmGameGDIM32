@@ -27,6 +27,7 @@ public class PlayerManager : PlayerInputManager
         instance = this;
     }
 
+    [SerializeField] private Sprite[] playerSprites;
     public void OnPlayerJoined(PlayerInput input)
     {
         input.gameObject.name = $"Player {playerCount}";
@@ -40,7 +41,8 @@ public class PlayerManager : PlayerInputManager
         }
 
         players.Add(controller);
-        input.GetComponentInChildren<SpriteRenderer>().color = playerColors.GetRandom();
+        //input.GetComponentInChildren<SpriteRenderer>().color = playerColors.GetRandom();
+        input.GetComponentInChildren<SpriteRenderer>().sprite = playerSprites[Random.Range(0, playerSprites.Length)];
     }
 
     public void OnPlayerLeft(PlayerInput input)
