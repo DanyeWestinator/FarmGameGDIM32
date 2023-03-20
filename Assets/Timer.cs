@@ -56,6 +56,8 @@ public class Timer : MonoBehaviour
         {
             // pause game and show menu
             GameStateManager.SetPause();
+            PauseManager.instance.HidePause();
+
             timeToDisplay = 0;
             int dayScore = ScoreKeeper.NewDay();
             DayOver.SetActive(true);
@@ -75,7 +77,9 @@ public class Timer : MonoBehaviour
     public void ResetTimer()
     {
         print("resetting day");
+        PauseManager.instance.ShowPause();
         GameStateManager.SetPlay();
+
         timeValue = dayLength;
     }
 }

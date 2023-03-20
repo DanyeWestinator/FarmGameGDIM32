@@ -573,8 +573,8 @@ MonoBehaviour:
   DayScore: {fileID: 571427541833069491}
   HighScore: {fileID: 571427540467718508}
   TotalScore: {fileID: 2701179436199380804}
-  dayLength: 300
-  timeValue: 300
+  dayLength: 10
+  timeValue: 10
   timeText: {fileID: 571427540457392324}
 --- !u!1 &571427540467718510
 GameObject:
@@ -2078,7 +2078,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1649539471182538160}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: HidePause
         m_Mode: 1
@@ -2277,7 +2277,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1649539471182538160}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: ShowPause
         m_Mode: 1
@@ -2875,7 +2875,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1649539471182538160}
         m_TargetAssemblyTypeName: PauseManager, Assembly-CSharp
         m_MethodName: HidePause
         m_Mode: 1
@@ -3335,7 +3335,7 @@ PrefabInstance:
     - target: {fileID: 2041844898360683459, guid: 8453eeca63df7b24f8f2dc51498a5049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1649539471182538160}
     - target: {fileID: 2041844898360683459, guid: 8453eeca63df7b24f8f2dc51498a5049, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2

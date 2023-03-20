@@ -1096,6 +1096,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1312004732}
     - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
+      propertyPath: NapTimer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: RunSpeed
       value: 1
       objectReference: {fileID: 0}
@@ -1105,11 +1109,15 @@ PrefabInstance:
       objectReference: {fileID: 1511543099}
     - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: CatchDistance
-      value: 0.2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
       propertyPath: runawayChance
       value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 7999303153389341221, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}
+      propertyPath: GiveUpDistance
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1c80f0d728ab1f48b63812186c7e77e, type: 3}

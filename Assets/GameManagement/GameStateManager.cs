@@ -30,11 +30,6 @@ public class GameStateManager : MonoBehaviour
 
     public static void SetState(States state)
     {
-        if (lockState) 
-        {
-            print("SET STATE FAILED: STATE LOCKED");
-            return;
-        }
         
         print($"old: {_state}, new: {state}");
         //If we're changing gameplay state
@@ -71,12 +66,24 @@ public class GameStateManager : MonoBehaviour
 
     public static void SetPause()
     {
+        if (lockState) 
+        {
+            print("SET PAUSE FAILED: STATE LOCKED");
+            return;
+        }
+        
         SetState(States.Pause);
         Time.timeScale = 0;
     }
 
     public static void SetPlay()
     {
+        if (lockState) 
+        {
+            print("SET PLAY FAILED: STATE LOCKED");
+            return;
+        }
+        
         SetState(States.Play);
         Time.timeScale = 1;
     }
